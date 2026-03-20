@@ -1,5 +1,7 @@
 "use client";
 
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useState, useRef } from "react";
 
 const INVENTORY_VALUES = ["94.2%", "94.7%", "95.1%", "94.8%", "95.3%"];
@@ -22,11 +24,73 @@ function useCycle<T>(values: T[], interval: number): T {
   return values[idx];
 }
 
+
+gsap.registerPlugin(ScrollTrigger)
+
 export default function DashboardMockup() {
   const cardRef = useRef<HTMLDivElement>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
   const inventory = useCycle(INVENTORY_VALUES, 4000);
   const stockouts = useCycle(STOCKOUT_VALUES, 5500);
+
+  const dashboardRef = useRef<HTMLDivElement>(null);
+const leftCardsRef = useRef<HTMLDivElement>(null);
+const rightCardsRef = useRef<HTMLDivElement>(null);
+const bottomRef = useRef<HTMLDivElement>(null);
+
+
+
+useEffect(() => {
+  const ctx = gsap.context(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: dashboardRef.current,
+        start: "top 75%",
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    // whole mockup fade + slight scale
+    tl.from(dashboardRef.current, {
+      opacity: 0,
+      scale: 0.96,
+      duration: 0.7,
+      ease: "power3.out",
+    });
+
+    // left cards come from left
+    tl.from(leftCardsRef.current?.children || [], {
+      x: -40,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.12,
+      ease: "power3.out",
+    }, "-=0.4");
+
+    // right cards come from right
+    tl.from(rightCardsRef.current?.children || [], {
+      x: 40,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.12,
+      ease: "power3.out",
+    }, "-=0.5");
+
+    // bottom cards slightly from bottom
+    tl.from(bottomRef.current?.children || [], {
+      y: 30,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.12,
+      ease: "power3.out",
+    }, "-=0.4");
+
+  });
+
+  return () => ctx.revert();
+}, []);
+
+
 
   // 3D tilt on mouse
   useEffect(() => {
@@ -57,7 +121,10 @@ export default function DashboardMockup() {
   return (
     <div ref={wrapRef} className="w-full max-w-4xl mx-auto">
       <div
-        ref={cardRef}
+        ref={(el) => {
+          cardRef.current = el;
+          dashboardRef.current = el;
+        }}
         className="rounded-2xl border border-stone-200 bg-white shadow-2xl shadow-stone-200/60 overflow-hidden transition-transform duration-200 ease-out"
         style={{ willChange: "transform" }}
       >
@@ -66,8 +133,8 @@ export default function DashboardMockup() {
           <div className="w-3 h-3 rounded-full bg-red-400" />
           <div className="w-3 h-3 rounded-full bg-amber-400" />
           <div className="w-3 h-3 rounded-full bg-emerald-400" />
-          <span className="flex-1 text-center text-xs text-stone-400 font-normal">
-            Our Product - Command Center
+          <span className="flex-1 text-center text-xs text-stone-600 font-normal">
+            Command Center
           </span>
           <span className="flex items-center gap-1.5 text-xs font-medium text-emerald-500">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -76,10 +143,10 @@ export default function DashboardMockup() {
         </div>
 
         {/* Body grid */}
-        <div className="grid grid-cols-3 gap-3 p-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 p-4">
 
           {/* Inventory health */}
-          <div className="rounded-xl border border-stone-100 bg-stone-50/60 p-4 relative overflow-hidden">
+          <div ref={leftCardsRef} className="rounded-xl border border-stone-100 bg-stone-50/60 p-4 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-16 h-16 bg-orange-50 rounded-bl-2xl opacity-60" />
             <p className="text-[10px] font-semibold text-stone-400 uppercase tracking-wider mb-1">
               Inventory Health
@@ -104,7 +171,7 @@ export default function DashboardMockup() {
           </div>
 
           {/* Stockout risk */}
-          <div className="rounded-xl border border-stone-100 bg-stone-50/60 p-4 relative overflow-hidden">
+          <div ref={leftCardsRef} className="rounded-xl border border-stone-100 bg-stone-50/60 p-4 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-16 h-16 bg-red-50 rounded-bl-2xl opacity-60" />
             <p className="text-[10px] font-semibold text-stone-400 uppercase tracking-wider mb-1">
               Stockout Risk SKUs
@@ -128,7 +195,7 @@ export default function DashboardMockup() {
           </div>
 
           {/* Alerts */}
-          <div className="rounded-xl border border-stone-100 bg-stone-50/60 p-4">
+          <div ref={rightCardsRef} className="rounded-xl border border-stone-100 bg-stone-50/60 p-4">
             <p className="text-[10px] font-semibold text-stone-400 uppercase tracking-wider mb-2.5">
               Active Alerts
             </p>
@@ -144,7 +211,7 @@ export default function DashboardMockup() {
           </div>
 
           {/* Demand forecast — wide */}
-          <div className="col-span-2 rounded-xl border border-stone-100 bg-stone-50/60 p-4">
+          <div ref={rightCardsRef} className="md:col-span-2 col-span-1 rounded-xl border border-stone-100 bg-stone-50/60 p-4">
             <div className="flex items-start justify-between mb-2">
               <div>
                 <p className="text-[10px] font-semibold text-stone-400 uppercase tracking-wider mb-1">
@@ -192,7 +259,7 @@ export default function DashboardMockup() {
           </div>
 
           {/* AI recommendation */}
-          <div className="rounded-xl border border-orange-100 bg-orange-50/40 p-4">
+          <div ref={bottomRef} className="rounded-xl border border-orange-100 bg-orange-50/40 p-4">
             <p className="text-[10px] font-semibold text-orange-500 uppercase tracking-wider mb-2">
               ✦ AI Recommendation
             </p>
