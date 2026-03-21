@@ -29,7 +29,7 @@ export default function IndustryGrid() {
           </h2>
         </div>
 
-        {/* Grid — 3 cols desktop, 2 tablet, 1 mobile */}
+        {/* Grid - 3 cols desktop, 2 tablet, 1 mobile */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {INDUSTRIES.map((ind) => {
             const a = ind.color;

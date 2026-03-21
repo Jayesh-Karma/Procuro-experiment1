@@ -63,7 +63,7 @@ export default function IndustryBlock({
             </h2>
 
             <p className="text-sm text-stone-400 font-light leading-relaxed mb-8 max-w-sm">
-              Every challenge below is documented from real operations teams in {industry.label.toLowerCase()} — and solved directly by Our Product.
+              Every challenge below is documented from real operations teams in {industry.label.toLowerCase()} - and solved directly by Our Product.
             </p>
 
             {/* Challenges vs Solutions */}
@@ -133,7 +133,7 @@ export default function IndustryBlock({
             </div>
           </div>
 
-          {/* ── Visual side — real photography ──────────────── */}
+          {/* ── Visual side - real photography ──────────────── */}
           <div
             style={{
               opacity:   vis ? 1 : 0,

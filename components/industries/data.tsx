@@ -124,7 +124,7 @@ export const INDUSTRIES: Industry[] = [
     id:      "pharma",
     emoji:   <Pill className="text-violet-500" />,
     label:   "Pharma & Healthcare",
-    tagline: "Full batch traceability and compliance — without the manual burden.",
+    tagline: "Full batch traceability and compliance - without the manual burden.",
     problem: "Expiry tracking, batch compliance and cold chain risks",
     heroImage:  "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1200&q=80&auto=format&fit=crop",
     cardImage:  "https://images.unsplash.com/photo-1563213126-a4273aed2016?w=800&q=80&auto=format&fit=crop",
@@ -139,7 +139,7 @@ export const INDUSTRIES: Industry[] = [
       hex:    "#8b5cf6",
     },
     challenges: [
-      "Batch and expiry tracking done manually — audit risk every quarter",
+      "Batch and expiry tracking done manually - audit risk every quarter",
       "30% of worker time consumed by compliance documentation",
       "Cold chain breaks go undetected until product is compromised",
       "Lot traceability gaps create product recall exposure",
@@ -147,7 +147,7 @@ export const INDUSTRIES: Industry[] = [
     ],
     solutions: [
       "Batch-level tracking with automated FEFO picking logic",
-      "Auto-generated compliance reports — zero manual documentation",
+      "Auto-generated compliance reports - zero manual documentation",
       "Expiry alerts triggered weeks before breach",
       "End-to-end lot traceability from raw material to delivery",
       "AI demand forecasting calibrated to regulated SKU constraints",

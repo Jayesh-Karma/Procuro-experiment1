@@ -13,7 +13,6 @@ import Footer from "@/components/Hero/Footer";
 export default function Home() {
   return (
     <>
-    <ReactLenis root>
     
     <div className=" min-h-screen overflow-hidden">
     <Navbar />
@@ -30,7 +29,6 @@ export default function Home() {
         {/* <FloatingSection sparkles>
         </FloatingSection> */}
     </div>
-    </ReactLenis>
     </>
   );
 }
