@@ -2,6 +2,7 @@
 
 import gsap from "gsap";
 import { ArrowRight } from "lucide-react";
+import { useModal } from "@/components/Modal/ModalProvider";
 import { useEffect, useRef, useState } from "react";
 
 // ─── Data ─────────────────────────────────────────────────────────────────
@@ -305,6 +306,7 @@ function SectionHead() {
 function BottomCTA() {
   const { ref, inView } = useInView(0.1);
      const iconRef = useRef(null);
+  const modal = useModal();
   const handleHover = () => {
   const el = iconRef.current;
 
@@ -360,7 +362,7 @@ function BottomCTA() {
           No commitment. Show us your supply chain and we&apos;ll show you exactly what&apos;s possible.
         </p>
         <div className="flex items-center justify-center gap-3 flex-wrap">
-          <button onMouseEnter={handleHover} className="px-8 py-3.5 cursor-pointer flex items-center gap-2 rounded-xl bg-orange-500 hover:bg-orange-400 text-white text-sm font-semibold shadow-lg shadow-orange-500/25 transition-all hover:-translate-y-0.5">
+          <button onMouseEnter={handleHover} onClick={() => modal.open("demo")} className="px-8 py-3.5 cursor-pointer flex items-center gap-2 rounded-xl bg-orange-500 hover:bg-orange-400 text-white text-sm font-semibold shadow-lg shadow-orange-500/25 transition-all hover:-translate-y-0.5">
             Book a free demo <ArrowRight ref={iconRef} className="w-5 h-5" />
           </button>
           <button className="px-7 py-3.5 cursor-pointer rounded-xl border border-stone-700 text-stone-400 hover:text-white hover:border-stone-500 text-sm font-medium transition-all">

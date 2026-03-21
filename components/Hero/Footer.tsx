@@ -3,6 +3,7 @@
 import gsap from "gsap";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { useModal } from "@/components/Modal/ModalProvider";
 import { useEffect, useRef, useState } from "react";
 
 // ─── Links ────────────────────────────────────────────────────────────────
@@ -95,6 +96,7 @@ export default function Footer() {
   const { ref, vis } = useInView();
   const [email, setEmail] = useState("");
   const [sent,  setSent ] = useState(false);
+  const modal = useModal();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -237,15 +239,14 @@ export default function Footer() {
               </p>
             </div>
             <div className="flex items-center gap-3 flex-shrink-0">
-              <button  onMouseEnter={handleHover} className="group cursor-pointer relative overflow-hidden flex items-center gap-2 px-6 py-3 rounded-xl bg-orange-500 hover:bg-orange-400 text-white text-sm font-semibold transition-all duration-200 shadow-lg shadow-orange-900/30 hover:-translate-y-px">
+              <button  onMouseEnter={handleHover} onClick={() => modal.open("demo")} className="group cursor-pointer relative overflow-hidden flex items-center gap-2 px-6 py-3 rounded-xl bg-orange-500 hover:bg-orange-400 text-white text-sm font-semibold transition-all duration-200 shadow-lg shadow-orange-900/30 hover:-translate-y-px">
                
                 Book a free demo
                 <ArrowRight ref={iconRef} className="w-4 h-4 text-white" />
               </button>
-              <a href="#contact"
-                className="text-sm text-stone-400 hover:text-white transition-colors duration-150">
-                or contact us
-              </a>
+                <button onClick={() => modal.open("contact")} className="text-sm text-stone-400 hover:text-white transition-colors duration-150">
+                  or contact us
+                </button>
             </div>
           </div>
         </div>

@@ -5,6 +5,7 @@ import MorphingText from "@/components/ui/MorphingText";
 import { StatCard } from "@/components/ui/StatCard";
 import DashboardMockup from "./DashboardMockup";
 import { ArrowRight, Play, Sparkle } from "lucide-react";
+import { useModal } from "@/components/Modal/ModalProvider";
 import FloatingCardsForHero from "../ui/FloatingCardsForHero";
 import { useRef } from "react";
 import gsap from "gsap";
@@ -43,6 +44,7 @@ export default function HeroSection() {
       ease: "power2.out",
     });
 };
+  const modal = useModal();
 
   return (
     <section className="relative md:min-h-screen flex flex-col items-center justify-start pt-20 md:pt-25   pb-20 px-6 md:px-12 overflow-hidden bg-white">
@@ -50,12 +52,8 @@ export default function HeroSection() {
         <FloatingOrbs />
         <FloatingCardsForHero />
         
-      <div className="">
-      </div>
-
       {/* Subtle noise grain overlay */}
       <div
-        className="absolute inset-0 pointer-events-none z-[1] opacity-[0.025]"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
           backgroundRepeat: "repeat",
@@ -119,7 +117,7 @@ export default function HeroSection() {
           className="flex flex-col sm:flex-row  items-center gap-3 mb-12 w-full justify-center"
           style={{ animation: "fadeUp 0.6s 0.42s both" }}
         >
-          <button onMouseEnter={handleHover} className="w-full flex items-center sm:w-auto px-8 cursor-pointer py-3.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold shadow-lg shadow-orange-200 hover:shadow-orange-300 transition-all hover:-translate-y-0.5 active:translate-y-0">
+          <button onMouseEnter={handleHover} onClick={() => modal.open("demo")} className="w-full flex items-center sm:w-auto px-8 cursor-pointer py-3.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold shadow-lg shadow-orange-200 hover:shadow-orange-300 transition-all hover:-translate-y-0.5 active:translate-y-0">
             Get a demo <ArrowRight ref={iconRef} className="w-4 h-4 ml-2" />
           </button>
           <button className="w-full sm:w-auto px-6 py-2.5 cursor-pointer rounded-xl border border-stone-200 text-stone-600 text-sm font-medium hover:border-orange-200 hover:text-orange-600 hover:bg-orange-50/50 transition-all flex items-center gap-2.5 justify-center group">

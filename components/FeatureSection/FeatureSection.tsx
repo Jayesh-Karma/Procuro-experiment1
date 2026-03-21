@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useModal } from "@/components/Modal/ModalProvider";
 import FloatingOrbs from "../ui/FloatingOrbs";
 
 // ─── Scroll reveal hook ───────────────────────────────────────────────────
@@ -449,6 +450,7 @@ function FeatureCard({ card, index }: { card: CardProps; index: number }) {
 
 export default function FeatureSection() {
   const { ref: headRef, visible: headVisible } = useReveal(0.2);
+  const modal = useModal();
 
   return (
     <section className="relative bg-white py-28 px-6 md:px-12 overflow-hidden">
@@ -515,7 +517,7 @@ export default function FeatureSection() {
             </p>
           </div>
           <div className="flex items-center gap-3 flex-shrink-0">
-            <button className="px-6 py-3 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold shadow-md shadow-orange-200 hover:shadow-orange-300 transition-all hover:-translate-y-0.5">
+            <button onClick={() => modal.open("demo")} className="px-6 py-3 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold shadow-md shadow-orange-200 hover:shadow-orange-300 transition-all hover:-translate-y-0.5">
               Get a demo →
             </button>
             <button className="px-6 py-3 rounded-xl border border-stone-200 text-stone-600 text-sm font-medium hover:border-orange-200 hover:text-orange-600 transition-all">

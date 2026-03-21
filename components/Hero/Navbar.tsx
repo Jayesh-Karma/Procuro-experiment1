@@ -1,10 +1,13 @@
 "use client";
 
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { useModal } from "@/components/Modal/ModalProvider";
 
 const LINKS = [
   { label: "Product",      href: "#product"      },
-  { label: "Industries",   href: "#industries"   },
+  { label: "Industries",   href: "/industries"   },
   { label: "How it Works", href: "#how-it-works" },
   { label: "Contact",      href: "#contact"      },
 ];
@@ -115,18 +118,11 @@ export default function Navbar() {
     document.getElementById(href.replace("#", ""))?.scrollIntoView({ behavior: "smooth" });
     setMenuOpen(false);
   };
+  const modal = useModal();
 
   return (
     <>
-      {/*
-        ── PROGRESS BAR ─────────────────────────────────────────────────────
-        Rendered as a sibling to <header>, NOT inside it.
-        This is the fix: the <header> has z-index:50 which creates its own
-        stacking context. Any child with z-index:9999 is only "9999 within
-        that context" — it can never paint above a sibling with a lower z.
-        Pulling the bar out to the same level as <header> and giving it
-        z-index:99999 means it is genuinely above everything on the page.
-      */}
+ 
       <div
         aria-hidden="true"
         style={{
@@ -200,10 +196,10 @@ export default function Navbar() {
             <div ref={linksRef} className="hidden md:flex items-center gap-0.5 relative pb-[1px]">
               <ActiveIndicator containerRef={linksRef} activeIdx={activeIdx} />
               {LINKS.map((link, i) => (
-                <button
+                <Link
                   key={link.href}
-                  data-navlink
-                  onClick={() => go(link.href)}
+
+                  href={link.href}
                   className={`
                     relative px-4 py-2 text-[13.5px] font-medium rounded-lg
                     transition-colors duration-200 cursor-pointer
@@ -214,7 +210,7 @@ export default function Navbar() {
                   `}
                 >
                   {link.label}
-                </button>
+                </ Link>
               ))}
             </div>
 
@@ -230,6 +226,7 @@ export default function Navbar() {
               <button
                 onMouseEnter={() => setCtaHover(true)}
                 onMouseLeave={() => setCtaHover(false)}
+                onClick={() => modal.open("demo")}
                 className="relative hidden md:flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-[13px] font-semibold overflow-hidden transition-all duration-200 shadow-md shadow-orange-200 hover:shadow-lg hover:shadow-orange-300 hover:-translate-y-px active:translate-y-0"
               >
                 <span
@@ -250,7 +247,7 @@ export default function Navbar() {
                 </svg>
               </button>
 
-              <button className="md:hidden px-4 py-2 rounded-xl bg-orange-500 text-white text-[13px] font-semibold shadow-md shadow-orange-200">
+              <button onClick={() => modal.open("demo")} className="md:hidden px-4 py-2 rounded-xl bg-orange-500 text-white text-[13px] font-semibold shadow-md shadow-orange-200">
                 Demo
               </button>
 
@@ -304,14 +301,10 @@ export default function Navbar() {
                 </button>
               ))}
               <div className="pt-2 mt-1 border-t border-stone-100">
-                <button onClick={() => setMenuOpen(false)}
+                <button onClick={() => { modal.open("demo"); setMenuOpen(false); }}
                   className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-orange-500 text-white text-sm font-semibold">
                   Book a demo
-                  <svg viewBox="0 0 13 13" fill="none" className="w-3 h-3"
-                    stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="2" y1="6.5" x2="11" y2="6.5" />
-                    <polyline points="7.5 3 11 6.5 7.5 10" />
-                  </svg>
+                  <ArrowRight className="w-3 h-3" />
                 </button>
               </div>
             </div>
