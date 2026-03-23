@@ -153,7 +153,7 @@ export default function Footer() {
 
       <div
         ref={ref}
-        className="relative max-w-5xl mx-auto px-6 md:px-12"
+        className="relative max-w-7xl mx-auto px-6 md:px-12"
       >
 
         {/* ══ TOP BLOCK ══════════════════════════════════════════════════ */}

@@ -15,7 +15,7 @@ export default function Home() {
     <>
     
     <div className=" min-h-screen overflow-hidden">
-    <Navbar />
+
         <HeroSection />
         {/* <FeatureSection /> */}
         <PainPointsSection />
@@ -25,7 +25,7 @@ export default function Home() {
         <IndustrySection />
         <HowItWorksSection />
         <ReviewsSection />
-        <Footer />
+
         {/* <FloatingSection sparkles>
         </FloatingSection> */}
     </div>

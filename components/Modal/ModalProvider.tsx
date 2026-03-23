@@ -1,8 +1,7 @@
 "use client";
 
-import React, { createContext, useContext, useState } from "react";
-import ContactModal from "../ContactForm/ContactModal";
-import BookDemoModal from "../ContactForm/BookDemoModal";
+import React, { createContext, useContext } from "react";
+import { useRouter } from "next/navigation";
 
 type ModalName = "contact" | "demo" | null;
 
@@ -15,16 +14,18 @@ type ModalContextValue = {
 const ModalContext = createContext<ModalContextValue | null>(null);
 
 export function ModalProvider({ children }: { children: React.ReactNode }) {
-  const [current, setCurrent] = useState<ModalName>(null);
+  const router = useRouter();
 
-  const open = (m: Exclude<ModalName, null>) => setCurrent(m);
-  const close = () => setCurrent(null);
+  // Instead of rendering modal components, route to dedicated pages.
+  const open = (m: Exclude<ModalName, null>) => {
+    if (m === "contact") router.push("/contact");
+    if (m === "demo") router.push("/book-demo");
+  };
+  const close = () => {};
 
   return (
-    <ModalContext.Provider value={{ open, close, current }}>
+    <ModalContext.Provider value={{ open, close, current: null }}>
       {children}
-      <ContactModal open={current === "contact"} onClose={close} />
-      <BookDemoModal open={current === "demo"} onClose={close} />
     </ModalContext.Provider>
   );
 }

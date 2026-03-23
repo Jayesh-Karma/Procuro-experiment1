@@ -4,12 +4,14 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useModal } from "@/components/Modal/ModalProvider";
+import { usePathname } from "next/navigation";
 
 const LINKS = [
-  { label: "Product",      href: "#product"      },
+  { label: "Product",      href: "/product"      },
+  { label: "Case Studies",    href: "/case-studies"   },
   { label: "Industries",   href: "/industries"   },
-  { label: "How it Works", href: "#how-it-works" },
-  { label: "Contact",      href: "#contact"      },
+  { label: "How it Works", href: "/how-it-works" },
+  { label: "Contact",      href: "/contact"      },
 ];
 
 function LogoMark() {
@@ -73,6 +75,8 @@ export default function Navbar() {
   const [ctaHover,  setCtaHover ] = useState(false);
   const [hidden,    setHidden   ] = useState(false);
   const linksRef    = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+
   const lastScrollY = useRef(0);
 
   useEffect(() => {
@@ -157,7 +161,7 @@ export default function Navbar() {
         }}
       >
         <nav
-          className="w-full max-w-5xl"
+          className="w-full max-w-7xl"
           style={{
             opacity:    mounted ? 1 : 0,
             transform:  mounted
@@ -170,13 +174,13 @@ export default function Navbar() {
             className={`
               relative flex items-center justify-between transition-all duration-500
               ${scrolled
-                ? "px-4 md:px-6 h-14 rounded-2xl border border-stone-200/90 shadow-xl shadow-stone-100/70"
+                ? "px-4 md:px-6 h-14 rounded-2xl border border-stone-200/90 shadow-md shadow-black/5"
                 : "px-0 md:px-2 h-16 rounded-none border-b border-stone-100"
               }
             `}
             style={{
               background:     scrolled ? "rgba(255,255,255,0.92)" : "rgba(255,255,255,0.80)",
-              backdropFilter: "blur(20px)",
+              // backdropFilter: "blur(20px)",
             }}
           >
             {/* Logo */}
@@ -194,7 +198,7 @@ export default function Navbar() {
 
             {/* Desktop links */}
             <div ref={linksRef} className="hidden md:flex items-center gap-0.5 relative pb-[1px]">
-              <ActiveIndicator containerRef={linksRef} activeIdx={activeIdx} />
+       
               {LINKS.map((link, i) => (
                 <Link
                   key={link.href}
@@ -203,8 +207,8 @@ export default function Navbar() {
                   className={`
                     relative px-4 py-2 text-[13.5px] font-medium rounded-lg
                     transition-colors duration-200 cursor-pointer
-                    ${activeIdx === i
-                      ? "text-stone-900"
+                    ${pathname === link.href
+                      ? "text-orange-500"
                       : "text-stone-500 hover:text-stone-800 hover:bg-stone-50"
                     }
                   `}
@@ -276,7 +280,7 @@ export default function Navbar() {
 
           {/* Mobile dropdown */}
           <div
-            className="md:hidden mt-1.5 rounded-2xl bg-white border border-stone-200 shadow-xl shadow-stone-100/60 overflow-hidden"
+            className="md:hidden mt-1.5 rounded-2xl bg-white border border-stone-200 shadow-md shadow-black/10 overflow-hidden"
             style={{
               maxHeight:  menuOpen ? "300px" : "0px",
               opacity:    menuOpen ? 1 : 0,

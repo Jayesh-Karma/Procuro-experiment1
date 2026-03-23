@@ -4,6 +4,9 @@ import "./globals.css";
 import GSAPProvider from "@/components/ProductShowcase/GsapProvider";
 import ModalProvider from "@/components/Modal/ModalProvider";
 import ReactLenis from "lenis/react";
+import Navbar from "@/components/Hero/Navbar";
+import Footer from "@/components/Hero/Footer";
+import CalEmbed from "@/components/calendly/CadEmbed";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,7 +38,10 @@ export default function RootLayout({
     <ReactLenis root>
       <GSAPProvider>
         <ModalProvider>
+          <Navbar />
           {children}
+          <CalEmbed />
+          <Footer />
         </ModalProvider>
       </GSAPProvider>
     </ReactLenis>
