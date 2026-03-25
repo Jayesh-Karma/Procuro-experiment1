@@ -80,10 +80,10 @@ const ContactForm = () => {
   };
 
   return (
-    <div className=" max-w-xl min-w-md bg-white mx-auto p-6 border border-gray-200 rounded-xl shadow">
-      <h2 className="text-xl font-semibold mb-4">Contact Us</h2>
+    <div className=" max-w-xl min-w-md bg-white mx-auto p-4 border border-gray-200 rounded-xl shadow">
+      <h2 className="text-xl font-semibold mb-3">Contact Us</h2>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3 text-sm">
         {/* Full Name */}
         <div>
           <input
