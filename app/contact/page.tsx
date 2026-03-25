@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import ContactForm from "@/components/calendly/ContactForm";
 
 export default function ContactPage() {
   const [name, setName] = useState("");
@@ -61,7 +62,7 @@ export default function ContactPage() {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="w-full bg-white rounded-2xl border border-black/5 shadow-sm p-6 md:p-8">
+        {/* <form onSubmit={handleSubmit} className="w-full bg-white rounded-2xl border border-black/5 shadow-sm p-6 md:p-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Your name" className="px-4 py-3 rounded-lg border border-black/10 focus:ring-2 focus:ring-orange-200 outline-none" required />
             <input value={company} onChange={(e) => setCompany(e.target.value)} placeholder="Company (optional)" className="px-4 py-3 rounded-lg border border-black/10 focus:ring-2 focus:ring-orange-200 outline-none" />
@@ -79,7 +80,8 @@ export default function ContactPage() {
             {sent && (<div className="mt-3 text-sm text-green-600">Thanks — we received your message and will reply within one business day.</div>)}
             {error && (<div className="mt-3 text-sm text-red-600">{error}</div>)}
 
-          </form>
+          </form> */}
+          <ContactForm />
       </section>
 
       <div className="mt-12">

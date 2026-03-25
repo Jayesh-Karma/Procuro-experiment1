@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Link2 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useModal } from "@/components/Modal/ModalProvider";
@@ -16,21 +16,16 @@ const LINKS = [
 
 function LogoMark() {
   return (
-    <div className="relative w-8 h-8 flex-shrink-0">
-      <svg viewBox="0 0 32 32" className="absolute inset-0 w-full h-full"
-        style={{ animation: "nav-spin 9s linear infinite" }}>
-        <circle cx="16" cy="16" r="13" fill="none"
+   <div className="relative w-12 h-12 flex-shrink-0">
+      <svg viewBox="0 0 40 40" className="absolute inset-0 w-full h-full"
+        style={{ animation: "footer-spin 10s linear infinite" }}>
+        <circle cx="20" cy="20" r="17" fill="none"
           stroke="#fed7aa" strokeWidth="1.5"
-          strokeDasharray="4 3.5" strokeLinecap="round" />
+          strokeDasharray="5 4" strokeLinecap="round" />
       </svg>
-      <div className="absolute inset-[5px] rounded-full bg-orange-500 flex items-center justify-center">
-        <svg viewBox="0 0 14 14" fill="none" className="w-3.5 h-3.5 text-white"
-          stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
-          <path d="M5.5 7.5a2.5 2.5 0 003 0l1.5-1.5a2.5 2.5 0 00-3.5-3.5L5 4" />
-          <path d="M8.5 6.5a2.5 2.5 0 00-3 0L4 8a2.5 2.5 0 003.5 3.5L9 10" />
-        </svg>
+      <div className="absolute inset-[5px] rounded-full bg-orange-500 flex items-center justify-center shadow-lg shadow-orange-300/40">
+         <Link2 className=" -rotate-45 text-white" />
       </div>
-      <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-white animate-pulse" />
     </div>
   );
 }
@@ -184,18 +179,18 @@ export default function Navbar() {
             }}
           >
             {/* Logo */}
-            <a href="/" className="flex items-center gap-2.5 select-none">
+             <a href="/" className="flex items-center gap-3">
               <LogoMark />
-              <div className="leading-none">
-                <div className="font-display text-lg font-extrabold text-stone-900 tracking-tight">
-                  Innovacio
+              <div className=" leading-none">
+                <div className="font-display leading-none text-sm font-bold text-black uppercase tracking-wide">
+                    Innovacio
                 </div>
-                <div className="text-[10px] font-semibold text-orange-500 tracking-[0.15em] uppercase mt-0.5">
-                  AI in Supply Chain
+                <div className="text-xs font-semibold leading-none text-orange-400 tracking-[0.14em] uppercase mt-0.5">
+                AI in Supply Chain
                 </div>
               </div>
             </a>
-
+            
             {/* Desktop links */}
             <div ref={linksRef} className="hidden md:flex items-center gap-0.5 relative pb-[1px]">
        

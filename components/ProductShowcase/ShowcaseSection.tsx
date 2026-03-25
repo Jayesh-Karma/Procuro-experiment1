@@ -1,5 +1,7 @@
 "use client";
 
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 // ─── Module definitions ───────────────────────────────────────────────────
@@ -501,7 +503,7 @@ export default function ShowcaseSection() {
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-100 mb-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-orange-400" />
-                  <span className="text-[10px] font-semibold text-orange-600 tracking-widest uppercase">Platform</span>
+                  <span className="text-[10px] font-semibold text-orange-600 tracking-widest uppercase">Product</span>
                 </div>
                 <h2 className="font-display text-[clamp(22px,3vw,38px)] font-extrabold text-stone-900 leading-tight tracking-tight">
                   Your entire supply chain.{" "}
@@ -509,6 +511,16 @@ export default function ShowcaseSection() {
                 </h2>
               </div>
 
+              <div className="flex flex-col gap-2 items-end flex-shrink-0">
+
+              <Link 
+              href={"/product"}
+              className=" bg-orange-500 flex items-center gap-2 group text-white text-sm px-4 py-1.5 font-semibold rounded-lg hover:bg-orange-600 transition-all ease-in-out duration-300" 
+              >
+                See Full product
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-all duration-300" />
+              </Link>
+              
               {/* Module nav pills */}
               <div className="hidden md:flex items-center gap-2 flex-shrink-0">
                 {MODULES.map((m, i) => (
@@ -541,6 +553,7 @@ export default function ShowcaseSection() {
                     </div>
                   </div>
                 ))}
+              </div>
               </div>
             </div>
           </div>

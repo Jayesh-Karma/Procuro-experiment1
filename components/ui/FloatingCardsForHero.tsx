@@ -284,22 +284,22 @@ const CARDS: CardDef[] = [
   {
     // Top-right
     anchorX: 1, anchorY: 0,
-    offsetX: -260, offsetY: 100,
+    offsetX: -220, offsetY: 100,
     width: 220, height: 100,
     floatAmp: 7, floatSpeed: 0.9, floatPhase: 0,
     draw: (ctx, w, h, ts) => drawForecastCard(ctx, w, h, ts),
   },
   {
-    anchorX: 0, anchorY: 0.2,
-    offsetX: 80, offsetY: -50,
+    anchorX: 1, anchorY: 0,
+    offsetX: -650, offsetY: 250,
     width: 215, height: 90,
     floatAmp: 9, floatSpeed: 0.65, floatPhase: 0.8,
     draw: (ctx, w, h, ts) => drawAlertsCard(ctx, w, h, ts),
   },
   {
     // Left-center
-    anchorX: 0, anchorY: 0.5,
-    offsetX: 110, offsetY: -160,
+    anchorX: 1, anchorY: 0,
+    offsetX: -200, offsetY: 500,
     width: 210, height: 100,
     floatAmp: 8, floatSpeed: 0.75, floatPhase: 1.4,
     draw: (ctx, w, h) => drawStockoutCard(ctx, w, h),

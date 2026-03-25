@@ -1,7 +1,7 @@
 "use client";
 
 import gsap from "gsap";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Link2 } from "lucide-react";
 import Link from "next/link";
 import { useModal } from "@/components/Modal/ModalProvider";
 import { useEffect, useRef, useState } from "react";
@@ -51,19 +51,15 @@ function useInView() {
 // ─── Spinning logo mark ────────────────────────────────────────────────────
 function FooterLogoMark() {
   return (
-    <div className="relative w-10 h-10 flex-shrink-0">
+    <div className="relative w-12 h-12 flex-shrink-0">
       <svg viewBox="0 0 40 40" className="absolute inset-0 w-full h-full"
         style={{ animation: "footer-spin 10s linear infinite" }}>
         <circle cx="20" cy="20" r="17" fill="none"
           stroke="#fed7aa" strokeWidth="1.5"
           strokeDasharray="5 4" strokeLinecap="round" />
       </svg>
-      <div className="absolute inset-[7px] rounded-full bg-orange-500 flex items-center justify-center shadow-lg shadow-orange-300/40">
-        <svg viewBox="0 0 14 14" fill="none" className="w-4 h-4 text-white"
-          stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
-          <path d="M5.5 7.5a2.5 2.5 0 003 0l1.5-1.5a2.5 2.5 0 00-3.5-3.5L5 4" />
-          <path d="M8.5 6.5a2.5 2.5 0 00-3 0L4 8a2.5 2.5 0 003.5 3.5L9 10" />
-        </svg>
+      <div className="absolute inset-[5px] rounded-full bg-orange-500 flex items-center justify-center shadow-lg shadow-orange-300/40">
+         <Link2 className=" -rotate-45" />
       </div>
     </div>
   );
@@ -167,14 +163,14 @@ export default function Footer() {
         >
 
           {/* Brand block */}
-          <div className="flex flex-col gap-5 max-w-[260px]">
+          <div className="flex flex-col gap-5 max-w-[300px]">
             <div className="flex items-center gap-3">
               <FooterLogoMark />
               <div className="leading-none">
-                <div className="font-display text-[17px] font-extrabold text-white tracking-tight">
+                <div className="font-display text-[20px] font-bold text-white tracking-tight">
                     Innovacio
                 </div>
-                <div className="text-[9px] font-semibold text-orange-400 tracking-[0.14em] uppercase mt-0.5">
+                <div className="text-xs font-semibold text-orange-400 tracking-[0.14em] uppercase mt-0.5">
                 AI in Supply Chain
                 </div>
               </div>
@@ -189,6 +185,10 @@ export default function Footer() {
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <span className="text-[11px] text-stone-500">All systems operational</span>
             </div>
+
+            <Link href={"https://innovaciotechnologies.com/"}  target="_blank" className=" font-bold tracking-wider whitespace-nowrap uppercase text-sm lg:text-lg hover:text-orange-500 duration-200 ease-in-out transition-all">
+              Innovacio Technologies Pvt ltd.
+            </Link>
 
             {/* Social proof numbers */}
             <div className="flex gap-5 pt-1">
@@ -264,7 +264,7 @@ export default function Footer() {
             {/* Left — backed by + copyright */}
             <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-5">
               <p className="text-[11px] text-stone-600">
-                © {new Date().getFullYear()} Our Product. All rights reserved.
+                © {new Date().getFullYear()} Innovacio Technologies Pvt. Ltd. All rights reserved.
               </p>
               <span className="hidden sm:block w-px h-3 bg-stone-700" />
               {/* Backed by badge */}
@@ -280,7 +280,7 @@ export default function Footer() {
             </div>
 
             {/* Right — legal links + theme */}
-            <div className="flex items-center gap-4">
+            {/* <div className="flex items-center gap-4">
               {["Privacy", "Terms", "Security"].map((l) => (
                 <a
                   key={l}
@@ -291,7 +291,7 @@ export default function Footer() {
                 </a>
               ))}
               <span className="w-px h-3 bg-stone-800" />
-              {/* Data trust badge */}
+              
               <div className="flex items-center gap-1.5">
                 <svg viewBox="0 0 12 12" fill="none" className="w-3 h-3 text-emerald-500" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
                   <path d="M6 1l4.5 2v3c0 2.8-2.1 4.5-4.5 5.1C1.5 10.5-.5 8.8-.5 6V3z" transform="translate(1,0)" />
@@ -299,7 +299,7 @@ export default function Footer() {
                 </svg>
                 <span className="text-[10px] text-stone-600">Your data is safe</span>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
 

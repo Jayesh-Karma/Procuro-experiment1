@@ -9,6 +9,7 @@ import { useModal } from "@/components/Modal/ModalProvider";
 import FloatingCardsForHero from "../ui/FloatingCardsForHero";
 import { useRef } from "react";
 import gsap from "gsap";
+import ContactForm from "../calendly/ContactForm";
 
 const STATS = [
   { value: 35, suffix: "%", label: "forecast accuracy gain" },
@@ -47,7 +48,7 @@ export default function HeroSection() {
   const modal = useModal();
 
   return (
-    <section className="relative md:min-h-screen flex flex-col items-center justify-start pt-20 md:pt-25   pb-20 px-6 md:px-12 overflow-hidden bg-white">
+    <section className="relative md:min-h-screen flex flex-col justify-center pt-20 md:pt-25   pb-20 px-6 md:px-12 overflow-hidden bg-white">
       {/* Floating orange orbs (hide on small screens) */}
         <FloatingOrbs />
         <FloatingCardsForHero />
@@ -70,8 +71,10 @@ export default function HeroSection() {
         }}
       />
 
-      {/* Content */}
-      <div className="relative z-[2] flex flex-col items-center text-center max-w-4xl mx-auto">
+      <div className=" relative z-[2] flex flex-col lg:flex-row items-start max-w-7xl justify-between mx-auto w-full">
+
+
+      <div className="flex flex-col items-start w-full max-w-2xl">
 
         {/* Badge */}
         <div
@@ -91,7 +94,7 @@ export default function HeroSection() {
         >
           Your supply chain,
           <br />
-          <span className="text-orange-500">
+          <span className="text-orange-500 text-6xl">
             <MorphingText />
           </span>
         </h1>
@@ -114,10 +117,10 @@ export default function HeroSection() {
 
         {/* CTAs */}
         <div
-          className="flex flex-col sm:flex-row  items-center gap-3 mb-12 w-full justify-center"
+          className="flex flex-col sm:flex-row  items-start gap-3 mb-12 w-full justify-start"
           style={{ animation: "fadeUp 0.6s 0.42s both" }}
         >
-          <button onMouseEnter={handleHover} onClick={() => modal.open("demo")} className="w-full flex items-center sm:w-auto px-8 cursor-pointer py-3.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold shadow-lg shadow-orange-200 hover:shadow-orange-300 transition-all hover:-translate-y-0.5 active:translate-y-0">
+          <button onMouseEnter={handleHover} onClick={() => modal.open("demo")} className="w-full flex items-center justify-center sm:w-auto px-8 cursor-pointer py-3.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold shadow-lg shadow-orange-200 hover:shadow-orange-300 transition-all hover:-translate-y-0.5 active:translate-y-0">
             Get a demo <ArrowRight ref={iconRef} className="w-4 h-4 ml-2" />
           </button>
           <button className="w-full sm:w-auto px-6 py-2.5 cursor-pointer rounded-xl border border-stone-200 text-stone-600 text-sm font-medium hover:border-orange-200 hover:text-orange-600 hover:bg-orange-50/50 transition-all flex items-center gap-2.5 justify-center group">
@@ -139,6 +142,11 @@ export default function HeroSection() {
             </div>
           ))}
         </div>
+      </div>
+        
+      <div className="">
+        <ContactForm />
+      </div>
       </div>
 
       {/* Dashboard */}

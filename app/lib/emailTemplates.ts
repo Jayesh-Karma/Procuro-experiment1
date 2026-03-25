@@ -3,6 +3,8 @@ type ContactBody = {
   email?: string;
   company?: string;
   message?: string;
+  website?: string;
+  phone?: string;
 };
 
 type DemoBody = {
@@ -25,7 +27,7 @@ function wrapHtml(title: string, headerColor = "#F97316", content: string) {
           <td style="padding:24px 16px;">
             <table width="680" align="center" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff; border-radius:10px; overflow:hidden; box-shadow:0 6px 30px rgba(16,24,40,0.08);">
               <tr>
-                <td style="padding:20px 28px; background:${headerColor}; color:#fff;">
+                <td style="padding:20px 28px; background:#f97316; color:#fff;">
                   <h2 style="margin:0; font-size:20px; font-weight:700;">${title}</h2>
                 </td>
               </tr>
@@ -51,10 +53,13 @@ export function contactEmailTemplate(body: ContactBody) {
   const name = body.name || "-";
   const email = body.email || "-";
   const company = body.company || "-";
+  const website = body.website || "-";
   const message = (body.message || "-").replace(/\n/g, "<br />");
+  const phone = body.phone || "-";
+
 
   const content = `
-    <p style="margin:0 0 12px 0; color:#0f172a;">You have a new contact request submitted through the website.</p>
+    <p style="margin:0 0 12px 0; color:#f97316;">You have a new contact request submitted through the AI in supply chain website.</p>
 
     <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="margin-top:8px; border-collapse:collapse;">
       <tr>
@@ -72,6 +77,14 @@ export function contactEmailTemplate(body: ContactBody) {
       <tr>
         <td style="padding:10px 0; color:#667085;">Email</td>
         <td style="padding:10px 0; font-weight:600;">${email}</td>
+      </tr>
+      <tr>
+        <td style="padding:10px 0; color:#667085;">Phone</td>
+        <td style="padding:10px 0; font-weight:600;">${phone}</td>
+      </tr>
+      <tr>
+        <td style="padding:10px 0; color:#667085;">Website</td>
+        <td style="padding:10px 0; font-weight:600;">${website}</td>
       </tr>
     </table>
 
@@ -91,7 +104,7 @@ export function demoEmailTemplate(body: DemoBody) {
   const notes = (body.notes || "-").replace(/\n/g, "<br />");
 
   const content = `
-    <p style="margin:0 0 12px 0; color:#0f172a;">You have a new demo request submitted through the website.</p>
+    <p style="margin:0 0 12px 0; color:#">You have a new demo request submitted through the website.</p>
 
     <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="margin-top:8px; border-collapse:collapse;">
       <tr>
