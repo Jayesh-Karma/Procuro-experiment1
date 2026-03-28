@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Factory, Truck } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
@@ -52,9 +52,9 @@ const MODULES = [
     accent: "emerald",
   },
   {
-    id: "ai-assistant",
+    id: "gen-ai-assitant",
     number: "04",
-    tag: "AI Assistant",
+    tag: "Gen-AI Assistant",
     title: "Ask anything.\nGet instant answers.",
     description:
       "Our AI is trained on your data only. Ask about inventory, orders, shortages, or forecasts — in plain English. No dashboards needed.",
@@ -65,6 +65,36 @@ const MODULES = [
       "No navigation or fixed reports required",
     ],
     accent: "violet",
+  },
+ {
+    id: "logistics",
+    number: "05",
+    tag: "Logistics & Distribution",
+    title: "Track shipments.\nOptimize every route.",
+    description:
+      "Gain complete visibility into shipments, reduce delays, and optimize delivery routes with real-time logistics intelligence.",
+    points: [
+      "End-to-end shipment tracking (inbound & outbound)",
+      "Delay detection with proactive alerts",
+      "Route optimization for faster deliveries",
+      "Shipment heatmaps to identify bottlenecks",
+    ],
+    accent: "cyan",
+  },
+  {
+    id: "supplier",
+    number: "06",
+    tag: "Supplier Management",
+    title: "Smarter sourcing.\nStronger suppliers.",
+    description:
+      "Track supplier performance, optimize procurement decisions, and reduce risks with data-driven supplier intelligence.",
+    points: [
+      "Supplier performance & reliability tracking",
+      "Lead time analysis based on actual deliveries",
+      "Multi-supplier comparison for better decisions",
+      "AI-assisted procurement recommendations",
+    ],
+    accent: "rose",
   },
 ];
 
@@ -98,6 +128,31 @@ const A: Record<string, {
     tagBorder: "border-violet-100", glow: "rgba(139,92,246,0.08)",
     barActive: "bg-violet-500", number: "text-violet-100",
   },
+  cyan: {
+  text: "text-cyan-600",
+  bg: "bg-cyan-50",
+  border: "border-cyan-200",
+  dot: "bg-cyan-400",
+  tagText: "text-cyan-700",
+  tagBg: "bg-cyan-50",
+  tagBorder: "border-cyan-100",
+  glow: "rgba(6,182,212,0.08)",
+  barActive: "bg-cyan-500",
+  number: "text-cyan-100",
+},
+rose: {
+  text: "text-rose-600",
+  bg: "bg-rose-50",
+  border: "border-rose-200",
+  dot: "bg-rose-400",
+  tagText: "text-rose-700",
+  tagBg: "bg-rose-50",
+  tagBorder: "border-rose-100",
+  glow: "rgba(244,63,94,0.08)",
+  barActive: "bg-rose-500",
+  number: "text-rose-100",
+},
+
 };
 
 // ─── Placeholder visuals ──────────────────────────────────────────────────
@@ -286,6 +341,86 @@ function InventoryVisual() {
   );
 }
 
+
+function LogisticsVisual() {
+  const shipments = [
+    {
+      id: "SHP-1021",
+      route: "Delhi → Mumbai",
+      status: "In Transit",
+      eta: "6 hrs",
+      delayed: false,
+    },
+    {
+      id: "SHP-1044",
+      route: "Pune → Bangalore",
+      status: "Delayed",
+      eta: "12 hrs",
+      delayed: true,
+    },
+    {
+      id: "SHP-1078",
+      route: "Ahmedabad → Jaipur",
+      status: "Out for Delivery",
+      eta: "2 hrs",
+      delayed: false,
+    },
+  ];
+
+  return (
+    <div className="w-full h-full flex flex-col gap-3 p-5">
+      
+      {/* Main Card */}
+      <div className="bg-white rounded-xl border border-stone-100 flex-1 flex flex-col overflow-hidden">
+        
+        {/* Header */}
+        <div className="flex items-center gap-2 px-4 py-2.5 border-b border-stone-100 bg-stone-50/60">
+          <div className="w-6 h-6 rounded-lg bg-cyan-100 border border-cyan-200 flex items-center justify-center">
+            <Truck className="text-blue-800 p-0.5" />
+          </div>
+          <div>
+            <p className="text-[9px] font-semibold text-stone-700">Logistics Control</p>
+            <p className="text-[8px] text-stone-400">Live shipment tracking & routing</p>
+          </div>
+        </div>
+
+        {/* Shipment List */}
+        <div className="flex-1 flex flex-col gap-2 p-3 overflow-hidden">
+          {shipments.map((s, i) => (
+            <div
+              key={i}
+              className="rounded-lg border border-stone-100 bg-stone-50 px-3 py-2 flex items-center justify-between"
+            >
+              <div>
+                <p className="text-[9px] font-medium text-stone-700">{s.id}</p>
+                <p className="text-[8px] text-stone-400">{s.route}</p>
+              </div>
+
+              <div className="text-right">
+                <p className={`text-[8px] font-medium ${
+                  s.delayed ? "text-red-500" : "text-emerald-500"
+                }`}>
+                  {s.status}
+                </p>
+                <p className="text-[8px] text-stone-400">ETA: {s.eta}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Footer Insight */}
+        <div className="px-3 py-2 border-t border-stone-100 bg-cyan-50 flex items-center gap-2">
+          <span className="text-cyan-500 text-xs">⚡</span>
+          <p className="text-[9px] text-cyan-600">
+            Route optimization suggests rerouting Pune → Bangalore shipment to reduce delay by 3 hrs.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
 function AIAssistantVisual() {
   const messages = [
     { role: "user", text: "What's overstocked in Delhi warehouse?" },
@@ -349,11 +484,97 @@ function AIAssistantVisual() {
   );
 }
 
+function SupplierVisual() {
+  const suppliers = [
+    {
+      name: "Supplier A",
+      leadTime: "4.2 days",
+      reliability: "97%",
+      best: true,
+    },
+    {
+      name: "Supplier B",
+      leadTime: "8.6 days",
+      reliability: "89%",
+      best: false,
+    },
+    {
+      name: "Supplier C",
+      leadTime: "6.1 days",
+      reliability: "92%",
+      best: false,
+    },
+  ];
+
+  return (
+    <div className="w-full h-full flex flex-col gap-3 p-5">
+      
+      {/* Main Card */}
+      <div className="bg-white rounded-xl border border-stone-100 flex-1 flex flex-col overflow-hidden">
+        
+        {/* Header */}
+        <div className="flex items-center gap-2 px-4 py-2.5 border-b border-stone-100 bg-stone-50/60">
+          <div className="w-6 h-6 rounded-lg bg-rose-100 border border-rose-200 flex items-center justify-center">
+            <Factory className="text-rose-700 p-0.5" />
+          </div>
+          <div>
+            <p className="text-[9px] font-semibold text-stone-700">Supplier Intelligence</p>
+            <p className="text-[8px] text-stone-400">Performance & lead time analysis</p>
+          </div>
+        </div>
+
+        {/* Supplier List */}
+        <div className="flex-1 flex flex-col gap-2 p-3 overflow-hidden">
+          {suppliers.map((s, i) => (
+            <div
+              key={i}
+              className={`rounded-lg border px-3 py-2 flex items-center justify-between ${
+                s.best
+                  ? "bg-rose-50 border-rose-200"
+                  : "bg-stone-50 border-stone-100"
+              }`}
+            >
+              <div>
+                <p className="text-[9px] font-medium text-stone-700">
+                  {s.name}
+                </p>
+                <p className="text-[8px] text-stone-400">
+                  Lead Time: {s.leadTime}
+                </p>
+              </div>
+
+              <div className="text-right">
+                <p className="text-[8px] text-stone-500">
+                  Reliability
+                </p>
+                <p className="text-[9px] font-medium text-emerald-600">
+                  {s.reliability}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* AI Recommendation */}
+        <div className="px-3 py-2 border-t border-stone-100 bg-rose-50 flex items-center gap-2">
+          <span className="text-rose-500 text-xs">✦</span>
+          <p className="text-[9px] text-rose-600">
+            Supplier A recommended for next procurement — fastest lead time & highest reliability.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
 const VISUALS = [
   <CommandCenterVisual key="cc" />,
   <ForecastVisual      key="fc" />,
   <InventoryVisual     key="iv" />,
   <AIAssistantVisual   key="ai" />,
+  <LogisticsVisual     key="lv" />,
+  <SupplierVisual      key="sv" />
 ];
 
 // ─── GIF slot ─────────────────────────────────────────────────────────────
@@ -498,20 +719,19 @@ export default function ShowcaseSection() {
           style={{ position: "sticky", top: 0 }}
         >
           {/* ── Top header ── */}
-          <div className="flex-shrink-0 pt-8 pb-4 px-8 md:px-16 border-b border-stone-100">
-            <div className="max-w-6xl mx-auto flex items-end justify-between gap-6">
+          <div className="flex-shrink-0 pt-4 pb-4 px-8 md:px-16 border-b border-stone-100">
+            <div className=" mx-auto flex flex-col gap-2">
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-100 mb-3">
                   <span className="w-1.5 h-1.5 rounded-full bg-orange-400" />
                   <span className="text-[10px] font-semibold text-orange-600 tracking-widest uppercase">Product</span>
                 </div>
+                <div className="flex items-center justify-between">
+
                 <h2 className="font-display text-[clamp(22px,3vw,38px)] font-extrabold text-stone-900 leading-tight tracking-tight">
                   Your entire supply chain.{" "}
                   <span className="text-orange-500">Visualized & controlled.</span>
                 </h2>
-              </div>
-
-              <div className="flex flex-col gap-2 items-end flex-shrink-0">
 
               <Link 
               href={"/product"}
@@ -520,6 +740,11 @@ export default function ShowcaseSection() {
                 See Full product
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-all duration-300" />
               </Link>
+                </div>
+              </div>
+
+              <div className="w-full">
+
               
               {/* Module nav pills */}
               <div className="hidden md:flex items-center gap-2 flex-shrink-0">
@@ -559,11 +784,11 @@ export default function ShowcaseSection() {
           </div>
 
           {/* ── Main content ── */}
-          <div className="flex-1 overflow-hidden px-8 md:px-16 py-6">
+          <div className="flex-1 overflow-hidden px-8 md:px-16 py-4">
             <div className="max-w-6xl mx-auto h-full grid md:grid-cols-[1fr_1.15fr] gap-10 lg:gap-16 items-start">
 
               {/* Left — text */}
-              <div className="flex flex-col justify-center h-full py-2">
+              <div className="flex flex-col justify-center h-full">
 
                 {/* Number + tag */}
                 <div className="flex items-center gap-3 mb-5">

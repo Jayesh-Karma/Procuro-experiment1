@@ -19,6 +19,7 @@ export default function Home() {
         <HeroSection />
         {/* <FeatureSection /> */}
         <PainPointsSection />
+        
         <section id="products">
         <ShowcaseSection />
         </section>

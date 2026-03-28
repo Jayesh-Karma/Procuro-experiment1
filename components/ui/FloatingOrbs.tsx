@@ -32,7 +32,7 @@ export default function FloatingOrbs() {
     };
 
     const initOrbs = () => {
-      const count = Math.floor((canvas.width * canvas.height) / 38000);
+      const count = Math.floor((canvas.width * canvas.height) / 48000);
       orbsRef.current = Array.from({ length: Math.max(count, 12) }, () => ({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,

@@ -10,6 +10,7 @@ import FloatingCardsForHero from "../ui/FloatingCardsForHero";
 import { useRef } from "react";
 import gsap from "gsap";
 import ContactForm from "../calendly/ContactForm";
+import SupplyChainToolsSection from "./SupplyChainToolsSection";
 
 const STATS = [
   { value: 35, suffix: "%", label: "forecast accuracy gain" },
@@ -101,19 +102,32 @@ export default function HeroSection() {
 
         {/* Sub */}
         <p
-          className="text-xs md:text-lg text-stone-500 font-light leading-[1.75] max-w-[560px] mb-10"
+          className="text-xs md:text-sm text-stone-500 font-light leading-[1.75] max-w-[560px]  text-justify mb-3"
           style={{ animation: "fadeUp 0.6s 0.32s both" }}
-        >
-          Connect your existing systems and let us do the rest {" "}
+          >
+          Unify your entire supply chain into one intelligent system. 
           <strong className="font-medium text-orange-500">
-            Predict Demand, Eliminate Stockouts, Automate Procurement
+
           </strong>
-          , and gain real-time visibility across every {" "}
-          <strong className="font-medium text-orange-500">
-            Warehouse, Order, and
-            Shipment.
-          </strong>
+          From demand forecasting to procurement, inventory, warehouses, and logistics -
+we turn your existing data into real-time insights, predictions, and automated decisions.
         </p>
+
+       
+       <ul
+           className="text-xs md:text-sm text-stone-500 font-light leading-[1.75] max-w-[560px]  text-justify mb-3"
+          style={{ animation: "fadeUp 0.6s 0.32s both" }}
+       >
+        <li className="flex items-center gap-2 hover:text-gray-900 transition-all ease-in-out duration-200">
+          <ArrowRight className="" size={15} /> No need of changing Legacy/ existing system
+        </li>
+        <li className="flex items-center gap-2 hover:text-gray-900 transition-all ease-in-out duration-200">
+          <ArrowRight className="" size={15} /> We build Custom AI layers (System) on top of exixsting / Legacy system and datalake
+        </li>
+        <li className="flex items-center gap-2 hover:text-gray-900 transition-all ease-in-out duration-200">
+          <ArrowRight className="" size={15} /> We build custom ML Models on your proprietor  data
+        </li>
+        </ul>
 
         {/* CTAs */}
         <div
@@ -149,9 +163,12 @@ export default function HeroSection() {
       </div>
       </div>
 
-      {/* Dashboard */}
+      <SupplyChainToolsSection />
+
+
+
       <div
-        className="relative z-[2] w-full max-w-5xl mx-auto"
+        className="relative z-[2] my-10 w-full max-w-5xl mx-auto"
         style={{ animation: "dashboardIn 0.9s 0.65s cubic-bezier(0.16,1,0.3,1) both" }}
       >
         <DashboardMockup />

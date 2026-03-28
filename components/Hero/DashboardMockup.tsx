@@ -134,7 +134,7 @@ useEffect(() => {
           <div className="w-3 h-3 rounded-full bg-amber-400" />
           <div className="w-3 h-3 rounded-full bg-emerald-400" />
           <span className="flex-1 text-center text-xs text-stone-600 font-normal">
-            Command Center
+            Command Center - Your Single Source of Truth
           </span>
           <span className="flex items-center gap-1.5 text-xs font-medium text-emerald-500">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
