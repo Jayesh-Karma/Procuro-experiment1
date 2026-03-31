@@ -136,4 +136,165 @@ export function demoEmailTemplate(body: DemoBody) {
   return wrapHtml("New Demo Request", "#3730a3", content);
 }
 
-export default { contactEmailTemplate, demoEmailTemplate };
+export function downloadCaseStudyEmailTemplate(body: any) {
+  const name = body.name || "-";
+
+  const content = `
+    <table width="100%" cellpadding="0" cellspacing="0">
+      <tr>
+        <td align="center" style="padding:40px 20px;">
+
+      <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:10px;overflow:hidden;">
+        
+        <!-- Header -->
+        <tr>
+          <td style="background:#f97316;padding:20px;text-align:center;color:#ffffff;font-size:20px;font-weight:bold;">
+            Case Study for Supply Chain AI from Innovacio Technologies
+          </td>
+        </tr>
+
+        <!-- Content -->
+        <tr>
+          <td style="padding:30px;">
+
+
+            <h2 style="margin:0 0 10px 0;color:#111827;">Thanks for your interest</h2>
+            
+            <p style="color:#4b5563;font-size:14px;line-height:1.6;">
+              Hi ${name},
+            </p>
+
+            <p style="color:#4b5563;font-size:14px;line-height:1.6;">
+              Thank you for downloading our case study. We hope it provides valuable insights into how we solve real-world problems.
+            </p>
+
+            <p style="color:#4b5563;font-size:14px;line-height:1.6;">
+              Your requested case study is attached with this email.
+            </p>
+
+            <!-- CTA -->
+            <div style="text-align:center;margin:30px 0;">
+              <a href="https://innovaciotech.com" target="_blank" rel="noopener noreferrer"
+                 style="background:#f97316;color:#ffffff;padding:12px 20px;text-decoration:none;border-radius:6px;font-size:14px;font-weight:600;">
+                Visit Our Website
+              </a>
+            </div>
+
+            <p style="color:#6b7280;font-size:13px;">
+              If you have any questions, feel free to reply to this email - we’d love to help.
+            </p>
+
+            <p style="margin-top:20px;color:#111827;font-size:14px;font-weight:500;">
+              Team Innovacio
+            </p>
+          </td>
+        </tr>
+
+
+      </table>
+
+    </td>
+  </tr>
+</table>
+  `
+
+  return content;
+}
+
+export function sendCaseStudyDownloadDetailsToAdmin(body: ContactBody, caseStudyName: string) {
+  
+  console.log("Preparing admin notification email for case study download:", body, caseStudyName);
+const name = body.name || "-";
+const email = body.email || "-";
+const company = body.company || "-";
+const website = body.website || "-";
+const phone = body.phone || "-";
+const message = `User downloaded the case study: ${caseStudyName}`;
+const userMessage = body.message || "-";
+
+  const content = `
+    <table width="100%" cellpadding="0" cellspacing="0">
+      <tr>
+        <td align="center" style="padding:40px 20px;">
+<table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:10px;overflow:hidden;">
+        
+        <!-- Header -->
+        <tr>
+          <td style="background:#f97316;padding:20px;text-align:center;color:#ffffff;font-size:20px;font-weight:bold;">
+            New Case Study Lead
+          </td>
+        </tr>
+
+        <!-- Content -->
+        <tr>
+          <td style="padding:30px;">
+            <h2 style="margin:0 0 20px 0;color:#111827;">New submission received</h2>
+
+            <table width="100%" cellpadding="8" cellspacing="0" style="font-size:14px;color:#374151;">
+              
+              <tr>
+                <td style="font-weight:bold;">Full Name:</td>
+                <td>${name}</td>
+              </tr>
+
+              <tr>
+                <td style="font-weight:bold;">Company:</td>
+                <td>${company}</td>
+              </tr>
+
+              <tr>
+                <td style="font-weight:bold;">Email:</td>
+                <td>${email}</td>
+              </tr>
+
+              <tr>
+                <td style="font-weight:bold;">Phone:</td>
+                <td>${phone}</td>
+              </tr>
+
+              <tr>
+                <td style="font-weight:bold;">Website:</td>
+                <td>${website}</td>
+              </tr>
+
+              <tr>
+                <td style="font-weight:bold;">Case Study:</td>
+                <td>${caseStudyName}</td>
+              </tr>
+
+              <tr>
+                <td style="font-weight:bold;">Message:</td>
+                <td>${userMessage}</td>
+              </tr>
+
+            </table>
+
+            <div style="margin-top:30px;padding:15px;background:#fff7ed;border:1px solid #fed7aa;border-radius:6px;">
+              <p style="margin:0;color:#9a3412;font-size:13px;">
+                This user has downloaded a case study. Consider following up.
+              </p>
+            </div>
+
+          </td>
+        </tr>
+
+        <!-- Footer -->
+        <tr>
+          <td style="background:#f3f4f6;padding:15px;text-align:center;font-size:12px;color:#6b7280;">
+            Internal Notification • Case Study • Innovacio Technologies Supply Chain Solutions
+          </td>
+        </tr>
+
+      </table>
+
+    </td>
+  </tr>
+</table>
+  `
+
+  return content;
+}
+
+
+export default { contactEmailTemplate, demoEmailTemplate, downloadCaseStudyEmailTemplate, sendCaseStudyDownloadDetailsToAdmin };
+

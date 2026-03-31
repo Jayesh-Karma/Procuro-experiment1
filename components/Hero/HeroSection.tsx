@@ -11,6 +11,7 @@ import { useRef } from "react";
 import gsap from "gsap";
 import ContactForm from "../calendly/ContactForm";
 import SupplyChainToolsSection from "./SupplyChainToolsSection";
+import ContactFormV2 from "../calendly/ContactFormV2";
 
 const STATS = [
   { value: 35, suffix: "%", label: "forecast accuracy gain" },
@@ -159,7 +160,9 @@ we turn your existing data into real-time insights, predictions, and automated d
       </div>
         
       <div className="">
-        <ContactForm />
+        {/* <ContactForm /> */}
+        <ContactFormV2 />
+        
       </div>
       </div>
 
