@@ -34,7 +34,7 @@ const REVIEWS = [
     role: "VP Technology",
     company: "MediCore Pharma",
     industry: "Pharma & Healthcare",
-    metric: { value: "< 5 days", label: "from contract to go-live" },
+    metric: { value: "< 4 Weeks", label: "from contract to go-live" },
     avatar: "AS",
     color: "violet",
   },
@@ -237,7 +237,7 @@ function TrustBar() {
       {[
         { value: "4.9 / 5", label: "Average rating", icon: <Star className="text-yellow-500" /> },
         { value: "100%",    label: "Would recommend", icon:<ThumbsUp className="text-blue-500" /> },
-        { value: "< 5 days", label: "Avg. time to go-live", icon: <Zap  className="text-orange-500"/> },
+        { value: "< 4 Weeks", label: "Avg. time to go-live", icon: <Zap  className="text-orange-500"/> },
         { value: "307%",    label: "Avg. ROI in 18 months", icon: <TrendingUp className="text-green-500" /> },
       ].map((s) => (
         <div key={s.label} className="flex flex-col items-center gap-1 text-center">

@@ -370,7 +370,7 @@ function BottomCTA() {
           </button>
         </div>
         <div className="flex items-center justify-center gap-6 mt-8 flex-wrap">
-          {["Setup started in under 5 days", "Your data stays on your servers"].map((t) => (
+          {["Setup started in under 4 Weeks", "Your data stays on your servers"].map((t) => (
             <div key={t} className="flex items-center gap-1.5">
               <svg viewBox="0 0 10 10" fill="none" className="w-3 h-3 text-orange-500 flex-shrink-0" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="1.5 5 4 7.5 8.5 2.5" />

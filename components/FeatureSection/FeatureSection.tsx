@@ -338,7 +338,7 @@ const CARDS: CardProps[] = [
     label: "Plug-and-Play Integration",
     title: "Connect in days. No replacement. No migration.",
     body: "Our Product works alongside your existing ERP, WMS, or database. SAP, Oracle, NetSuite, PostgreSQL, MySQL — we connect to what you already use. No rip-and-replace.",
-    trustLine: "Setup in < 5 days · API + direct DB connectors",
+    trustLine: "Setup in < 4 Weeks · API + direct DB connectors",
     visual: (
       <div className="mt-4">
         <div className="grid grid-cols-3 gap-2">

@@ -751,15 +751,15 @@ export default function ShowcaseSection() {
                 {MODULES.map((m, i) => (
                   <div key={m.id} className="flex flex-col items-center gap-1.5">
                     <button
-                      onClick={async () => {
-                        const { gsap } = await import("gsap");
-                        const { ScrollTrigger } = await import("gsap/ScrollTrigger");
-                        gsap.registerPlugin(ScrollTrigger);
-                        // Jump scroll to this module's position
-                        const top = sectionRef.current!.getBoundingClientRect().top
-                          + window.scrollY + i * window.innerHeight * 2;
-                        window.scrollTo({ top, behavior: "smooth" });
-                      }}
+                      // onClick={async () => {
+                      //   const { gsap } = await import("gsap");
+                      //   const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+                      //   gsap.registerPlugin(ScrollTrigger);
+                      //   // Jump scroll to this module's position
+                      //   const top = sectionRef.current!.getBoundingClientRect().top
+                      //     + window.scrollY + i * window.innerHeight * 2;
+                      //   window.scrollTo({ top, behavior: "smooth" });
+                      // }}
                       className={`text-[10px] font-semibold px-3 py-1.5 rounded-lg border transition-all duration-200 ${
                         active === i
                           ? `${a.tagBg} ${a.tagBorder} ${a.tagText} border`

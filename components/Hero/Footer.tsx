@@ -5,6 +5,7 @@ import { ArrowRight, Link2 } from "lucide-react";
 import Link from "next/link";
 import { useModal } from "@/components/Modal/ModalProvider";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 // ─── Links ────────────────────────────────────────────────────────────────
 const PRODUCT_LINKS = [
@@ -165,7 +166,8 @@ export default function Footer() {
           {/* Brand block */}
           <div className="flex flex-col gap-5 max-w-[300px]">
             <div className="flex items-center gap-3">
-              <FooterLogoMark />
+              <Image src="/Innovacio.png" alt="Logo" width={40} height={40} className="rounded-full" />
+                            
               <div className="leading-none">
                 <div className="font-display text-[20px] font-bold text-white tracking-tight">
                     Innovacio

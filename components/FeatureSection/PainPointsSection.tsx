@@ -247,7 +247,7 @@ export default function PainPointsSection() {
         >
           {[
             { icon: <ShieldCheckIcon  className=" text-blue-500" />, text: "Your data stays on your servers" },
-            { icon: <Zap fill="#FFF500" className="text-[#FFF500]" />, text: "Connect in under 5 days" },
+            { icon: <Zap fill="#FFF500" className="text-[#FFF500]" />, text: "Connect in under 4 Weeks" },
             { icon: <BrainIcon className=" text-red-500"  />, text: "AI Intelligence and Chatbot" },
             { icon: <ChartSpline className="text-green-500" />, text: "Every decision is explainable" },
           ].map((t) => (

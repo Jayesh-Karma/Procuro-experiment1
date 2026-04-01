@@ -459,7 +459,7 @@ export default function ProductPage() {
                   <span className="text-stone-400 font-light">Connected to your ERP.</span>
                 </h1>
                 <p className="text-base text-stone-500 font-light leading-relaxed max-w-lg mb-8">
-                  Six modules covering forecasting, inventory, orders, warehouse, and AI intelligence. Connects to what you already have - live in under 5 days, no migration required.
+                  Six modules covering forecasting, inventory, orders, warehouse, and AI intelligence. Connects to what you already have - live in under 4 Weeks, no migration required.
                 </p>
                 <div className="flex flex-wrap items-center gap-3">
                   <Link href="/contact"
@@ -478,7 +478,7 @@ export default function ProductPage() {
 
               {/* Proof column */}
               <div className="hidden md:flex flex-col gap-0 divide-y divide-stone-100 border border-stone-100 rounded-2xl overflow-hidden bg-stone-50">
-                {[["307%","Avg. 18-month ROI","vs. traditional ERP"],["91%","AI forecast accuracy","across deployments"],["< 5 days","Typical go-live","no migration required"],["0","Data leaves your servers","always"]].map(([v,l,s])=>(
+                {[["307%","Avg. 18-month ROI","vs. traditional ERP"],["91%","AI forecast accuracy","across deployments"],["< 4 Weeks","Typical go-live","no migration required"],["0","Data leaves your servers","always"]].map(([v,l,s])=>(
                   <div key={l} className="flex items-center gap-4 px-5 py-4">
                     <span className="font-mono text-xl font-bold text-orange-500 leading-none w-20 flex-shrink-0">{v}</span>
                     <div>
@@ -881,7 +881,7 @@ export default function ProductPage() {
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-5 text-xs text-stone-400 mb-8">
-              {["Your data stays on your servers","Live in under 5 days","No ERP replacement required"].map(t => (
+              {["Your data stays on your servers","Live in under 4 Weeks","No ERP replacement required"].map(t => (
                 <div key={t} className="flex items-center gap-1.5">
                   <div className="w-1 h-1 rounded-full bg-emerald-400" />
                   {t}

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useModal } from "@/components/Modal/ModalProvider";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 const LINKS = [
   { label: "Product",      href: "/product"      },
@@ -169,8 +170,8 @@ export default function Navbar() {
             className={`
               relative flex items-center justify-between transition-all duration-500
               ${scrolled
-                ? "px-4 md:px-6 h-14 rounded-2xl border border-stone-200/90 shadow-md shadow-black/5"
-                : "px-0 md:px-2 h-16 rounded-none border-b border-stone-100"
+                ? "px-4 md:px-6 h-14 rounded-2xl border border-stone-200/50 shadow-md shadow-black/5"
+                : "px-0 md:px-2 h-16 rounded-none border-none shadow-none"
               }
             `}
             style={{
@@ -180,12 +181,12 @@ export default function Navbar() {
           >
             {/* Logo */}
              <a href="/" className="flex items-center gap-3">
-              <LogoMark />
+              <Image src="/Innovacio.png" alt="Logo" width={40} height={40} className="rounded-full" />
               <div className=" leading-none">
                 <div className="font-display leading-none text-sm font-bold text-black uppercase tracking-wide">
                     Innovacio
                 </div>
-                <div className="text-xs font-semibold leading-none text-orange-400 tracking-[0.14em] uppercase mt-0.5">
+                <div className="text-xs  leading-none text-orange-400 tracking-[0.14em] uppercase mt-0.5">
                 AI in Supply Chain
                 </div>
               </div>
