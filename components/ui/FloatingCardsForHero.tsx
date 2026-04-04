@@ -104,9 +104,9 @@ function drawStockoutCard(
 
   // rows
   const rows = [
-    { sku: "SKU-2041", loc: "Delhi WH",   pct: 4  },
-    { sku: "SKU-0887", loc: "Mumbai WH",  pct: 9  },
-    { sku: "SKU-1134", loc: "Pune WH",    pct: 2  },
+    { sku: "SKU-2041", loc: "Georgia WH",   pct: 4  },
+    { sku: "SKU-0887", loc: "Ohio WH",  pct: 9  },
+    { sku: "SKU-1134", loc: "Washington WH",    pct: 2  },
   ];
   rows.forEach((row, i) => {
     const y = 42 + i * 19;
@@ -284,14 +284,14 @@ const CARDS: CardDef[] = [
   {
     // Top-right
     anchorX: 1, anchorY: 0,
-    offsetX: -220, offsetY: 100,
+    offsetX: -250, offsetY: 100,
     width: 220, height: 100,
     floatAmp: 7, floatSpeed: 0.9, floatPhase: 0,
     draw: (ctx, w, h, ts) => drawForecastCard(ctx, w, h, ts),
   },
   {
-    anchorX: 1, anchorY: 0,
-    offsetX: -650, offsetY: 250,
+    anchorX: 0, anchorY: 0,
+    offsetX: 50, offsetY: 120,
     width: 215, height: 90,
     floatAmp: 9, floatSpeed: 0.65, floatPhase: 0.8,
     draw: (ctx, w, h, ts) => drawAlertsCard(ctx, w, h, ts),
@@ -299,7 +299,7 @@ const CARDS: CardDef[] = [
   {
     // Left-center
     anchorX: 1, anchorY: 0,
-    offsetX: -200, offsetY: 500,
+    offsetX: -280, offsetY: 500,
     width: 210, height: 100,
     floatAmp: 8, floatSpeed: 0.75, floatPhase: 1.4,
     draw: (ctx, w, h) => drawStockoutCard(ctx, w, h),

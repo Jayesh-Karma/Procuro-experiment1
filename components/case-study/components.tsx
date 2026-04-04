@@ -467,8 +467,9 @@ export function ProofStrip() {
     { value: "17", label: "Case studies published" },
     { value: "5",  label: "Industries covered" },
     { value: "307%", label: "Average 18-month ROI" },
-    { value: "< 5d", label: "Avg. time to go-live" },
+    { value: "< 4 Weeks", label: "Avg. time to go-live" },
   ];
+  
   return (
     <div
       ref={ref}

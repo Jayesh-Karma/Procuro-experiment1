@@ -2,6 +2,7 @@
 
 import gsap from "gsap";
 import { ArrowRight, Car, Cpu, Factory, Hamburger, MoveRight, Pill, ShoppingCart } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 // ─── Scroll reveal hook ───────────────────────────────────────────────────
@@ -355,8 +356,8 @@ function IndustryCard({
                 {industry.caseStudy.result}
               </p>
             </div>
-            <button
-
+            <Link
+            href={"/case-studies"}
             onMouseEnter={handleHover}
               className={`
                 flex-shrink-0 flex items-center gap-1.5
@@ -369,7 +370,7 @@ function IndustryCard({
             >
               Case study
               <MoveRight ref={iconRef} className={`w-3 h-3 ${a.text}`} />
-            </button>
+            </Link>
           </div>
 
         </div>
@@ -479,12 +480,12 @@ export default function IndustrySection() {
             </p>
           </div>
           <div className="flex items-center gap-3 flex-shrink-0">
-            <button onMouseEnter={handleHover} className="flex items-center gap-2 cursor-pointer px-6 py-3 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold shadow-md shadow-orange-200 hover:shadow-orange-300 transition-all hover:-translate-y-0.5">
+            <Link href="/contact" onMouseEnter={handleHover} className="flex items-center gap-2 cursor-pointer px-6 py-3 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold shadow-md shadow-orange-200 hover:shadow-orange-300 transition-all hover:-translate-y-0.5">
               Book a discovery call <ArrowRight ref={iconRef} className="w-5 h-5" />
-            </button>
-            <button className="cursor-pointer  px-5 py-3 rounded-xl border border-stone-200 text-stone-500 text-sm font-medium hover:border-orange-200 hover:text-orange-600 transition-all">
+            </Link>
+            <Link href="/case-studies" className="cursor-pointer  px-5 py-3 rounded-xl border border-stone-200 text-stone-500 text-sm font-medium hover:border-orange-200 hover:text-orange-600 transition-all">
               View Case Studies
-            </button>
+            </Link>
           </div>
         </div>
 

@@ -7,29 +7,20 @@ import { useModal } from "@/components/Modal/ModalProvider";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
-// ─── Links ────────────────────────────────────────────────────────────────
-const PRODUCT_LINKS = [
-  { label: "Command Center",     href: "#product"      },
-  { label: "Demand Forecasting", href: "#product"      },
-  { label: "Inventory & WMS",    href: "#product"      },
-  { label: "AI Assistant",       href: "#product"      },
-  { label: "Integrations",       href: "#product"      },
-];
+
 
 const INDUSTRIES_LINKS = [
-  { label: "Manufacturing",      href: "#industries"   },
-  { label: "Retail & E-commerce",href: "#industries"   },
-  { label: "Pharma & Healthcare",href: "#industries"   },
-  { label: "Food & Beverage",    href: "#industries"   },
-  { label: "Automotive",         href: "#industries"   },
+  { label: "How it Works",       href: "/how-it-works" },
+  { label: "Manufacturing",      href: "/industries"   },
+  { label: "Product",   href: "/product"      },
+  { label: "Case Studies",   href: "/case-studies"      },
 ];
 
 const COMPANY_LINKS = [
-  { label: "How it Works",       href: "#how-it-works" },
-  { label: "Customer Stories",   href: "#reviews"      },
   { label: "Privacy Policy",     href: "/privacy"      },
   { label: "Terms of Use",       href: "/terms"        },
-  { label: "Contact Us",         href: "#contact"      },
+  { label: "Book a Demo",       href: "/book-demo"        },
+  { label: "Contact Us",         href: "/contact"      },
 ];
 
 // ─── Scroll reveal ─────────────────────────────────────────────────────────
@@ -67,14 +58,14 @@ function FooterLogoMark() {
 }
 
 // ─── Link column ───────────────────────────────────────────────────────────
-function LinkCol({ title, links }: { title: string; links: typeof PRODUCT_LINKS }) {
+function LinkCol({ title, links }: { title: string; links: typeof INDUSTRIES_LINKS; }) {
   return (
     <div className="flex flex-col gap-3.5">
       <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-stone-400">
         {title}
       </p>
       <div className="flex flex-col gap-2.5">
-        {links.map((l) => (
+        {links.map((l: any) => (
           <a
             key={l.label}
             href={l.href}
@@ -164,7 +155,7 @@ export default function Footer() {
         >
 
           {/* Brand block */}
-          <div className="flex flex-col gap-5 max-w-[300px]">
+          <div className="flex flex-col gap-5 col-span-2 max-w-[300px]">
             <div className="flex items-center gap-3">
               <Image src="/Innovacio.png" alt="Logo" width={40} height={40} className="rounded-full" />
                             
@@ -196,10 +187,10 @@ export default function Footer() {
             <div className="flex gap-5 pt-1">
               {[
                 { value: "307%",  label: "Avg. ROI" },
-                { value: "< 5d",  label: "To go-live" },
+                { value: "< 4 Weeks",  label: "To go-live" },
                 { value: "4.9★",  label: "Rating" },
               ].map((s) => (
-                <div key={s.label} className="flex flex-col gap-0.5">
+                <div key={s.label} className="flex flex-col items-center w-full gap-0.5">
                   <span className="font-display text-base font-extrabold text-white leading-none">
                     {s.value}
                   </span>
@@ -210,8 +201,8 @@ export default function Footer() {
           </div>
 
           {/* Link columns */}
-          <LinkCol title="Product"    links={PRODUCT_LINKS}    />
-          <LinkCol title="Industries" links={INDUSTRIES_LINKS} />
+          {/* <LinkCol title="Product"    links={PRODUCT_LINKS}    /> */}
+          <LinkCol title="Links" links={INDUSTRIES_LINKS} />
           <LinkCol title="Company"    links={COMPANY_LINKS}    />
         </div>
 

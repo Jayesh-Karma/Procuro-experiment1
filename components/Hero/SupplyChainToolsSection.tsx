@@ -15,9 +15,9 @@ export default function SupplyChainToolsSection() {
   useEffect(() => {
     let cleanup: (() => void) | undefined;
     (async () => {
-      const gsapMod        = await import("gsap");
+      const gsapMod = await import("gsap");
       const { ScrollTrigger } = await import("gsap/ScrollTrigger");
-      const gsap           = gsapMod.default;
+      const gsap = gsapMod.default;
       gsap.registerPlugin(ScrollTrigger);
 
       const ctx = gsap.context(() => {
@@ -43,7 +43,7 @@ export default function SupplyChainToolsSection() {
           { scale: 0.3, opacity: 0 },
           { scale: 1, opacity: 1, duration: 0.7, ease: "back.out(1.5)",
             stagger: 0.07,
-            scrollTrigger: { trigger: ".card-radar", start: "top 82%" } }
+            scrollTrigger: { trigger: sectionRef.current?.querySelector('.card-radar'), start: "top 82%" } }
         );
 
         // ── Orbit nodes pop ────────────────────────────────────────────────
@@ -52,7 +52,7 @@ export default function SupplyChainToolsSection() {
           { scale: 0, opacity: 0 },
           { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2)",
             stagger: 0.08,
-            scrollTrigger: { trigger: ".card-radar", start: "top 78%" } }
+            scrollTrigger: { trigger: sectionRef.current?.querySelector('.card-radar'), start: "top 78%" } }
         );
 
         // ── Flow paths draw ────────────────────────────────────────────────
@@ -61,7 +61,7 @@ export default function SupplyChainToolsSection() {
           const len = (p as SVGPathElement).getTotalLength?.() ?? 80;
           gsap.set(p, { strokeDasharray: len, strokeDashoffset: len });
           gsap.to(p, { strokeDashoffset: 0, duration: 1.1, ease: "power2.inOut",
-            scrollTrigger: { trigger: ".card-flow", start: "top 82%" } });
+            scrollTrigger: { trigger: sectionRef.current?.querySelector('.card-flow'), start: "top 82%" } });
         });
 
         // ── Safe AI badges pop ─────────────────────────────────────────────
@@ -69,7 +69,7 @@ export default function SupplyChainToolsSection() {
           sectionRef.current?.querySelectorAll(".safe-badge"),
           { scale: 0, opacity: 0 },
           { scale: 1, opacity: 1, duration: 0.35, ease: "back.out(2.2)", stagger: 0.07,
-            scrollTrigger: { trigger: ".card-safe", start: "top 80%" } }
+            scrollTrigger: { trigger: sectionRef.current?.querySelector('.card-safe'), start: "top 80%" } }
         );
 
         // ── Scenario badges slide in ───────────────────────────────────────
@@ -77,18 +77,18 @@ export default function SupplyChainToolsSection() {
           sectionRef.current?.querySelectorAll(".scenario-item"),
           { x: -18, opacity: 0 },
           { x: 0, opacity: 1, duration: 0.45, ease: "power2.out", stagger: 0.1,
-            scrollTrigger: { trigger: ".card-scenario", start: "top 80%" } }
+            scrollTrigger: { trigger: sectionRef.current?.querySelector('.card-scenario'), start: "top 80%" } }
         );
 
         // ── Terminal text type-in effect ───────────────────────────────────
         gsap.fromTo(
-          ".terminal-text",
+          sectionRef.current?.querySelectorAll('.terminal-text'),
           { opacity: 0, y: 8 },
           { opacity: 1, y: 0, duration: 0.5, ease: "power2.out",
-            scrollTrigger: { trigger: ".card-roi", start: "top 82%" } }
+            scrollTrigger: { trigger: sectionRef.current?.querySelector('.card-roi'), start: "top 82%" } }
         );
 
-      }, sectionRef);
+      }, sectionRef.current ?? undefined);
 
       cleanup = () => ctx.revert();
     })();
@@ -105,8 +105,8 @@ export default function SupplyChainToolsSection() {
   ].join(" ");
 
   // ─── Shared italic heading ──────────────────────────────────────────────────
-  const cardHead = "font-display text-[19px] font-bold text-stone-900 italic mb-2.5 leading-snug";
-  const cardDesc = "text-[13px] text-stone-500 font-light leading-relaxed";
+  const cardHead = "font-display text-[19px] font-bold text-stone-900 font-space mb-2.5 leading-snug";
+  const cardDesc = "text-[13px] text-stone-500 font-light font-space leading-relaxed";
   const hl       = "font-semibold text-orange-500"; // inline highlight
 
   // ─── Small icon wrapper ─────────────────────────────────────────────────────
@@ -120,7 +120,7 @@ export default function SupplyChainToolsSection() {
 
   return (
     <section ref={sectionRef} id="pain-points"
-      className="relative bg-gray-50 rounded-xl  py-24 px-6 md:px-12 overflow-hidden">
+      className="relative bg-gray-50 rounded-xl  py-24 px-2 md:px-12 overflow-hidden">
 
       {/* Dot texture */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.02]"
@@ -134,28 +134,28 @@ export default function SupplyChainToolsSection() {
 
         {/* ── HEADER ─────────────────────────────────────────────────────── */}
         <div ref={headRef} className="text-center mb-14">
-          <h2 className="font-display text-4xl font-extrabold text-stone-900
+          <h2 className="font-display text-3xl md:text-4xl font-extrabold text-stone-900
                          leading-[1.08] tracking-tight mb-4">
             Too Many Supply Chain Tools.
             <br />
             Not Enough <span className="italic text-orange-500">ROI</span>
           </h2>
-          <p className="text-[14px] text-stone-400 font-light mx-auto leading-relaxed">
+          <p className="text-[14px] text-stone-400 font-light  mx-auto leading-relaxed">
             Data is fragmented, answers aren't trusted, and decisions are still bottlenecked
             in supply chain operations.
           </p>
         </div>
 
-        {/* ── GRID — mirrors screenshot: tall-left | 2-stack-center | 2-stack-right ── */}
+        {/* ── GRID - mirrors screenshot: tall-left | 2-stack-center | 2-stack-right ── */}
         <div ref={gridRef}
           className="grid grid-cols-1 md:grid-cols-3 gap-5">
 
           {/* ════════════════════════════════════════════════════════════════
-              CARD 1  — No More Bottlenecks  (left col, spans 2 rows)
+              CARD 1  - No More Bottlenecks  (left col, spans 2 rows)
           ════════════════════════════════════════════════════════════════ */}
           <div className={`${card} card-radar md:row-span-2`}>
 
-            <h3 className={cardHead}>No More Bottlenecks</h3>
+            <h3 className={`${cardHead} font-space`}>No More Bottlenecks</h3>
             <p className={cardDesc}>
               Teams ask live system questions in{" "}
               <span className={hl}>natural language</span>, with safe access
@@ -189,7 +189,7 @@ export default function SupplyChainToolsSection() {
                   </svg>
                 </div>
 
-                {/* Orbit nodes — 4 positions */}
+                {/* Orbit nodes - 4 positions */}
                 {[
                   { angle:-42, r:42, title:"check" },
                   { angle:105, r:42, title:"bar"   },
@@ -220,7 +220,7 @@ export default function SupplyChainToolsSection() {
             </div>
 
             {/* Bottom trust pill */}
-            <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-orange-50 border border-orange-100">
+            <div className="flex items-center font-space gap-2 px-3 py-2 rounded-xl bg-orange-50 border border-orange-100">
               <div className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse" />
               <span className="text-[11px] font-semibold text-orange-700">
                 Ask anything in natural language
@@ -229,7 +229,7 @@ export default function SupplyChainToolsSection() {
           </div>
 
           {/* ════════════════════════════════════════════════════════════════
-              CARD 2  — One Trusted View  (center-top)
+              CARD 2  - One Trusted View  (center-top)
           ════════════════════════════════════════════════════════════════ */}
           <div className={`${card} card-flow`}>
             <h3 className={cardHead}>One Trusted View</h3>
@@ -297,7 +297,7 @@ export default function SupplyChainToolsSection() {
           </div>
 
           {/* ════════════════════════════════════════════════════════════════
-              CARD 3  — Safe AI Outputs  (right-top)
+              CARD 3  - Safe AI Outputs  (right-top)
           ════════════════════════════════════════════════════════════════ */}
           <div className={`${card} card-safe`}>
             <h3 className={cardHead}>Safe AI Outputs</h3>
@@ -310,7 +310,7 @@ export default function SupplyChainToolsSection() {
             </p>
 
             {/* BADGE CLUSTER GRAPHIC */}
-            <div className="relative h-28 mt-4 flex-1">
+            <div className="relative  mt-4 flex-1 min-h-40">
               {/* Top pulse dot */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2 h-2
                               rounded-full bg-orange-400 animate-pulse" />
@@ -344,7 +344,7 @@ export default function SupplyChainToolsSection() {
           </div>
 
           {/* ════════════════════════════════════════════════════════════════
-              CARD 4  — ROI From Tools  (center-bottom)
+              CARD 4  - ROI From Tools  (center-bottom)
           ════════════════════════════════════════════════════════════════ */}
           <div className={`${card} card-roi`}>
             <h3 className={cardHead}>ROI From Tools</h3>
@@ -385,69 +385,55 @@ export default function SupplyChainToolsSection() {
           </div>
 
           {/* ════════════════════════════════════════════════════════════════
-              CARD 5  — Fast Scenarios  (right-bottom)
+              CARD 5  - Fast Scenarios  (right-bottom)
           ════════════════════════════════════════════════════════════════ */}
-          <div className={`${card} card-scenario`}>
-            <h3 className={cardHead}>Fast Scenarios</h3>
-            <p className={cardDesc}>
-              "What if" changes run quickly and correctly with{" "}
-              <span className={hl}>deterministic models</span>, not fragile
-              spreadsheets.
-            </p>
+     <div className={`${card} card-scenario flex text-xs flex-col`}>
+  <h3 className={cardHead}>Fast Scenarios</h3>
 
-            {/* SCENARIO GRAPHIC */}
-            <div className="flex items-center gap-4 mt-4 flex-1">
+  <p className={cardDesc}>
+    Instantly see how changes impact your{" "}
+    <span className={hl}>inventory</span>,{" "}
+    <span className={hl}>cost</span>, and{" "}
+    <span className={hl}>service levels</span> - without spreadsheets.
+  </p>
 
-              {/* Document icon */}
-              <div className="w-14 h-16 rounded-xl border border-stone-200 bg-stone-50
-                              flex items-center justify-center flex-shrink-0">
-                <svg viewBox="0 0 24 24" fill="none" className="w-7 h-7 text-stone-300"
-                  stroke="currentColor" strokeWidth={1.4} strokeLinecap="round">
-                  <rect x="4" y="2" width="16" height="20" rx="2.5"/>
-                  <line x1="8" y1="8"  x2="16" y2="8"/>
-                  <line x1="8" y1="12" x2="14" y2="12"/>
-                  <line x1="8" y1="16" x2="12" y2="16"/>
-                </svg>
-              </div>
+  {/* GRAPHIC */}
+  <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
 
-              {/* Metric badges */}
-              <div className="flex flex-col items-center justify-center gap-2 flex-1">
-                {/* Inventory */}
-                <div className="scenario-item flex flex-col items-center justify-center gap-2">
-                  <span className="text-[9px] text-stone-400 w-14">Inventory</span>
-                  <span className="text-[10px] font-bold text-stone-700 px-2 py-0.5
-                                   rounded-md bg-stone-100 border border-stone-200">
-                    $ 10,000K
-                  </span>
-                </div>
+    {/* BEFORE */}
+    <div className="flex flex-col items-center text-center">
+      <span className="text-xs text-stone-400 mb-1">Before</span>
 
-                {/* Deterministic row */}
-                <div className="scenario-item flex items-center justify-between gap-2">
-                  {/* <div className="flex-1 border-t border-dashed border-orange-200" /> */}
-                  
-                  <div className="px-2.5 py-1 rounded-full border border-stone-200 bg-orange-500 text-white
-                                  text-[9px] font-bold flex-shrink-0">
-                    Deterministic
-                  </div>
-                  
-                  
-                  <div className="text-right flex-shrink-0">
-                    <div className="text-[9px] text-stone-400">Service</div>
-                    <div className="text-[10px] font-bold text-stone-700">98.4%</div>
-                  </div>
-                </div>
+      <div className="bg-stone-50 border border-stone-200 rounded-lg px-3 py-2 text-xs">
+        <div>Inventory: <b>$10M</b></div>
+        <div>Service: <b>92%</b></div>
+        <div>Cost: <b>$28M</b></div>
+      </div>
+    </div>
 
-                {/* Cost */}
-                <div className="scenario-item flex items-center justify-center flex-col gap-2">
-                  <span className="text-[9px] text-stone-400 text-center w-14">Cost</span>
-                  <span className="text-[10px] font-bold text-stone-700 px-2 py-0.5
-                                   rounded-md bg-stone-100 border border-stone-200">
-                    $ 28,000K
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
+    {/* ARROW */}
+    <div className="text-orange-500 font-bold text-lg">→</div>
+
+    {/* AFTER */}
+    <div className="flex flex-col items-center text-center">
+      <span className="text-xs text-orange-500 font-semibold mb-1">
+        After (Optimized)
+      </span>
+
+      <div className="bg-orange-50 border border-orange-200 rounded-lg px-3 py-2 text-xs">
+        <div>Inventory: <b>$8.5M</b></div>
+        <div>Service: <b>98.4%</b></div>
+        <div>Cost: <b>$24M</b></div>
+      </div>
+    </div>
+
+  </div>
+
+  {/* LABEL */}
+  <div className="mt-4 text-center text-[11px] text-stone-500">
+    Powered by deterministic models - fast, reliable, and repeatable
+  </div>
+</div>
 
         </div>{/* /grid */}
       </div>

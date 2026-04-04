@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { INDUSTRIES, type Industry, type SubIndustry } from "./industries-data";
+import DownloadModal from "../case-study/DownloadModal";
 
 // ─── GSAP dynamic import ─────────────────────────────────────────────────────
 async function gsap() {
@@ -35,16 +36,21 @@ function SubIndustryCard({
   sub,
   accentHex,
   index,
+  openModal,
+  selectCaseStudy
 }: {
   sub: SubIndustry;
   accentHex: string;
   index: number;
+  openModal: (boolen: boolean) => void;
+  selectCaseStudy: (slug: string) => void;
 }) {
   const [hovered, setHovered] = useState(false);
 
+
   return (
     <div
-      className="group relative shadow-sm hover:shadow-black/40 overflow-hidden rounded-xl border border-black/10 bg-black/[0.03] flex flex-col transition-all duration-500"
+      className="group relative shadow-sm hover:shadow-black/40 overflow-hidden rounded-xl border border-black/10 bg-black/[0.03] flex flex-col transition-all duration-500 h-full"
       style={{
         opacity: 1,
         transitionDelay: `${index * 60}ms`,
@@ -53,7 +59,7 @@ function SubIndustryCard({
       onMouseLeave={() => setHovered(false)}
     >
       {/* Image */}
-      <div className="relative h-36 overflow-hidden">
+      <div className="relative h-32 sm:h-36 md:h-36 overflow-hidden">
         <Image
           src={sub.image}
           alt={sub.title}
@@ -110,9 +116,11 @@ function SubIndustryCard({
         </div>
 
         {/* CTA */}
-        <Link
-          target="_blank"
-          href={`./case-studies/${sub.caseStudySlug}.pdf`}
+        <button
+          onClick={() => {
+            openModal(true);
+            selectCaseStudy(sub.caseStudySlug);
+          }} 
           className="flex items-center gap-1.5 text-[12px] font-semibold mt-1 group/link w-fit transition-all duration-200"
           style={{ color: accentHex }}
         >
@@ -124,7 +132,7 @@ function SubIndustryCard({
           >
             <path d="M2 8L8 2M8 2H4.5M8 2V5.5" />
           </svg>
-        </Link>
+        </button>
       </div>
     </div>
   );
@@ -136,15 +144,20 @@ function IndustryBlock({
   index,
   isActive,
   onActivate,
+  openModal,
+  selectCaseStudy
 }: {
   industry: Industry;
   index: number;
   isActive: boolean;
+  openModal: () => void;
+  selectCaseStudy: (slug: any) => void;
   onActivate: (id: string | null) => void;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLDivElement>(null);
   const [hovered, setHovered] = useState(false);
+
 
   // Parallax on image
   useEffect(() => {
@@ -182,11 +195,10 @@ function IndustryBlock({
     >
       <button
         onClick={() => onActivate(isActive ? null : industry.id)}
-        className="relative w-full text-left group overflow-hidden rounded-2xl cursor-pointer focus:outline-none"
-        style={{ height: "clamp(220px, 28vw, 340px)" }}
+        className="relative z-0 w-full text-left group overflow-hidden rounded-2xl cursor-pointer focus:outline-none h-44 sm:h-52 md:h-[28vw] lg:h-[340px]"
       >
         {/* Background image */}
-        <div ref={imgRef} className="absolute inset-0 transition-transform duration-700" style={{ transform: "scale(1.05)" }}>
+        <div ref={imgRef} className="absolute inset-0 transition-transform duration-700 z-0 pointer-events-none" style={{ transform: "scale(1.05)" }}>
           <Image
             src={industry.image}
             alt={industry.title}
@@ -267,9 +279,9 @@ function IndustryBlock({
 
       {/* Sub-industry expansion panel */}
       <div
-        className="overflow-hidden transition-all duration-500 ease-in-out"
+        className="overflow-hidden transition-all duration-500 ease-in-out relative z-10"
         style={{
-          maxHeight: isActive ? "1000px" : "0px",
+          maxHeight: isActive ? "2000px" : "0px",
           opacity: isActive ? 1 : 0,
         }}
       >
@@ -285,20 +297,15 @@ function IndustryBlock({
 
           {/* Sub-industry grid - intentionally non-uniform widths */}
           <div
-            className="grid gap-4"
-            style={{
-              gridTemplateColumns: industry.subIndustries.length === 4
-                ? "repeat(4, 1fr)"
-                : industry.subIndustries.length === 3
-                ? "repeat(3, 1fr)"
-                : "repeat(2, 1fr)",
-            }}
+            className="grid gap-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 h-full items-stretch"
           >
             {industry.subIndustries.map((sub, i) => (
               <SubIndustryCard
                 key={sub.id}
                 sub={sub}
                 accentHex={industry.accentHex}
+                openModal={openModal}
+                selectCaseStudy={selectCaseStudy}
                 index={i}
               />
             ))}
@@ -411,6 +418,12 @@ export default function IndustriesPageV2() {
   const [activeIndustry, setActiveIndustry] = useState<string | null>(null);
   const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const containerRef = useRef<HTMLDivElement>(null);
+  
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedCaseStudy, setSelectedCaseStudy] = useState<string | undefined>(undefined);
+
+
+  console.log("MODAL OPEN", modalOpen, selectedCaseStudy);
 
   // GSAP scroll reveals
   useEffect(() => {
@@ -448,7 +461,7 @@ export default function IndustriesPageV2() {
   }, []);
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-white relative">
+    <div ref={containerRef} className="min-h-screen  bg-white relative">
 
       {/* Ambient background glow */}
       <div
@@ -461,7 +474,7 @@ export default function IndustriesPageV2() {
 
       {/* Noise texture overlay */}
       <div
-        className="fixed inset-0 pointer-events-none z-0 opacity-[0.025]"
+        className="fixed inset-0 pointer-events-none z-0 opacity-[0.2]"
         style={{
           backgroundImage:
             "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E\")",
@@ -478,11 +491,11 @@ export default function IndustriesPageV2() {
       /> */}
 
       {/* Main content */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12 xl:px-8 xl:ml-32 pt-32 pb-32">
+      <div className="relative z-10 max-w-7xl px-6 mx-auto  pt-32 pb-32">
         <PageHero />
 
         {/* Industries - asymmetric layout */}
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 justify-between">
           {INDUSTRIES.map((industry, index) => (
             <div
               key={industry.id}
@@ -491,6 +504,8 @@ export default function IndustriesPageV2() {
             >
               <IndustryBlock
                 industry={industry}
+                selectCaseStudy={(slug: any) => setSelectedCaseStudy(slug)}
+                openModal={() => setModalOpen(true)}
                 index={index}
                 isActive={activeIndustry === industry.id}
                 onActivate={handleActivate}
@@ -552,6 +567,14 @@ export default function IndustriesPageV2() {
           <a target="_blank" href="https://innovaciotech.com" className="hover:text-orange-400 transition-colors">innovaciotech.com</a>
         </div>
       </div>
+            {
+              modalOpen && <div className="mx-auto">
+                <DownloadModal
+                    onClose={()=> setModalOpen(false)} 
+                    selectedCasestudy={selectedCaseStudy} 
+                />
+              </div> 
+            }
     </div>
   );
 }

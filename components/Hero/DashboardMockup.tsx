@@ -1,7 +1,6 @@
 "use client";
 
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useState, useRef } from "react";
 
 const INVENTORY_VALUES = ["94.2%", "94.7%", "95.1%", "94.8%", "95.3%"];
@@ -25,8 +24,6 @@ function useCycle<T>(values: T[], interval: number): T {
 }
 
 
-gsap.registerPlugin(ScrollTrigger)
-
 export default function DashboardMockup() {
   const cardRef = useRef<HTMLDivElement>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -41,53 +38,68 @@ const bottomRef = useRef<HTMLDivElement>(null);
 
 
 useEffect(() => {
-  const ctx = gsap.context(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: dashboardRef.current,
-        start: "top 75%",
-        toggleActions: "play none none reverse",
-      },
+  let ctx: any;
+  let mounted = true;
+
+  (async () => {
+    const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+    gsap.registerPlugin(ScrollTrigger);
+
+    if (!mounted) return;
+
+    ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: dashboardRef.current,
+          start: "top 75%",
+          toggleActions: "play none none reverse",
+        },
+      });
+
+      // whole mockup fade + slight scale
+      tl.from(dashboardRef.current, {
+        opacity: 0,
+        scale: 0.96,
+        duration: 0.7,
+        ease: "power3.out",
+      });
+
+      // left cards come from left
+      tl.from(leftCardsRef.current?.children || [], {
+        x: -40,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.12,
+        ease: "power3.out",
+      }, "-=0.4");
+
+      // right cards come from right
+      tl.from(rightCardsRef.current?.children || [], {
+        x: 40,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.12,
+        ease: "power3.out",
+      }, "-=0.5");
+
+      // bottom cards slightly from bottom
+      tl.from(bottomRef.current?.children || [], {
+        y: 30,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.12,
+        ease: "power3.out",
+      }, "-=0.4");
     });
+  })();
 
-    // whole mockup fade + slight scale
-    tl.from(dashboardRef.current, {
-      opacity: 0,
-      scale: 0.96,
-      duration: 0.7,
-      ease: "power3.out",
-    });
-
-    // left cards come from left
-    tl.from(leftCardsRef.current?.children || [], {
-      x: -40,
-      opacity: 0,
-      duration: 0.6,
-      stagger: 0.12,
-      ease: "power3.out",
-    }, "-=0.4");
-
-    // right cards come from right
-    tl.from(rightCardsRef.current?.children || [], {
-      x: 40,
-      opacity: 0,
-      duration: 0.6,
-      stagger: 0.12,
-      ease: "power3.out",
-    }, "-=0.5");
-
-    // bottom cards slightly from bottom
-    tl.from(bottomRef.current?.children || [], {
-      y: 30,
-      opacity: 0,
-      duration: 0.6,
-      stagger: 0.12,
-      ease: "power3.out",
-    }, "-=0.4");
-
-  });
-
-  return () => ctx.revert();
+  return () => {
+    mounted = false;
+    try { ctx?.revert?.(); } catch (e) {}
+    import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
+      try { ScrollTrigger.getAll().forEach((t) => t.kill()); } catch (e) {}
+    }).catch(() => {});
+  };
 }, []);
 
 

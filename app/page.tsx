@@ -23,9 +23,15 @@ export default function Home() {
         <section id="products">
         <ShowcaseSection />
         </section>
+        <section>
         <IndustrySection />
         <HowItWorksSection />
+        </section>
+
+
+        <section id="reviews">
         <ReviewsSection />
+        </section>
 
         {/* <FloatingSection sparkles>
         </FloatingSection> */}

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import GSAPProvider from "@/components/ProductShowcase/GsapProvider";
 import ModalProvider from "@/components/Modal/ModalProvider";
@@ -14,14 +14,19 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
+const space = Space_Grotesk({
+  variable: "--font-space_grotesk",
+  subsets: ["latin"],
+})
+
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Innovacio Technologies",
-  description: "AI Supply Chain Intelligence",
+  title: "Supply Chain Intelligence Platform Powered by AI",
+  description: "AI powered supply chain platform that connects to your existing systems to improve forecasting, eliminate stockouts, and reduce operational costs.",
 };
 
 
@@ -33,7 +38,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${space.variable} h-full antialiased`}
     > 
     <head>
           <Script
@@ -53,6 +58,7 @@ export default function RootLayout({
           }}
         />
     </head>
+    
       <body className="min-h-full flex flex-col">
         <noscript>
           <iframe 

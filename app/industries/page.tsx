@@ -4,10 +4,11 @@ import Navbar from "@/components/Hero/Navbar";
 import Footer from "@/components/Hero/Footer";
 
 export const metadata: Metadata = {
-  title: "Industries — Innovacio Technologies | AI Supply Chain Intelligence",
+  title: "AI Supply Chain Solutions for Manufacturing, Retail, FMCG, Pharma, and Automotive",
   description:
-    "AI-powered supply chain intelligence for manufacturing, retail, FMCG, pharma, and automotive — built for your specific sub-industry, not a generic template.",
+    "Explore industry specific AI Supply Chain Solutions for Manufacturing, Retail, FMCG, Pharma, and Automotive Businesses. Improve forecasting, reduce stockouts, and optimize operations with fast deployment.",
 };
+
 
 export default function IndustriesRoute() {
   return (

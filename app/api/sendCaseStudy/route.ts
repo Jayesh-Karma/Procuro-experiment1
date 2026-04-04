@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
-import { contactEmailTemplate, downloadCaseStudyEmailTemplate, sendCaseStudyDownloadDetailsToAdmin } from "../../lib/emailTemplates";
 import path  from "path";
+import { downloadCaseStudyEmailTemplate, sendCaseStudyDownloadDetailsToAdmin } from "@/lib/emailTemplates";
 
 type Body = {
     fullName?: string;

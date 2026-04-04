@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Link2 } from "lucide-react";
+import { ArrowRight, Hamburger, Link2, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useModal } from "@/components/Modal/ModalProvider";
@@ -223,10 +223,10 @@ export default function Navbar() {
                 </span>
               </div>
 
-              <button
+              <Link
                 onMouseEnter={() => setCtaHover(true)}
                 onMouseLeave={() => setCtaHover(false)}
-                onClick={() => modal.open("demo")}
+                href={"/book-demo"}
                 className="relative hidden md:flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-[13px] font-semibold overflow-hidden transition-all duration-200 shadow-md shadow-orange-200 hover:shadow-lg hover:shadow-orange-300 hover:-translate-y-px active:translate-y-0"
               >
                 <span
@@ -245,31 +245,20 @@ export default function Navbar() {
                   <line x1="2" y1="6.5" x2="11" y2="6.5" />
                   <polyline points="7.5 3 11 6.5 7.5 10" />
                 </svg>
-              </button>
+              </Link>
 
-              <button onClick={() => modal.open("demo")} className="md:hidden px-4 py-2 rounded-xl bg-orange-500 text-white text-[13px] font-semibold shadow-md shadow-orange-200">
+              <Link href={"/book-demo"} onClick={() => modal.open("demo")} className="md:hidden px-4 py-2 rounded-xl bg-orange-500 text-white text-[13px] font-semibold shadow-md shadow-orange-200">
                 Demo
-              </button>
+              </Link>
 
               <button
                 onClick={() => setMenuOpen(!menuOpen)}
                 className="md:hidden w-8 h-8 flex flex-col items-center justify-center gap-1.5 rounded-lg hover:bg-stone-100 transition-colors"
                 aria-label="Menu"
               >
-                {[0, 1, 2].map((i) => (
-                  <span key={i}
-                    className="block h-[1.5px] bg-stone-700 rounded-full transition-all duration-300 origin-center"
-                    style={{
-                      width:   i === 1 && menuOpen ? "0px" : i === 1 ? "14px" : "18px",
-                      opacity: i === 1 && menuOpen ? 0 : 1,
-                      transform: menuOpen
-                        ? i === 0 ? "rotate(45deg) translate(2px, 3px)"
-                        : i === 2 ? "rotate(-45deg) translate(2px, -3px)"
-                        : "none"
-                        : "none",
-                    }}
-                  />
-                ))}
+               {
+                !menuOpen ? <Menu size={20} /> : <X size={20} />
+               }
               </button>
             </div>
           </div>
@@ -278,7 +267,7 @@ export default function Navbar() {
           <div
             className="md:hidden mt-1.5 rounded-2xl bg-white border border-stone-200 shadow-md shadow-black/10 overflow-hidden"
             style={{
-              maxHeight:  menuOpen ? "300px" : "0px",
+              maxHeight:  menuOpen ? "500px" : "0px",
               opacity:    menuOpen ? 1 : 0,
               transform:  menuOpen ? "scale(1) translateY(0)" : "scale(0.98) translateY(-6px)",
               transition: "max-height 0.3s ease, opacity 0.25s ease, transform 0.25s ease",
@@ -286,7 +275,7 @@ export default function Navbar() {
           >
             <div className="p-3 flex flex-col gap-1">
               {LINKS.map((link, i) => (
-                <button key={link.href} onClick={() => go(link.href)}
+                <Link href={link.href} 
                   className={`
                     flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-left w-full
                     transition-colors duration-150
@@ -296,9 +285,9 @@ export default function Navbar() {
                     }
                   `}
                 >
-                  <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${activeIdx === i ? "bg-orange-400" : "bg-stone-200"}`} />
+                  <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${pathname === link.href ? "bg-orange-400" : "bg-stone-200"}`} />
                   {link.label}
-                </button>
+                </Link>
               ))}
               <div className="pt-2 mt-1 border-t border-stone-100">
                 <button onClick={() => { modal.open("demo"); setMenuOpen(false); }}

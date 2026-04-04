@@ -1,10 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ArrowRight, Earth, Globe, Loader2, X } from "lucide-react";
+import { ArrowRight, Earth, Globe, Loader2, MailCheck, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import z from "zod";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import { redirect } from "next/navigation";
 
 interface DownloadModalProps {
     onClose: () => void;
@@ -21,7 +22,7 @@ const formSchema = z.object({
         .optional(),
     website: z.string().optional(),
     message: z.string().optional(),
-    selectedCaseStudy: z.string().optional() ,
+    selectedCaseStudy: z.string().optional(),
 });
 
 
@@ -33,11 +34,14 @@ export default function DownloadModal({ onClose, selectedCasestudy }: DownloadMo
 
     const [toast, setToast] = useState({ message: "", type: "" });
     const [loading, setLoading] = useState(false);
+    const [countdown, setCountdown] = useState<number | null>(null);
 
 
     const {
         handleSubmit,
         control,
+        register,
+        setValue,
         formState: { errors },
         reset,
     } = useForm({
@@ -45,14 +49,17 @@ export default function DownloadModal({ onClose, selectedCasestudy }: DownloadMo
     });
 
     useEffect(() => {
-        control.register("selectedCaseStudy", { value: selectedCasestudy });
+        // populate hidden selectedCaseStudy field
+        if (selectedCasestudy) setValue("selectedCaseStudy", selectedCasestudy);
+    }, [selectedCasestudy, setValue]);
 
-    }, [control, selectedCasestudy]);
+    useEffect(() => {
+        if(localStorage.getItem("filledForm") === "true"){
+            onClose()
+            window.open(`/case-studies/${selectedCasestudy}.pdf`, "_blank", 'noopener,noreferrer');
+        }
+    }, [])
 
-    const showToast = (message: any, type: string = "success") => {
-        setToast({ message, type });
-        setTimeout(() => setToast({ message: "", type: "" }), 3000);
-    };
 
     const onSubmit = async (data: any) => {
         try {
@@ -65,15 +72,53 @@ export default function DownloadModal({ onClose, selectedCasestudy }: DownloadMo
 
             if (!res.ok) throw new Error("Failed");
 
-            showToast("Message sent successfully!", "success");
-            onClose();
-            reset();
+      
+            setToast({ message: "Your case study has been delivered to your email. Please review it to see the real results achieved in your industry.", type: "success" });
+            // start countdown to auto-close
+            setCountdown(3);
+            localStorage.setItem("filledForm", "true");
+
+       
+
+            reset({
+                fullName: "",
+                companyName: "",
+                businessEmailId: "",
+                phoneNumber: "",
+                website: "",
+                message: "",
+                selectedCaseStudy: "",
+            });
+
+
         } catch (error) {
-            showToast("Something went wrong. Try again.", "error");
+            console.log(error);
+            setToast({ message: "Something went wrong. Try again.", type: "error" });
+            
         } finally {
             setLoading(false);
         }
     };
+
+    // handle auto-close countdown when success
+    useEffect(() => {
+        if (toast.type === "success" && countdown && countdown > 0) {
+            const id = setInterval(() => setCountdown((c) => (c ? c - 1 : null)), 1000);
+            return () => clearInterval(id);
+        }
+        if (toast.type === "success" && countdown === 0) {
+            // close and reset
+            reset();
+            setTimeout(() => {
+                setToast({ message: "", type: "" });
+                setCountdown(null);
+            console.log("selectedCasestudy", selectedCasestudy);
+
+                   window.open(`/case-studies/${selectedCasestudy}.pdf`, "_blank", 'noopener,noreferrer');
+                    onClose();
+            }, 250);
+        }
+    }, [countdown, toast.type, onClose, reset]);
 
 
 
@@ -104,13 +149,12 @@ export default function DownloadModal({ onClose, selectedCasestudy }: DownloadMo
 }`}
             </style>
 
-
             <div className="bg-white rounded-lg p-8 md:max-w-md max-w-[90%]   w-full">
                 <div className="flex items-center mb-5 justify-between">
 
                     <div className="leading-0">
-                        <h2 className="text-xl md:text-2xl font-bold">Download Case Study</h2>
-                        <p className=" text-xs md:text-sm text-gray-500">Enter your email to receive the case study PDF.</p>
+                        <h2 className="text-xl md:text-2xl font-bold">See Case Study</h2>
+                        <p className=" text-xs font-space md:text-sm text-gray-500">Enter your email to open the case study PDF.</p>
                     </div>
 
                     <button className="text-gray-500 cursor-pointer transition-all ease-in-out hover:text-gray-700" onClick={onClose}>
@@ -118,13 +162,17 @@ export default function DownloadModal({ onClose, selectedCasestudy }: DownloadMo
                     </button>
                 </div>
 
-                <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3 text-sm">
+            { 
+                (toast?.type !== "success" && !loading) ?
+                (<form onSubmit={handleSubmit(onSubmit)} className="flex flex-col font-space gap-3 min-h-[50vh] text-sm">
                     {/* Full Name */}
                     <div>
                         <input
                             placeholder="Full Name*"
-                            className="w-full border p-2 rounded border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-300"
-                            {...control.register("fullName")}
+                            disabled={loading || toast.type === "success"}
+                            aria-disabled={loading || toast.type === "success"}
+                            className={`w-full border p-2 rounded border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-300 ${loading || toast.type === "success" ? "opacity-60 cursor-not-allowed" : ""}`}
+                            {...register("fullName")}
                         />
                         {errors.fullName && (
                             <p className="text-red-500 text-sm">{errors.fullName.message}</p>
@@ -135,8 +183,10 @@ export default function DownloadModal({ onClose, selectedCasestudy }: DownloadMo
                     <div>
                         <input
                             placeholder="Company Name*"
-                            className="w-full border p-2 rounded border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-300"
-                            {...control.register("companyName")}
+                            disabled={loading || toast.type === "success"}
+                            aria-disabled={loading || toast.type === "success"}
+                            className={`w-full border p-2 rounded border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-300 ${loading || toast.type === "success" ? "opacity-60 cursor-not-allowed" : ""}`}
+                            {...register("companyName")}
                         />
                         {errors.companyName && (
                             <p className="text-red-500 text-sm">{errors.companyName.message}</p>
@@ -147,8 +197,10 @@ export default function DownloadModal({ onClose, selectedCasestudy }: DownloadMo
                     <div>
                         <input
                             placeholder="Business Email*"
-                            className="w-full border p-2 border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-orange-300"
-                            {...control.register("businessEmailId")}
+                            disabled={loading || toast.type === "success"}
+                            aria-disabled={loading || toast.type === "success"}
+                            className={`w-full border p-2 border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-orange-300 ${loading || toast.type === "success" ? "opacity-60 cursor-not-allowed" : ""}`}
+                            {...register("businessEmailId")}
                         />
                         {errors.businessEmailId && (
                             <p className="text-red-500 text-sm">
@@ -161,14 +213,16 @@ export default function DownloadModal({ onClose, selectedCasestudy }: DownloadMo
                     <div>
                         <input
                             placeholder="Website"
-                            className="w-full border p-2 rounded border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-300"
-                            {...control.register("website")}
+                            disabled={loading || toast.type === "success"}
+                            aria-disabled={loading || toast.type === "success"}
+                            className={`w-full border p-2 rounded border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-300 ${loading || toast.type === "success" ? "opacity-60 cursor-not-allowed" : ""}`}
+                            {...register("website")}
                         />
                     </div>
 
                     {/* Phone */}
-                    <div 
-                    className="border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-orange-300"
+                    <div
+                        className="border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-orange-300"
                     >
                         <Controller
                             control={control}
@@ -178,10 +232,10 @@ export default function DownloadModal({ onClose, selectedCasestudy }: DownloadMo
                                     value={field.value}
                                     internationalIcon={() => (<Earth className="text-blue-400" size={20} />)}
                                     international
-
                                     onChange={field.onChange}
                                     placeholder="Enter phone number"
-                                    className="PhoneInputInput w-full border p-2 rounded border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-300"
+                                    disabled={loading || toast.type === "success"}
+                                    className={`PhoneInputInput w-full border p-2 rounded border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-300 ${loading || toast.type === "success" ? "opacity-60" : ""}`}
                                 />
                             )}
                         />
@@ -196,8 +250,10 @@ export default function DownloadModal({ onClose, selectedCasestudy }: DownloadMo
                     <div>
                         <textarea
                             placeholder="Message"
-                            className="w-full border p-2 rounded border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-300"
-                            {...control.register("message")}
+                            disabled={loading || toast.type === "success"}
+                            aria-disabled={loading || toast.type === "success"}
+                            className={`w-full border p-2 rounded border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-300 ${loading || toast.type === "success" ? "opacity-60 cursor-not-allowed" : ""}`}
+                            {...register("message")}
                         />
                     </div>
 
@@ -205,7 +261,8 @@ export default function DownloadModal({ onClose, selectedCasestudy }: DownloadMo
                     {/* Submit */}
                     <button
                         type="submit"
-                        className="bg-orange-500 rounded-lg text-white py-2 cursor-pointer hover:bg-orange-600  group flex items-center justify-center gap-2 transition-all ease-in-out duration-300"
+                        disabled={loading || toast.type === "success"}
+                        className={`bg-orange-500 rounded-lg text-white py-2 cursor-pointer hover:bg-orange-600  group flex items-center justify-center gap-2 transition-all ease-in-out duration-300 ${loading || toast.type === "success" ? "opacity-60 cursor-not-allowed" : ""}`}
                     >
                         Get the case study
                         {
@@ -216,7 +273,26 @@ export default function DownloadModal({ onClose, selectedCasestudy }: DownloadMo
                             )
                         }
                     </button>
-                </form>
+                </form>) : loading ? (
+                    <div className="flex flex-col text-gray-200 items-center justify-center min-h-[50vh]">
+                        <Loader2 className="w-10 h-10 text-gray-200 animate-spin" />
+                   
+                    </div>
+                ) : (
+                    <div className="flex items-center flex-col justify-center min-h-[50vh] gap-3">
+                        <div className="p-6 rounded-full bg-green-50 flex items-center justify-center">
+                          <MailCheck className="w-20 h-20 text-green-500" />
+                        </div>
+                        <h1 className="text-xl font-semibold text-green-700 text-center max-w-[22rem]">
+                            {toast?.message}
+                        </h1>
+                        {countdown !== null && (
+                          <p className="text-sm text-stone-500">Redirecting you to case study {countdown}s</p>
+                        )}
+                    </div>
+                )
+
+            }
             </div>
         </div>
     )

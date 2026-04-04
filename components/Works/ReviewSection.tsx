@@ -60,6 +60,7 @@ const ACCENT = {
     quote:    "text-orange-400",
     glow:     "rgba(249,115,22,0.06)",
     dot:      "bg-orange-400",
+    border:   "border-orange-200 shadow-md shadow-orange-200/30 hover:shadow-lg hover:shadow-orange-200/50",
   },
   emerald: {
     avatar:   "bg-emerald-100 text-emerald-700 border-emerald-200",
@@ -69,6 +70,7 @@ const ACCENT = {
     quote:    "text-emerald-400",
     glow:     "rgba(16,185,129,0.06)",
     dot:      "bg-emerald-400",
+    border:   "border-emerald-200 shadow-emerald-200/30 hover:shadow-lg hover:shadow-emerald-200/50",
   },
   violet: {
     avatar:   "bg-violet-100 text-violet-700 border-violet-200",
@@ -78,6 +80,7 @@ const ACCENT = {
     quote:    "text-violet-400",
     glow:     "rgba(139,92,246,0.06)",
     dot:      "bg-violet-400",
+    border:   "border-violet-200 shadow-violet-200/30 hover:shadow-lg hover:shadow-violet-200/50",
   },
   indigo: {
     avatar:   "bg-indigo-100 text-indigo-700 border-indigo-200",
@@ -87,6 +90,7 @@ const ACCENT = {
     quote:    "text-indigo-400",
     glow:     "rgba(99,102,241,0.06)",
     dot:      "bg-indigo-400",
+    border:   "border-indigo-200 shadow-indigo-200/30 hover:shadow-lg hover:shadow-indigo-200/50",
   },
 };
 
@@ -128,11 +132,11 @@ function ReviewCard({
   }, []);
 
   const a = ACCENT[review.color as keyof typeof ACCENT];
-
+  const b = ACCENT[review.color as keyof typeof ACCENT];
   return (
     <div
       ref={ref}
-      className={`flex flex-col h-full ${featured ? "md:row-span-2" : ""}`}
+      className={`flex border ${b.border} rounded-2xl overflow-hidden flex-col h-full ${featured ? "md:row-span-2" : ""}`}
       style={{
         opacity: vis ? 1 : 0,
         transform: vis ? "translateY(0)" : "translateY(28px)",
@@ -227,7 +231,7 @@ function TrustBar() {
   return (
     <div
       ref={ref}
-      className="flex flex-wrap items-center justify-center gap-8 py-8 px-6 bg-gray-50 border border-stone-100 shadow-sm rounded-2xl mb-14"
+      className="flex flex-wrap items-center justify-center gap-8 py-8 px-6 bg-blue-50 border border-blue-300 shadow-sm rounded-2xl mb-14"
       style={{
         opacity: vis ? 1 : 0,
         transform: vis ? "translateY(0)" : "translateY(16px)",
@@ -285,7 +289,7 @@ function SectionHead() {
         Real teams.
         <span className="text-orange-500"> Real results.</span>
       </h2>
-      <p className="text-base text-stone-600 font-light max-w-md mx-auto leading-relaxed">
+      <p className="text-base text-stone-600 font-light max-w-xl mx-auto leading-0">
         Operations leaders across manufacturing, pharma, retail, and food tell it how it is.
       </p>
     </div>
@@ -305,7 +309,7 @@ export default function ReviewsSection() {
 
       {/* Dot grid */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-[0.018]"
+        className="absolute inset-0 pointer-events-none opacity-[0.18]"
         style={{
           backgroundImage: "radial-gradient(circle, #a8a29e 1px, transparent 1px)",
           backgroundSize: "30px 30px",
@@ -318,17 +322,21 @@ export default function ReviewsSection() {
         <TrustBar />
 
         {/* Cards - asymmetric grid: big left + 2 right stacked, then full width below */}
-        <div className=" grid grid-cols-2 gap-5">
+        <div className=" grid grid-cols-2  gap-5">
 
           {/* Left featured - taller, spans 2 rows */}
           <div className=" col-span-2">
             <ReviewCard review={REVIEWS[0]} index={0} featured />
           </div>
 
-          <ReviewCard review={REVIEWS[1]} index={1} />
-          {/* Top right */}
+          <div className="hidden md:block">
+           <ReviewCard review={REVIEWS[1]} index={1} />
+          </div>
+     
+          <div className="hidden md:block">
           <ReviewCard review={REVIEWS[2]} index={2} />
-
+          </div>
+     
           {/* Bottom right */}
 
         </div>
@@ -336,7 +344,7 @@ export default function ReviewsSection() {
         {/* Fourth card - full width below */}
         <div className="mt-5">
           <div
-            className="bg-white rounded-2xl border border-stone-100 hover:border-stone-200 hover:shadow-xl transition-all duration-300 p-7 overflow-hidden relative group"
+            className="bg-white rounded-2xl border border-blue-100 hover:border-blue-200 hover:shadow-xl transition-all duration-300 p-7 overflow-hidden relative group"
             style={{ boxShadow: "0 4px 24px rgba(99,102,241,0.06), 0 1px 3px rgba(0,0,0,0.04)" }}
           >
             {/* Top accent */}

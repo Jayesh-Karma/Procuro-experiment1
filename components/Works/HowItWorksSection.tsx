@@ -4,6 +4,8 @@ import gsap from "gsap";
 import { ArrowRight } from "lucide-react";
 import { useModal } from "@/components/Modal/ModalProvider";
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import FloatingOrbs from "../ui/FloatingOrbs";
 
 // ─── Data ─────────────────────────────────────────────────────────────────
 const STEPS = [
@@ -358,16 +360,16 @@ function BottomCTA() {
         <h3 className="font-display text-[clamp(22px,3vw,36px)] font-extrabold text-white leading-tight tracking-tight mb-3">
           Start with a 30-minute conversation.
         </h3>
-        <p className="text-sm text-stone-400 font-light max-w-md mx-auto mb-8 leading-relaxed">
+        <p className="text-sm text-stone-400 font-light max-w-lg mx-auto mb-8 leading-relaxed">
           No commitment. Show us your supply chain and we&apos;ll show you exactly what&apos;s possible.
         </p>
         <div className="flex items-center justify-center gap-3 flex-wrap">
-          <button onMouseEnter={handleHover} onClick={() => modal.open("demo")} className="px-8 py-3.5 cursor-pointer flex items-center gap-2 rounded-xl bg-orange-500 hover:bg-orange-400 text-white text-sm font-semibold shadow-lg shadow-orange-500/25 transition-all hover:-translate-y-0.5">
+          <Link href="/book-demo" onMouseEnter={handleHover} onClick={() => modal.open("demo")} className="px-8 py-3.5 cursor-pointer flex items-center gap-2 rounded-xl bg-orange-500 hover:bg-orange-400 text-white text-sm font-semibold shadow-lg shadow-orange-500/25 transition-all hover:-translate-y-0.5">
             Book a free demo <ArrowRight ref={iconRef} className="w-5 h-5" />
-          </button>
-          <button className="px-7 py-3.5 cursor-pointer rounded-xl border border-stone-700 text-stone-400 hover:text-white hover:border-stone-500 text-sm font-medium transition-all">
+          </Link>
+          <Link href="/contact" className="px-7 py-3.5 cursor-pointer rounded-xl border border-stone-700 text-stone-400 hover:text-white hover:border-stone-500 text-sm font-medium transition-all">
             Talk to our team
-          </button>
+          </Link>
         </div>
         <div className="flex items-center justify-center gap-6 mt-8 flex-wrap">
           {["Setup started in under 4 Weeks", "Your data stays on your servers"].map((t) => (
@@ -390,13 +392,15 @@ export default function HowItWorksSection() {
     <section className="relative bg-[#fafaf9] border-y border-gray-200 py-24 px-6 md:px-16 overflow-hidden">
 
       {/* Dot bg */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.02]"
+      {/* <div
+        className="absolute inset-0 pointer-events-none opacity-[0.5]"
         style={{
           backgroundImage: "radial-gradient(circle, #a8a29e 1px, transparent 1px)",
           backgroundSize: "30px 30px",
         }}
-      />
+      /> */}
+
+        <FloatingOrbs />
 
       {/* Orange wash */}
       <div

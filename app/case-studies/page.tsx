@@ -27,12 +27,13 @@ export default function CaseStudiesPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedCaseStudy, setSelectedCaseStudy] = useState<string | undefined>(undefined);
 
+
   return (
     <div className="min-h-screen bg-[#FAFAF9]">
         
       {/* Hero header */}
       <div className="bg-white border-b border-stone-100">
-        <div className="max-w-6xl mx-auto px-6 md:px-12 pt-32 pb-14">
+        <div className="max-w-7xl mx-auto px-6 pt-32 pb-14">
           <div
             style={{
               opacity: mounted ? 1 : 0,
@@ -57,7 +58,7 @@ export default function CaseStudiesPage() {
                   <span className="text-orange-500">Measurable results.</span>
                 </h1>
                 <p className="text-base text-stone-400 font-light max-w-lg leading-relaxed">
-                  Every case study documents a supply chain problem that existed before deployment, the solution we built, and the outcome — with real numbers, not projections.
+                  Every case study documents a supply chain problem that existed before deployment, the solution we built, and the outcome with real numbers, not projections.
                 </p>
               </div>
 
@@ -79,7 +80,7 @@ export default function CaseStudiesPage() {
       </div>
 
       {/* Main content */}
-      <div className="max-w-6xl mx-auto px-6 md:px-12 py-14">
+      <div className="max-w-7xl mx-auto px-6 py-14">
 
         {/* Proof strip */}
         <ProofStrip />
@@ -151,7 +152,10 @@ export default function CaseStudiesPage() {
       </div>
       {
         modalOpen && <div className="mx-auto">
-          <DownloadModal onClose={()=> setModalOpen(false)} selectedCasestudy={selectedCaseStudy} />
+          <DownloadModal 
+              onClose={()=> setModalOpen(false)} 
+              selectedCasestudy={selectedCaseStudy} 
+          />
         </div> 
       }
     </div>
