@@ -150,14 +150,7 @@ export default function CaseStudiesPage() {
         </div>
 
       </div>
-      {
-        modalOpen && <div className="mx-auto">
-          <DownloadModal 
-              onClose={()=> setModalOpen(false)} 
-              selectedCasestudy={selectedCaseStudy} 
-          />
-        </div> 
-      }
+ 
     </div>
   );
 }

@@ -127,7 +127,6 @@ export const CASE_STUDIES: CaseStudy[] = [
   tags: ["E-commerce", "3PL", "Fulfillment Optimization"],
   accentHex: "#6366f1",
 },
-
 {
   slug: "AI_Powered_IOP_Food_Apparel_Textile_Case_Study_Updated",
   title: "Significant reduction in waste through AI-driven freshness control",
@@ -201,11 +200,7 @@ export function CaseStudyCard({ cs, index, selectCaseStudy, openModal }:
         transition: `opacity 0.55s ${(index % 3) * 0.08}s ease-out, transform 0.55s ${(index % 3) * 0.08}s ease-out`,
       }}
     >
-      <button
-        onClick={() => {
-          selectCaseStudy(cs.slug);
-          openModal();
-        }}
+      <Link href={`/case-studies/${cs.slug}`}
         className="group flex flex-col bg-white border border-stone-100 rounded-2xl overflow-hidden hover:border-stone-200 hover:shadow-lg transition-all duration-300 ease-out hover:-translate-y-0.5 h-full"
         style={{ boxShadow: `0 1px 8px rgba(0,0,0,0.04)` }}
       >
@@ -275,7 +270,7 @@ export function CaseStudyCard({ cs, index, selectCaseStudy, openModal }:
             </svg>
           </div>
         </div>
-      </button>
+      </Link>
     </div>
   );
 }
@@ -298,11 +293,7 @@ export function FeaturedCard({ cs, openModal, selectCaseStudy }:
         transition: "opacity 0.6s ease-out, transform 0.6s ease-out",
       }}
     >
-      <button
-        onClick={()=> {
-          selectCaseStudy(cs.slug);
-          openModal(true);
-        }}
+      <Link href={`/case-studies/${cs.slug}`}
         className="group grid md:grid-cols-[1.4fr_1fr] cursor-pointer text-left bg-white border border-stone-100 rounded-2xl overflow-hidden hover:border-stone-200 hover:shadow-xl transition-all duration-300"
         style={{ boxShadow: "0 1px 8px rgba(0,0,0,0.04)" }}
       >
@@ -349,7 +340,7 @@ export function FeaturedCard({ cs, openModal, selectCaseStudy }:
             </svg>
           </div>
         </div>
-      </button>
+      </Link>
     </div>
   );
 }

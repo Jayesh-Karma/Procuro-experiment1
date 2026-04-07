@@ -53,12 +53,6 @@ export default function DownloadModal({ onClose, selectedCasestudy }: DownloadMo
         if (selectedCasestudy) setValue("selectedCaseStudy", selectedCasestudy);
     }, [selectedCasestudy, setValue]);
 
-    useEffect(() => {
-        if(localStorage.getItem("filledForm") === "true"){
-            onClose()
-            window.open(`/case-studies/${selectedCasestudy}.pdf`, "_blank", 'noopener,noreferrer');
-        }
-    }, [])
 
 
     const onSubmit = async (data: any) => {
@@ -78,7 +72,6 @@ export default function DownloadModal({ onClose, selectedCasestudy }: DownloadMo
             setCountdown(3);
             localStorage.setItem("filledForm", "true");
 
-       
 
             reset({
                 fullName: "",
@@ -102,6 +95,7 @@ export default function DownloadModal({ onClose, selectedCasestudy }: DownloadMo
 
     // handle auto-close countdown when success
     useEffect(() => {
+
         if (toast.type === "success" && countdown && countdown > 0) {
             const id = setInterval(() => setCountdown((c) => (c ? c - 1 : null)), 1000);
             return () => clearInterval(id);

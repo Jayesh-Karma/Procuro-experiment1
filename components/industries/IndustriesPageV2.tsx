@@ -116,11 +116,8 @@ function SubIndustryCard({
         </div>
 
         {/* CTA */}
-        <button
-          onClick={() => {
-            openModal(true);
-            selectCaseStudy(sub.caseStudySlug);
-          }} 
+        <Link href={`/case-studies/${sub?.caseStudySlug}`}
+          
           className="flex items-center gap-1.5 text-[12px] font-semibold mt-1 group/link w-fit transition-all duration-200"
           style={{ color: accentHex }}
         >
@@ -132,7 +129,7 @@ function SubIndustryCard({
           >
             <path d="M2 8L8 2M8 2H4.5M8 2V5.5" />
           </svg>
-        </button>
+        </Link>
       </div>
     </div>
   );
