@@ -378,16 +378,58 @@ export function ModulePreview({ type, accent }: { type: string; accent: string }
 // INTEGRATIONS
 // ═══════════════════════════════════════════════════════════════════
 export const INTEGRATIONS = [
-  { name: "SAP", cat: "ERP" }, { name: "Oracle", cat: "ERP" },
-  { name: "MS Dynamics", cat: "ERP" }, { name: "Tally Prime", cat: "ERP" },
-  { name: "NetSuite", cat: "ERP" }, { name: "Shopify", cat: "E-commerce" },
-  { name: "WooCommerce", cat: "E-commerce" }, { name: "Amazon", cat: "Marketplace" },
-  { name: "Flipkart", cat: "Marketplace" }, { name: "PostgreSQL", cat: "Database" },
-  { name: "MySQL", cat: "Database" }, { name: "MongoDB", cat: "Database" },
-  { name: "LabWare LIMS", cat: "Pharma" }, { name: "CSV / Excel", cat: "Flat Files" },
-  { name: "REST APIs", cat: "Custom" },
-];
+  // ERP
+  { name: "SAP", cat: "ERP" },
+  { name: "Oracle", cat: "ERP" },
+  { name: "MS Dynamics", cat: "ERP" },
+  { name: "Tally Prime", cat: "ERP" },
+  { name: "NetSuite", cat: "ERP" },
+  { name: "Odoo", cat: "ERP" },
+  { name: "Infor", cat: "ERP" },
+  { name: "Epicor", cat: "ERP" },
 
+  // E-commerce
+  { name: "Shopify", cat: "E-commerce" },
+  { name: "WooCommerce", cat: "E-commerce" },
+  { name: "Magento", cat: "E-commerce" },
+  { name: "BigCommerce", cat: "E-commerce" },
+
+  { name: "eBay", cat: "Marketplace" },
+  { name: "Etsy", cat: "Marketplace" },
+
+  // CRM
+  { name: "Salesforce", cat: "CRM" },
+  { name: "HubSpot", cat: "CRM" },
+  { name: "Zoho CRM", cat: "CRM" },
+  { name: "Freshsales", cat: "CRM" },
+
+  // Accounting
+  { name: "QuickBooks", cat: "Accounting" },
+  { name: "Xero", cat: "Accounting" },
+  { name: "Zoho Books", cat: "Accounting" },
+
+  // Database
+  { name: "PostgreSQL", cat: "Database" },
+  { name: "MySQL", cat: "Database" },
+  { name: "MongoDB", cat: "Database" },
+  { name: "Microsoft SQL Server", cat: "Database" },
+  { name: "Oracle DB", cat: "Database" },
+
+
+  // Cloud / Storage
+  { name: "AWS", cat: "Cloud" },
+  { name: "Google Cloud", cat: "Cloud" },
+  { name: "Azure", cat: "Cloud" },
+
+  // Pharma / LIMS
+  { name: "LabWare LIMS", cat: "Pharma" },
+  { name: "STARLIMS", cat: "Pharma" },
+
+  // Flat Files / Custom
+  { name: "CSV / Excel", cat: "Flat Files" },
+  { name: "REST APIs", cat: "Custom" },
+  { name: "SOAP APIs", cat: "Custom" }
+];
 // ═══════════════════════════════════════════════════════════════════
 // HOW IT WORKS
 // ═══════════════════════════════════════════════════════════════════

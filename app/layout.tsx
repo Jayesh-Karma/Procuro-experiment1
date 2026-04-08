@@ -8,6 +8,7 @@ import Navbar from "@/components/Hero/Navbar";
 import Footer from "@/components/Hero/Footer";
 import CalEmbed from "@/components/calendly/CadEmbed";
 import Script from "next/script";
+import CookieConsent from "@/components/cookie/cookieBar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -65,16 +66,17 @@ export default function RootLayout({
             src="https://www.googletagmanager.com/ns.html?id=GTM-P8S7PZV" height="0" width="0" style={{display:"none" ,visibility:"hidden"}}></iframe>
           </noscript> 
         
-    <ReactLenis root>
+    {/* <ReactLenis root> */}
       <GSAPProvider>
         <ModalProvider>
           <Navbar />
           {children}
+          <CookieConsent />
           <CalEmbed />
           <Footer />
         </ModalProvider>
       </GSAPProvider>
-    </ReactLenis>
+    {/* </ReactLenis> */}
       </body>
     </html>
   );

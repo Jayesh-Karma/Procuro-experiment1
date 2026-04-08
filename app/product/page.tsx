@@ -4,10 +4,11 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { COMPARISON, Eyebrow, INTEGRATIONS, ModulePreview, MODULES, Reveal, STEPS } from "@/components/ProductShowcase/ProductPageComponents";
 import { Metadata } from "next";
+import { Brain, Eye, Lock, Receipt } from "lucide-react";
 
 
 export const metaData: Metadata = {
-  title: "Product — Innovacio Technologies | AI Supply Chain Intelligence",
+  title: "Product - Innovacio Technologies | AI Supply Chain Intelligence",
   description:
     "AI-powered supply chain intelligence for manufacturing, retail, FMCG, pharma, and automotive — built for your specific sub-industry, not a generic template.",
 };
@@ -379,13 +380,13 @@ export default function ProductPage() {
               </div>
               <div className="grid grid-cols-2 gap-3 flex-1">
                 {[
-                  { icon: "🔒", title: "Your servers, always", body: "Platform deployed on your infrastructure. No external data transmission." },
-                  { icon: "👁", title: "Read-only access", body: "We read to generate intelligence. We never write or modify your systems." },
-                  { icon: "🧠", title: "Your data only", body: "AI models trained exclusively on your data. Never shared with anyone." },
-                  { icon: "📋", title: "Full audit trail", body: "Every access, recommendation, and action logged with timestamps." },
+                  { icon: <Lock />, title: "Your servers, always", body: "Platform deployed on your infrastructure. No external data transmission." },
+                  { icon: <Eye />, title: "Read-only access", body: "We read to generate intelligence. We never write or modify your systems." },
+                  { icon: <Brain />, title: "Your data only", body: "AI models trained exclusively on your data. Never shared with anyone." },
+                  { icon: <Receipt /> , title: "Full audit trail", body: "Every access, recommendation, and action logged with timestamps." },
                 ].map((p, i) => (
                   <div key={i} className="rounded-xl border border-stone-100 bg-stone-50 p-4">
-                    <div className="text-xl mb-2">{p.icon}</div>
+                    <div className="text-xl text-orange-500 mb-2">{p.icon}</div>
                     <p className="text-xs font-bold text-stone-800 mb-1">{p.title}</p>
                     <p className="text-[11px] text-stone-400 font-light leading-relaxed">{p.body}</p>
                   </div>
