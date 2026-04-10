@@ -30,7 +30,7 @@ export default function MorphingText() {
 
   return (
     <span
-      className="inline-block transition-all duration-300"
+      className="inline-block transition-all font-space duration-300"
       style={{
         opacity: state === "visible" ? 1 : 0,
         transform:

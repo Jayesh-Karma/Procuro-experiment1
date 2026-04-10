@@ -764,7 +764,6 @@ export const caseStudiesHtmlData = [
 
     pdf: "/case-study.pdf",
   },
-
     {
     slug: "Nutrition_Wellness_AI_Case_Study_Innovacio",
     title: "AI-Powered Nutrition, Health & Wellness Manufacturing Platform",
@@ -837,5 +836,308 @@ export const caseStudiesHtmlData = [
 
     pdf: "/case-study.pdf",
   },
+{
+  slug: "ColdChain_Perishable_3PL_AI_Case_Study_Innovacio",
+  title: "AI-Powered Cold Chain Fulfillment & Perishable 3PL Platform",
+  subtitle:
+    "Unified control tower for demand forecasting, shelf-life optimization, cold-chain monitoring, and logistics execution",
+
+  industry: "Cold Chain Logistics / Perishable 3PL / Supply Chain & Fulfillment",
+  scope: [
+    "Demand Forecasting",
+    "Inventory & Shelf-Life Optimization",
+    "Cold Chain Monitoring",
+    "Supplier & Procurement Intelligence",
+    "Logistics & Route Optimization",
+    "Reverse Logistics",
+    "Traceability & Compliance",
+  ],
+  outcome:
+    "One unified AI-driven control tower for perishable demand, inventory, quality, and logistics execution",
+
+  heroImage: "/case-study-bg.png",
+
+  challenge:
+    "Fragmented systems across ERP, WMS, TMS, OMS, supplier portals, and sensor networks led to disconnected planning across demand, inventory aging, procurement, transport, and returns. This resulted in spoilage risk, uneven safety stock, delayed response to temperature excursions, supplier delays, and costly last-mile failures in a highly time-sensitive cold-chain environment.",
+
+  solution: [
+    "AI-powered cold-chain control tower integrating orders, inventory, shelf-life, supplier data, routes, and IoT sensor streams",
+    "Segmented demand forecasting for B2C, B2B, subscription, and promotional channels to improve planning accuracy",
+    "FEFO (First Expiry First Out)-based inventory allocation with shelf-life risk scoring to minimize spoilage",
+    "Real-time temperature excursion detection using AIoT with proactive alerting and intervention workflows",
+    "Supplier intelligence dashboard with risk scoring based on OTIF, lead times, quality, and delays",
+    "Route and wave optimization for last-mile delivery with improved ETA accuracy and reduced failures",
+    "Reverse logistics triage engine to classify returns into restock, rework, donate, or discard based on remaining shelf life",
+    "Procurement optimization with AI-driven replenishment recommendations and inbound risk visibility",
+    "Unified dashboard for warehouse, transport, procurement, and leadership teams with real-time decision support",
+    "End-to-end traceability with lot tracking, exception logging, and compliance monitoring",
+  ],
+
+  impact: [
+    {
+      title: "Improved Forecast Accuracy",
+      desc: "Segment-level demand forecasting reduced errors by up to 74.14%, improving replenishment decisions",
+    },
+    {
+      title: "Reduced Cold-Chain Operating Costs",
+      desc: "AI-driven optimization reduced operating costs by up to 26% and transport costs by up to 60%",
+    },
+    {
+      title: "Minimized Spoilage & Waste",
+      desc: "Shelf-life-aware planning and FEFO allocation significantly reduced inventory write-offs",
+    },
+    {
+      title: "Enhanced Delivery Reliability",
+      desc: "Route optimization and risk-based execution improved on-time deliveries and reduced failures",
+    },
+    {
+      title: "Stronger Supplier & Procurement Control",
+      desc: "Supplier scoring and inbound planning reduced delays and emergency procurement",
+    },
+    {
+      title: "Faster Issue Detection & Intervention",
+      desc: "Real-time temperature monitoring and anomaly detection enabled proactive response to cold-chain risks",
+    },
+    {
+      title: "Optimized Reverse Logistics",
+      desc: "AI-driven return triage improved recovery value and reduced unnecessary waste",
+    },
+  ],
+
+  techStack: [
+    { layer: "Frontend", tech: "React.js / Next.js role-based operational dashboards" },
+    { layer: "Backend", tech: "API-driven architecture with orchestration across supply chain systems" },
+    { layer: "AI", tech: "Demand forecasting, anomaly detection, shelf-life risk scoring, route optimization, supplier scoring" },
+    { layer: "Data", tech: "Unified data layer (ERP, WMS, TMS, OMS, IoT sensors, supplier systems)" },
+    { layer: "Integration", tech: "Sensor networks, logistics systems, supplier portals, inventory and order platforms" },
+    { layer: "Infrastructure", tech: "Cloud-based real-time processing with AIoT streaming and monitoring" },
+  ],
+
+  pdf: "/case-study.pdf",
+},
+
+{
+  slug: "Polyurethane_AI_Case_Study_Innovacio",
+  title: "AI-Powered Sustainable Polyurethane Manufacturing & Supply Chain Platform",
+  subtitle:
+    "Unified control tower for procurement, formulation planning, batch quality, and sustainability governance",
+
+  industry: "Chemical Manufacturing / Polyurethane Systems / Sustainable Supply Chain",
+  scope: [
+    "Supplier Qualification & Procurement",
+    "Inventory & Shelf-Life Optimization",
+    "Formulation & Production Planning",
+    "Batch Quality & Process Control",
+    "Sustainability & Circularity Tracking",
+    "Traceability & Compliance",
+  ],
+  outcome:
+    "One unified AI-driven control tower for supplier risk, inventory, batch quality, and sustainability governance",
+
+  heroImage: "/case-study-bg.png",
+
+  challenge:
+    "Fragmented data across procurement, supplier quality, inventory, formulation planning, and production systems led to poor visibility into supplier risk, material usability, batch health, and sustainability compliance. This resulted in delayed batches, excess inventory, quality deviations, weak traceability, and difficulty in managing renewable and circular material reporting.",
+
+  solution: [
+    "AI-enabled control tower integrating procurement, supplier quality, inventory, formulation planning, production, and sustainability data",
+    "Supplier risk scoring based on delivery reliability, COA completeness, quality performance, and sustainability compliance",
+    "Procurement intelligence with prediction of late shipments, missing documentation alerts, and alternate sourcing recommendations",
+    "Lot-level inventory optimization with shelf-life-aware replenishment and consumption planning",
+    "Demand forecasting translated into reorder and production planning rules",
+    "Batch-health scoring and anomaly detection for early detection of process deviations and quality risks",
+    "Formulation-aware inventory allocation to ensure correct material usage and reduce incompatibility issues",
+    "Sustainability dashboard tracking renewable content, supplier declarations, and circular-material usage",
+    "End-to-end traceability linking supplier lots, production batches, and sustainability records",
+    "Role-based dashboards for procurement, production, quality, and leadership teams",
+  ],
+
+  impact: [
+    {
+      title: "Reduced Waste & Expiry Risk",
+      desc: "Shelf-life-aware planning and lot-level optimization minimized material expiry and excess inventory",
+    },
+    {
+      title: "Improved Supplier Reliability",
+      desc: "AI-driven supplier scoring enabled proactive risk mitigation and better sourcing decisions",
+    },
+    {
+      title: "Enhanced Batch Quality",
+      desc: "Anomaly detection and batch-health scoring reduced process deviations and rework",
+    },
+    {
+      title: "Optimized Inventory & Working Capital",
+      desc: "AI-guided replenishment reduced overstocking and improved inventory utilization",
+    },
+    {
+      title: "Stronger Sustainability Governance",
+      desc: "Unified tracking of renewable content and supplier declarations improved ESG compliance and audit readiness",
+    },
+    {
+      title: "Faster Decision-Making Across Teams",
+      desc: "Integrated dashboards enabled procurement, production, and quality teams to act on a shared data view",
+    },
+  ],
+
+  techStack: [
+    { layer: "Frontend", tech: "React.js / Next.js role-based dashboards" },
+    { layer: "Backend", tech: "API-driven architecture with workflow orchestration and traceability engine" },
+    { layer: "AI", tech: "Supplier risk scoring, demand forecasting, anomaly detection, batch-health scoring, inventory optimization" },
+    { layer: "Data", tech: "Unified data layer (ERP, supplier systems, plant logs, formulation data, sustainability records)" },
+    { layer: "Integration", tech: "Procurement systems, quality systems, production systems, supplier documentation workflows" },
+    { layer: "Infrastructure", tech: "Cloud-based platform with real-time processing and monitoring" },
+  ],
+
+  pdf: "/case-study.pdf",
+},
+
+{
+  slug: "Seasonal_Decor_AI_Case_Study_Innovacio",
+  title: "AI-Powered Seasonal Décor Manufacturing & Supply Chain Platform",
+  subtitle:
+    "Unified control tower for demand forecasting, procurement planning, inventory optimization, and warehouse orchestration",
+
+  industry: "Retail / Seasonal Manufacturing / Supply Chain & Distribution",
+  scope: [
+    "Demand Forecasting",
+    "Supplier & Procurement Intelligence",
+    "Inventory Optimization & Aging Control",
+    "Warehouse Orchestration",
+    "Fulfillment Planning",
+    "Traceability & Operational Visibility",
+  ],
+  outcome:
+    "One unified AI-driven control tower aligning forecasting, procurement, inventory, and fulfillment for peak-season execution",
+
+  heroImage: "/case-study-bg.png",
+
+  challenge:
+    "Highly seasonal demand, long and variable supplier lead times, and rapid post-season inventory devaluation created significant planning risk. Fragmented systems across sales, procurement, and warehouse operations led to poor visibility into supplier delays, stock exposure, safety stock needs, and fulfillment bottlenecks—resulting in stockouts, excess inventory, missed cutoffs, and reactive decision-making during peak seasons.",
+
+  solution: [
+    "AI-powered seasonal control tower integrating sales, procurement, supplier performance, inventory aging, and warehouse execution",
+    "SKU- and channel-level demand forecasting using calendar effects, promotions, and historical sell-through patterns",
+    "Forecast confidence, bias detection, and exception alerts for proactive planning adjustments",
+    "Supplier risk scoring with lead-time prediction and escalation workflows for delayed orders",
+    "Inventory aging control with segmentation into pre-season build, in-season safety stock, and post-season liquidation risk",
+    "AI-driven replenishment planning translating forecasts into buy signals and reorder targets",
+    "Warehouse orchestration dashboards linking demand forecasts with inbound congestion, wave planning, and labor allocation",
+    "Cut-off risk detection and real-time fulfillment prioritization to avoid missed shipments",
+    "Unified visibility across merchandising, procurement, inventory, and operations teams",
+  ],
+
+  impact: [
+    {
+      title: "Reduced Stockouts During Peak Season",
+      desc: "Accurate demand forecasting and proactive procurement improved product availability during critical sales windows",
+    },
+    {
+      title: "Lower Excess & Aged Inventory",
+      desc: "Inventory aging insights and seasonality-aware planning reduced post-season markdown exposure",
+    },
+    {
+      title: "Improved Procurement Efficiency",
+      desc: "Supplier risk scoring and lead-time prediction enabled earlier interventions and fewer emergency buys",
+    },
+    {
+      title: "Optimized Warehouse Execution",
+      desc: "Warehouse orchestration improved wave planning, labor utilization, and fulfillment flow during peak demand",
+    },
+    {
+      title: "Fewer Missed Shipment Cutoffs",
+      desc: "Real-time cut-off risk alerts improved on-time shipping performance",
+    },
+    {
+      title: "Better Cross-Team Decision Making",
+      desc: "Unified dashboards aligned merchandising, procurement, and operations on a single planning view",
+    },
+  ],
+
+  techStack: [
+    { layer: "Frontend", tech: "React.js / Next.js role-based operational dashboards" },
+    { layer: "Backend", tech: "API-driven architecture with supply chain orchestration" },
+    { layer: "AI", tech: "Demand forecasting, supplier risk scoring, inventory optimization, warehouse orchestration analytics" },
+    { layer: "Data", tech: "Unified data layer (sales, ERP, WMS, supplier systems, inventory data)" },
+    { layer: "Integration", tech: "Procurement systems, warehouse systems, supplier platforms, order management systems" },
+    { layer: "Infrastructure", tech: "Cloud-based platform with real-time monitoring and analytics" },
+  ],
+
+  pdf: "/case-study.pdf",
+},
+{
+  slug: "Educational_Development_AI_Case_Study_Innovacio",
+  title: "AI-Powered Educational Publishing & Retail Supply Chain Platform",
+  subtitle:
+    "Unified control tower for demand forecasting, procurement planning, retailer replenishment, and inventory aging control",
+
+  industry: "Publishing / Retail Distribution / Supply Chain",
+  scope: [
+    "Demand Forecasting",
+    "Procurement & Supplier Intelligence",
+    "Retailer Replenishment & Consignment Management",
+    "Inventory Aging & Obsolescence Control",
+    "Supply Chain Visibility",
+    "Traceability & Margin Optimization",
+  ],
+  outcome:
+    "One unified AI-driven control layer connecting forecasting, procurement, replenishment, and inventory control across a multi-title retail network",
+
+  heroImage: "/case-study-bg.png",
+
+  challenge:
+    "A large catalog of 2,000+ titles, long overseas lead times (4–8 months), seasonal demand spikes, and fragmented retail distribution created major planning complexity. Disconnected systems limited visibility into demand patterns, supplier timelines, and consignment inventory, resulting in stockouts during peak periods, excess inventory, and over $15M in noncurrent stock risk.",
+
+  solution: [
+    "AI-powered control tower integrating POS, ERP, warehouse, supplier, and retailer data into a single decision layer",
+    "Title- and channel-level demand forecasting distinguishing between seasonal, promotional, and evergreen products",
+    "Forecast confidence scoring, bias detection, and seasonal uplift visibility for better planning decisions",
+    "Supplier lead-time prediction and procurement intelligence for optimized buying and reduced overstock risk",
+    "Purchase-order planning linked to demand forecasts, MOQ constraints, and inventory risk exposure",
+    "Retailer replenishment dashboard with sell-through tracking, stock visibility, and next-best-order recommendations",
+    "Consignment inventory visibility across partner outlets with aging and performance tracking",
+    "Inventory aging and noncurrent stock alerts to proactively manage slow-moving and obsolete titles",
+    "AI-driven classification of inventory into rebalance, discount, reprint, or retire categories",
+    "Unified dashboards aligning sales, procurement, and operations teams on real-time insights",
+  ],
+
+  impact: [
+    {
+      title: "Reduced Noncurrent Inventory Risk",
+      desc: "Proactive aging alerts and demand-linked planning helped reduce exposure to slow-moving and obsolete stock",
+    },
+    {
+      title: "Improved Forecast Accuracy",
+      desc: "Title- and channel-level forecasting improved planning across seasonal and evergreen products",
+    },
+    {
+      title: "Better Procurement Decisions",
+      desc: "AI-driven lead-time and MOQ planning reduced overbuying and emergency purchasing",
+    },
+    {
+      title: "Enhanced Retailer Service Levels",
+      desc: "Improved replenishment visibility ensured better product availability across 4,000 outlets",
+    },
+    {
+      title: "Optimized Consignment Inventory",
+      desc: "Real-time sell-through tracking improved stock allocation and reduced excess partner inventory",
+    },
+    {
+      title: "Stronger Margin Protection",
+      desc: "Early detection of aging inventory reduced markdowns and improved working capital efficiency",
+    },
+  ],
+
+  techStack: [
+    { layer: "Frontend", tech: "React.js / Next.js role-based dashboards" },
+    { layer: "Backend", tech: "API-driven architecture with supply chain orchestration" },
+    { layer: "AI", tech: "Demand forecasting, inventory aging prediction, supplier lead-time prediction, replenishment optimization" },
+    { layer: "Data", tech: "Unified data layer (POS, ERP, warehouse systems, supplier data, retailer data)" },
+    { layer: "Integration", tech: "Retailer systems, supplier systems, inventory platforms, order management systems" },
+    { layer: "Infrastructure", tech: "Cloud-based platform with real-time analytics and monitoring" },
+  ],
+
+  pdf: "/case-study.pdf",
+}
+
 
 ];

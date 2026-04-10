@@ -80,6 +80,19 @@ export const CASE_STUDIES: CaseStudy[] = [
   accentHex: "#f97316",
 },
 {
+  slug: "Polyurethane_AI_Case_Study_Innovacio",
+  title: "Reduced waste and improved batch quality through AI-driven supply chain control",
+  subTitle: "AI-Powered Sustainable Polyurethane Manufacturing Control Tower",
+  industry: "Chemical Manufacturing",
+  industryId: "manufacturing",
+  image: "https://images.unsplash.com/photo-1584677123777-742161156eb7?q=80&w=870&auto=format&fit=crop",
+  stat: { value: "-25%", label: "Reduction in material waste and expiry risk" },
+  result:
+    "AI-powered control tower unified procurement, inventory, formulation, production, and sustainability data to reduce waste, improve batch consistency, enhance supplier reliability, and strengthen ESG compliance across polyurethane manufacturing operations.",
+  tags: ["Chemical Manufacturing", "Supply Chain AI", "Sustainability"],
+  accentHex: "#f97316",
+},
+{
   slug: "Automotive_AI_Case_Study",
   title: "From line disruptions to 87% less downtime",
   subTitle: "Automotive Manufacturing & Supply Chain",
@@ -128,6 +141,32 @@ export const CASE_STUDIES: CaseStudy[] = [
   accentHex: "#6366f1",
 },
 {
+  slug: "Seasonal_Decor_AI_Case_Study_Innovacio",
+  title: "Reduced stockouts and excess inventory through AI-driven seasonal planning",
+  subTitle: "AI-Powered Seasonal Décor Supply Chain Control Tower",
+  industry: "Retail & Supply Chain",
+  industryId: "retail",
+  image: "https://images.unsplash.com/photo-1607083206968-13611e3d76db?q=80&w=1170&auto=format&fit=crop",
+  stat: { value: "-35%", label: "Reduction in excess and aged inventory" },
+  result:
+    "AI-powered control tower unified demand forecasting, procurement, inventory aging, and warehouse execution to improve peak-season readiness, reduce stockouts, minimize post-season markdowns, and optimize fulfillment performance.",
+  tags: ["Seasonal Retail", "Demand Forecasting", "Inventory Optimization"],
+  accentHex: "#6366f1",
+},
+{
+  slug: "Educational_Development_AI_Case_Study_Innovacio",
+  title: "Reduced noncurrent inventory and improved retail replenishment through AI",
+  subTitle: "AI-Powered Educational Publishing Supply Chain Control Tower",
+  industry: "Publishing & Retail",
+  industryId: "retail",
+  image: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=1170&auto=format&fit=crop",
+  stat: { value: "$15M+", label: "Noncurrent inventory risk addressed" },
+  result:
+    "AI-powered control tower unified POS, supplier, and inventory data to improve demand forecasting, optimize procurement, enhance retailer replenishment, and reduce noncurrent inventory exposure across a large multi-title retail network.",
+  tags: ["Retail Supply Chain", "Demand Forecasting", "Inventory Optimization"],
+  accentHex: "#6366f1",
+},
+{
   slug: "AI_Powered_IOP_Food_Apparel_Textile_Case_Study_Updated",
   title: "Significant reduction in waste through AI-driven freshness control",
   subTitle: "AI-Powered Integrated Operations Platform for Food, Apparel, and Textile ",
@@ -140,6 +179,19 @@ export const CASE_STUDIES: CaseStudy[] = [
   accentHex: "#d97706",
 },
 {
+  slug: "ColdChain_Perishable_3PL_AI_Case_Study_Innovacio",
+  title: "Reduced spoilage and logistics costs through AI-driven cold-chain control",
+  subTitle: "AI-Powered Cold Chain Fulfillment & Perishable 3PL Control Tower",
+  industry: "FMCG",
+  industryId: "fmcg",
+  image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1170&auto=format&fit=crop",
+  stat: { value: "-26%", label: "Reduction in cold-chain operating costs" },
+  result:
+    "AI-powered control tower unified demand, inventory, shelf-life, and sensor data to enable segment-level forecasting, reduce spoilage risk, improve delivery reliability, and optimize transport and procurement decisions across the cold-chain network.",
+  tags: ["Cold Chain", "Perishable Logistics", "AI Forecasting"],
+  accentHex: "#d97706",
+},
+{
   slug: "Lighting_Fixtures_Distribution_AI_Case_Study_Innovacio",
   title: "0.93 R² demand forecasting accuracy for project-based inventory",
   subTitle: "AI in Lighting & Fixtures Distribution for Construction Projects",
@@ -149,7 +201,7 @@ export const CASE_STUDIES: CaseStudy[] = [
   stat: { value: "0.93", label: "Forecast accuracy (R²)" },
   result: "Improved project-based demand planning with AI forecasting, reducing stockouts, overstock, and expediting while aligning procurement with construction timelines.",
   tags: ["Construction", "Demand Forecasting", "Inventory Planning", "Supply Chain"],
-  accentHex: "#FFFF00",
+  accentHex: "#008000 ",
 },
 ];
 
@@ -381,8 +433,8 @@ export function FilterTabs({
 export function ProofStrip() {
   const { ref, vis } = useInView(0.1);
   const stats = [
-    { value: "17", label: "Case studies published" },
-    { value: "5",  label: "Industries covered" },
+    { value: "15", label: "Case studies published" },
+    { value: "6",  label: "Industries covered" },
     { value: "307%", label: "Average 18-month ROI" },
     { value: "< 4 Weeks", label: "Avg. time to go-live" },
   ];

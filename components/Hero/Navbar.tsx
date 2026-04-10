@@ -276,6 +276,7 @@ export default function Navbar() {
             <div className="p-3 flex flex-col gap-1">
               {LINKS.map((link, i) => (
                 <Link href={link.href} 
+                  onClick={() => setMenuOpen(!menuOpen)}
                   className={`
                     flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-left w-full
                     transition-colors duration-150

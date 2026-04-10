@@ -124,6 +124,24 @@ export const INDUSTRIES: Industry[] = [
           },
         ],
       },
+      {
+        id: "chemical-mfg",
+        title: "Chemical Manufacturing",
+        image: "https://images.unsplash.com/photo-1581091870627-3c6c7a4b0b61?q=80&w=1170&auto=format&fit=crop",
+        problem: "Limited visibility into supplier risk, batch quality, and material lifecycle",
+        caseStudySlug: "Polyurethane_AI_Case_Study_Innovacio",
+        stat: { value: "100%", label: "Unified visibility" },
+        painSolutions: [
+          {
+            pain: "Unreliable supplier performance",
+            solution: "AI-driven supplier risk scoring",
+          },
+          {
+            pain: "Batch quality deviations",
+            solution: "Anomaly detection with batch-health scoring",
+          },
+        ],
+      },
     ],
   },
 
@@ -186,6 +204,46 @@ export const INDUSTRIES: Industry[] = [
           },
         ],
       },
+      {
+        id: "seasonal-retail",
+        title: "Seasonal Retail & Manufacturing",
+        image:
+          "https://images.unsplash.com/photo-1607083206968-13611e3d76db?q=80&w=1170&auto=format&fit=crop",
+        problem: "Seasonal demand volatility leading to stockouts and excess inventory",
+        caseStudySlug: "Seasonal_Decor_AI_Case_Study_Innovacio",
+        stat: { value: "Peak-ready", label: "Demand Planning" },
+        painSolutions: [
+          {
+            pain: "Inaccurate seasonal demand planning",
+            solution: "AI-driven SKU-level demand forecasting",
+          },
+          {
+            pain: "Post-season excess inventory",
+            solution: "Inventory aging and liquidation planning",
+          },
+        ],
+      },
+
+
+      {
+        id: "publishing-retail",
+        title: "Publishing & Retail Distribution",
+        image:
+          "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=1170&auto=format&fit=crop",
+        problem: "Large catalog complexity with long lead times and noncurrent inventory risk",
+        caseStudySlug: "AI_Educational_Publishing_Supply_Chain_Innovacio",
+        stat: { value: "$15M+", label: "Inventory Risk Managed" },
+        painSolutions: [
+          {
+            pain: "Poor visibility into consignment inventory",
+            solution: "Retailer sell-through and stock visibility dashboards",
+          },
+          {
+            pain: "Overbuying due to long lead times",
+            solution: "AI-driven procurement and demand forecasting",
+          },
+        ],
+      },
     ],
   },
 
@@ -217,6 +275,26 @@ export const INDUSTRIES: Industry[] = [
           },
         ],
       },
+      {
+        id: "cold-chain-logistics",
+        title: "Cold Chain Logistics",
+        image:
+          "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&q=80&auto=format&fit=crop",
+        problem: "High spoilage risk due to poor shelf-life and temperature visibility",
+        caseStudySlug: "ColdChain_Perishable_3PL_AI_Case_Study_Innovacio",
+        stat: { value: "-26%", label: "Operating Cost Reduction" },
+        painSolutions: [
+          {
+            pain: "No real-time temperature monitoring",
+            solution: "AIoT-based cold-chain monitoring with alerts",
+          },
+          {
+            pain: "Inventory spoilage and waste",
+            solution: "FEFO-based shelf-life optimization",
+          },
+        ],
+      },
+
     ],
   },
 
@@ -234,7 +312,7 @@ export const INDUSTRIES: Industry[] = [
 
     subIndustries: [
       {
-        id: "pharma",
+        id: "pharma",   
         title: "Pharmaceutical Supply Chain",
         image:
           "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&q=80&auto=format&fit=crop",

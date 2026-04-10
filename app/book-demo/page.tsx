@@ -36,7 +36,7 @@ export default function BookDemoPage() {
   };
 
   return (
-    <main className="min-h-screen bg-white py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 lg:px-24">
+    <main className="min-h-screen bg-white py-16 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 lg:px-24">
   <section className="max-w-5xl mx-auto text-center">
     
     {/* Badge */}

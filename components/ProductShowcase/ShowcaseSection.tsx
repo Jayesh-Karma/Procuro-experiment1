@@ -116,6 +116,10 @@ export default function ShowcaseSection() {
   const pointsRef     = useRef<HTMLDivElement>(null);
   const visualRef     = useRef<HTMLDivElement>(null);
   const progressRefs  = useRef<(HTMLDivElement | null)[]>([]);
+
+  const desktopRef = useRef<HTMLDivElement | null>(null);
+  const mobileRef = useRef<HTMLDivElement | null>(null);
+  
   const activeRef     = useRef(0);
 
   // animation timeline ref and animateIn implementation
@@ -215,7 +219,7 @@ export default function ShowcaseSection() {
 
               
               {/* Module nav pills */}
-              <div className="hidden md:flex items-center gap-2 flex-shrink-0">
+              <div className="flex items-center gap-2 flex-shrink-0">
                 {MODULES.map((m, i) => (
                   <div key={m.id} className="flex flex-col items-center gap-1.5">
                     <button
@@ -228,7 +232,7 @@ export default function ShowcaseSection() {
                       //     + window.scrollY + i * window.innerHeight * 2;
                       //   window.scrollTo({ top, behavior: "smooth" });
                       // }}
-                      className={`text-[10px] font-semibold px-3 py-1.5 rounded-lg border transition-all duration-200 ${
+                      className={` hidden md:block text-[10px] font-semibold px-3 py-1.5 rounded-lg border transition-all duration-200 ${
                         active === i
                           ? `${a.tagBg} ${a.tagBorder} ${a.tagText} border`
                           : "bg-stone-50 border-stone-200 text-stone-400 hover:text-stone-600"
@@ -237,7 +241,7 @@ export default function ShowcaseSection() {
                       {m.number} · {m.tag}
                     </button>
                     {/* Progress bar under each tab */}
-                    <div className="w-full h-0.5 bg-stone-100 rounded-full overflow-hidden">
+                    <div className="w-[12vw] md:w-full h-0.5 bg-stone-100 rounded-full overflow-hidden">
                       <div
                         ref={(el) => { progressRefs.current[i] = el; }}
                         className={`h-full rounded-full origin-left ${A[m.accent].barActive}`}
@@ -247,6 +251,7 @@ export default function ShowcaseSection() {
                   </div>
                 ))}
               </div>
+
               </div>
             </div>
           </div>
@@ -336,7 +341,7 @@ export default function ShowcaseSection() {
                       <div className="w-2.5 h-2.5 rounded-full bg-amber-300" />
                       <div className="w-2.5 h-2.5 rounded-full bg-emerald-300" />
                       <div className="flex-1 mx-3 bg-stone-100 rounded h-4 flex items-center px-2">
-                        <span className="text-[8px] text-stone-400">app.ourproduct.io/{mod.id}</span>
+                        <span className="text-[8px] text-stone-400">supplychain.innovaciotech.com/{mod.id}</span>
                       </div>
                       <div className={`w-1.5 h-1.5 rounded-full ${a.dot} animate-pulse`} />
                     </div>

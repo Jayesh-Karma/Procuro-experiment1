@@ -3,3 +3,9 @@
 @theme {
     --font-space: var(--font-space_grotesk);
 }
+
+/* css for hiding scroll bar */
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}

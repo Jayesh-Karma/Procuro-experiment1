@@ -420,7 +420,6 @@ export default function IndustriesPageV2() {
   const [selectedCaseStudy, setSelectedCaseStudy] = useState<string | undefined>(undefined);
 
 
-  console.log("MODAL OPEN", modalOpen, selectedCaseStudy);
 
   // GSAP scroll reveals
   useEffect(() => {
@@ -556,7 +555,7 @@ export default function IndustriesPageV2() {
         </div>
 
         {/* Contact strip */}
-        <div className="mt-8 flex items-center justify-center gap-6 text-xs text-black/50">
+        <div className="mt-8 flex flex-col md:flex-row items-center justify-center md:gap-6 text-xs text-black/50">
           <a target="_blank" href="tel:+919007271601" className="hover:text-orange-400 transition-colors">+91 90072 71601</a>
           <span>·</span>
           <a target="_blank" href="mailto:hello@innovaciotech.com" className="hover:text-orange-400 transition-colors">hello@innovaciotech.com</a>

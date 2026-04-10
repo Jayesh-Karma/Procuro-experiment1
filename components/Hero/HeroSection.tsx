@@ -107,14 +107,14 @@ const encoded = btoa(svg);
       </h1>
 
       {/* Sub */}
-      <p className="text-xs md:text-sm max-w-4xl  font-space text-stone-800 leading-[1.75] mb-5">
+      <p className="text-xs md:text-sm max-w-4xl font-medium font-space text-stone-800 leading-[1.75] mb-5">
         Unify your entire supply chain into one intelligent system.
         From demand forecasting to procurement, inventory, warehouses, and logistics -
         we turn your existing data into real-time insights, predictions, and automated decisions.
       </p>
 
       {/* List */}
-      <ul className="text-xs select-none font-space flex flex-col md:flex-row items-start md:items-center gap-1 md:gap-5  md:text-sm text-stone-800 mb-8">
+      <ul className="text-xs select-none font-space flex flex-col md:flex-row items-start md:items-center gap-1 md:gap-5  md:text-sm text-stone-800 font-medium mb-8">
         <li className="flex items-center hover:translate-x-1 transition-all duration-300 hover:text-black justify-center gap-2">
           <ArrowRight size={15} /> 
           No need of changing Legacy system

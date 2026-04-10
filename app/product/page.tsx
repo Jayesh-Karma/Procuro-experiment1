@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { COMPARISON, Eyebrow, INTEGRATIONS, ModulePreview, MODULES, Reveal, STEPS } from "@/components/ProductShowcase/ProductPageComponents";
 import { Metadata } from "next";
-import { Brain, Eye, Lock, Receipt } from "lucide-react";
+import { Brain, ChevronLeft, ChevronRight, Eye, Lock, Receipt } from "lucide-react";
 
 
 export const metaData: Metadata = {
@@ -31,24 +31,24 @@ export default function ProductPage() {
         <div className="absolute inset-0 pointer-events-none opacity-[0.018]"
           style={{ backgroundImage: "radial-gradient(circle, #a8a29e 1px, transparent 1px)", backgroundSize: "28px 28px" }} />
 
-        <div className="relative max-w-7xl mx-auto px-6  pt-36 pb-20">
+        <div className="relative max-w-7xl mx-auto px-6 pt-18 pb-20">
           <div style={{ opacity: mounted ? 1 : 0, transform: mounted ? "translateY(0)" : "translateY(18px)", transition: "opacity 0.7s ease-out, transform 0.7s ease-out" }}>
 
             <div className="flex items-center gap-3 mb-6">
               <div className="h-px w-7 rounded-full bg-orange-400" />
-              <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-orange-500">The Platform</span>
+              <span className="text-[10px] font-bold uppercase font-space tracking-[0.22em] text-orange-500">The Platform</span>
             </div>
 
             <div className="grid md:grid-cols-[1fr_340px] gap-16 items-start">
               <div>
-                <h1 className="font-display text-5xl font-extrabold text-stone-900 leading-[1.05] tracking-tight mb-5">
+                <h1 className="font-display text-4xl md:text-5xl font-extrabold text-stone-900 leading-[1.05] tracking-tight mb-5">
                   AI in supply chain.
                   <br />
                   <span className="text-orange-500">Deployed on your servers.</span>
                   <br />
                   <span className="text-stone-400 font-light">Connected to your ERP.</span>
                 </h1>
-                <p className="text-base text-stone-500 font-light leading-relaxed max-w-lg mb-8">
+                <p className="text-xs md:text-base font-space text-stone-700 font-light leading-relaxed max-w-lg mb-8">
                   Six modules covering forecasting, inventory, orders, warehouse, and AI intelligence. Connects to what you already have - live in under 4 Weeks, no migration required.
                 </p>
                 <div className="flex flex-wrap items-center gap-3">
@@ -85,7 +85,7 @@ export default function ProductPage() {
               <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-stone-400 mb-5">
                 Connects to your existing systems - no migration required
               </p>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 items-center justify-start">
                 {INTEGRATIONS.map(i => (
                   <span key={i.name} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-stone-100 bg-stone-50 text-xs text-stone-600 font-medium hover:border-orange-200 hover:bg-orange-50 hover:text-orange-600 transition-all cursor-default">
                     <span className="text-[9px] text-stone-300">{i.cat}</span>
@@ -99,127 +99,127 @@ export default function ProductPage() {
       </section>
 
       {/* ── 2. PLATFORM MODULES (light) ──────────────────────────── */}
-      <section className="bg-[#FAFAF9] py-24 px-6 md:px-12 border-t border-stone-100">
-        <div className="max-w-6xl mx-auto">
-
-          <Reveal>
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-              <div>
-                <Eyebrow text="Platform Modules" />
-                <h2 className="font-display text-[clamp(26px,3.5vw,44px)] font-extrabold text-stone-900 leading-tight tracking-tight">
-                  Six modules.
-                  <span className="text-stone-400 font-light"> One connected platform.</span>
-                </h2>
-              </div>
-              <p className="text-sm font-space text-stone-400 font-light max-w-xs leading-relaxed">
-                Deploy all six or start with the modules most relevant to your operation. Each one pulls from the same data layer.
-              </p>
-            </div>
-          </Reveal>
-
-          {/* Module tabs row */}
-          <Reveal delay={0.05}>
-            <div className="flex flex-wrap gap-2 mb-8">
-              {MODULES.map((m, i) => (
-                <button
-                  key={m.id}
-                  onClick={() => setActiveIdx(i)}
-                  className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium border transition-all duration-200 ${activeIdx === i
-                      ? "bg-white shadow-sm border-stone-200 text-stone-900"
-                      : "bg-transparent border-stone-100 text-stone-500 hover:border-stone-200 hover:text-stone-700"
-                    }`}
-                >
-                  <span style={{ color: activeIdx === i ? m.accent : undefined }} className={activeIdx !== i ? "text-stone-300" : ""}>
-                    {m.icon}
-                  </span>
-                  {m.title}
-                  {activeIdx === i && (
-                    <span className="w-1.5 h-1.5 rounded-full" style={{ background: m.accent }} />
-                  )}
-                </button>
-              ))}
-            </div>
-          </Reveal>
-
-          {/* Active module detail */}
-          <div
-            key={mod.id}
-            className="grid md:grid-cols-[1fr_1.15fr] gap-6 items-start"
-            style={{ animation: "fadeUp 0.4s ease-out" }}
-          >
-            {/* Left: info */}
-            <div className="bg-white rounded-2xl border border-stone-100 overflow-hidden shadow-sm">
-              {/* Header band */}
-              <div className="px-7 pt-7 pb-6 border-b border-stone-50">
-                <div className="flex items-start justify-between gap-4 mb-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 border"
-                      style={{ background: mod.accentBg, borderColor: mod.accentBorder, color: mod.accent }}>
-                      {mod.icon}
-                    </div>
-                    <div>
-                      <span className="text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full border mb-1.5 inline-block"
-                        style={{ color: mod.accent, borderColor: mod.accentBorder, background: mod.accentBg }}>
-                        {mod.badge}
-                      </span>
-                      <h3 className="text-xl font-extrabold text-stone-900 leading-tight">{mod.title}</h3>
-                    </div>
-                  </div>
-                  {/* Stat badge */}
-                  <div className="text-right flex-shrink-0 px-4 py-3 rounded-xl border"
-                    style={{ background: mod.accentBg, borderColor: mod.accentBorder }}>
-                    <p className="font-mono text-2xl font-bold leading-none" style={{ color: mod.accent }}>{mod.stat.value}</p>
-                    <p className="text-[9px] text-stone-400 mt-1 max-w-[90px] leading-tight">{mod.stat.label}</p>
-                  </div>
-                </div>
-                <p className="text-sm text-stone-500 font-light leading-relaxed">{mod.description}</p>
-              </div>
-
-              {/* Capabilities */}
-              <div className="px-7 py-6">
-                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-stone-400 mb-4">What it does</p>
-                <div className="flex flex-col gap-3">
-                  {mod.capabilities.map((c, i) => (
-                    <div key={i} className="flex items-start gap-3">
-                      <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border"
-                        style={{ background: mod.accentBg, borderColor: mod.accentBorder }}>
-                        <div className="w-1.5 h-1.5 rounded-full" style={{ background: mod.accent }} />
-                      </div>
-                      <div>
-                        <span className="text-xs font-semibold text-stone-800">{c.label}</span>
-                        <span className="text-xs text-stone-400 font-light"> - {c.detail}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* CTA */}
-                <Link href="/contact"
-                  className="flex items-center gap-2 mt-6 text-sm font-semibold w-fit transition-all hover:gap-3"
-                  style={{ color: mod.accent }}>
-                  See this module in action
-                  <svg viewBox="0 0 12 12" fill="none" className="w-3.5 h-3.5" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="2" y1="6" x2="10" y2="6" /><polyline points="7 3 10 6 7 9" />
-                  </svg>
-                </Link>
-              </div>
-            </div>
-
-            {/* Right: live preview */}
-            <div className="bg-white rounded-2xl border border-stone-100 p-6 shadow-sm">
-              <div className="flex items-center justify-between mb-5">
-                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-stone-400">Live data preview</p>
-                <span className="flex items-center gap-1.5 text-[9px] font-semibold text-emerald-600">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  Real-time
-                </span>
-              </div>
-              <ModulePreview type={mod.preview} accent={mod.accent} />
-            </div>
-          </div>
+      <section className="bg-[#FAFAF9] py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-12 border-t border-stone-100"> 
+        <div className="max-w-6xl mx-auto"> 
+          
+          {/* Header */} 
+          <Reveal> 
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 md:mb-12"> 
+              <div className="max-w-xl"> 
+                <Eyebrow text="Platform Modules" /> 
+                <h2 className="font-display text-[clamp(24px,5vw,44px)] font-extrabold text-stone-900 leading-tight tracking-tight"> 
+                  Six modules. 
+                  <span className="text-stone-400 font-light"> One connected platform.</span> 
+                </h2> 
+              </div> 
+              
+              <p className="text-sm font-space text-stone-400 font-light max-w-full md:max-w-xs leading-relaxed"> 
+                Deploy all six or start with the modules most relevant to your operation. Each one pulls from the same data layer. 
+              </p> 
+            </div> 
+          </Reveal> 
+          
+          {/* Tabs */} 
+          <Reveal delay={0.05} className=" flex items-center mb-8"> 
+              <span><ChevronLeft className="w-8 h-8 text-stone-200" /></span>
+            <div className="flex gap-2 overflow-x-auto no-scrollbar"> 
+              {MODULES.map((m, i) => ( <button key={m.id} onClick={() => setActiveIdx(i)} className={`flex whitespace-nowrap text-xs sm:text-sm items-center gap-2 cursor-pointer px-3 sm:px-4 py-2.5 rounded-xl font-medium border transition-all duration-200 ${ activeIdx === i ? "bg-white shadow-sm border-stone-200 text-stone-900" : "bg-transparent border-stone-100 text-stone-500 hover:border-stone-200 hover:text-stone-700" }`} > 
+                <span style={{ color: activeIdx === i ? m.accent : undefined }} className={activeIdx !== i ? "text-stone-300" : ""} > 
+                  {m.icon} 
+                </span> 
+                {m.title} {activeIdx === i && ( <span className="w-1.5 h-1.5 rounded-full" style={{ background: m.accent }} /> )} 
+                </button> 
+              ))} 
+            </div> 
+              <span><ChevronRight className="w-8 h-8 text-stone-200" /></span>
+          </Reveal> 
+          
+          {/* Content */} 
+          <div key={mod.id} className="grid grid-cols-1 md:grid-cols-[1fr_1.15fr] gap-6 md:gap-8 items-start" style={{ animation: "fadeUp 0.4s ease-out" }} > 
+            {/* LEFT */} 
+            <div className="bg-white rounded-2xl border border-stone-100 overflow-hidden shadow-sm"> 
+              {/* Header */} 
+              <div className="px-5 sm:px-7 pt-6 sm:pt-7 pb-5 sm:pb-6 border-b border-stone-50"> 
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-4"> 
+                  <div className="flex items-center gap-3"> 
+                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center flex-shrink-0 border" style={{ background: mod.accentBg, borderColor: mod.accentBorder, color: mod.accent }} > 
+                      {mod.icon} 
+                    </div> 
+                  <div> 
+                    
+                  <span className="text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full border mb-1.5 inline-block" style={{ color: mod.accent, borderColor: mod.accentBorder, background: mod.accentBg }} > 
+                    {mod.badge} 
+                  </span> 
+                  
+                  <h3 className="text-lg sm:text-xl font-extrabold text-stone-900 leading-tight"> 
+                    {mod.title} 
+                  </h3> 
+                </div> 
+              </div> 
+              
+              {/* Stat */} 
+              <div className="text-left sm:text-right flex-shrink-0 px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl border" style={{ background: mod.accentBg, borderColor: mod.accentBorder }} > 
+                <p className="font-mono text-xl sm:text-2xl font-bold leading-none" style={{ color: mod.accent }}> 
+                  {mod.stat.value} 
+                </p> 
+                
+                <p className="text-[9px] text-stone-400 mt-1 max-w-[90px] leading-tight"> 
+                  {mod.stat.label} 
+                </p> 
+              </div> 
+            </div> 
+            
+            <p className="text-sm text-stone-500 font-light leading-relaxed"> {mod.description} </p> 
+          </div> 
+          
+          {/* Capabilities */} 
+          <div className="px-5 sm:px-7 py-5 sm:py-6"> 
+            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-stone-400 mb-4"> 
+              What it does 
+            </p> 
+            
+            <div className="flex flex-col gap-3"> 
+              {mod.capabilities.map((c, i) => ( <div key={i} className="flex items-start gap-3"> 
+                <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 border" style={{ background: mod.accentBg, borderColor: mod.accentBorder }} > 
+                  <div className="w-1.5 h-1.5 rounded-full" style={{ background: mod.accent }} /> </div> 
+                  <div> 
+                    <span className="text-xs font-semibold text-stone-800">{c.label}</span> 
+                    <span className="text-xs text-stone-400 font-light"> - {c.detail}</span> 
+                  </div> 
+                </div> 
+              ))} 
+          </div> 
+          
+          <Link href="/contact" className="flex items-center gap-2 mt-6 text-sm font-semibold w-fit transition-all hover:gap-3" style={{ color: mod.accent }} > 
+            See this module in action 
+            <svg viewBox="0 0 12 12" fill="none" className="w-3.5 h-3.5" stroke="currentColor" strokeWidth={2}> 
+              <line x1="2" y1="6" x2="10" y2="6" /> 
+              <polyline points="7 3 10 6 7 9" /> 
+            </svg> 
+          </Link> 
         </div>
-      </section>
-
+      </div> 
+      
+      {/* RIGHT */} 
+      <div className="bg-white rounded-2xl border border-stone-100 p-4 sm:p-6 shadow-sm"> 
+        <div className="flex items-center justify-between mb-4 sm:mb-5"> 
+          <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-stone-400"> 
+            Live data preview 
+          </p> 
+          <span className="flex items-center gap-1.5 text-[9px] font-semibold text-emerald-600"> 
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" /> 
+            Real-time 
+          </span> 
+        </div> 
+        
+        <ModulePreview type={mod.preview} accent={mod.accent} /> 
+      </div> 
+    </div> 
+  </div> 
+  
+  </section>
+      
+      
       {/* ── 3. HOW IT WORKS ────────────────────────────────────────── */}
       <section className="bg-white py-24 px-6 md:px-12 border-t border-stone-100">
         <div className="max-w-6xl mx-auto">
@@ -316,7 +316,7 @@ export default function ProductPage() {
                   <div className="w-2.5 h-2.5 rounded-full bg-amber-200" />
                   <div className="w-2.5 h-2.5 rounded-full bg-emerald-200" />
                   <div className="flex-1 mx-3 bg-stone-100 rounded-md h-5 flex items-center px-2">
-                    <span className="text-[9px] text-stone-400">app.innovaciotech.com / your-company</span>
+                    <span className="text-[9px] text-stone-400">supplychain.innovaciotech.com / your-company</span>
                   </div>
                   <span className="flex items-center gap-1 text-[9px] text-emerald-600 font-semibold">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />Live
@@ -478,7 +478,7 @@ export default function ProductPage() {
               ))}
             </div>
 
-            <div className="flex items-center justify-center gap-4 text-xs text-stone-400 border-t border-stone-100 pt-6">
+            <div className="flex flex-col md:flex-row items-center justify-center md:gap-4 text-xs text-stone-400 border-t border-stone-100 pt-6">
               <a href="tel:+919007271601" className="hover:text-orange-500 transition-colors">+91 90072 71601</a>
               <span>·</span>
               <a href="mailto:hello@innovaciotech.com" className="hover:text-orange-500 transition-colors">hello@innovaciotech.com</a>

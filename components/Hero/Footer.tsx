@@ -222,26 +222,31 @@ export default function Footer() {
             style={{ background: "radial-gradient(ellipse at 60% 50%, rgba(249,115,22,0.1) 0%, transparent 65%)" }}
           />
 
-          <div className="relative flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 px-7 py-6">
-            <div>
-              <p className="font-display text-base font-bold text-white mb-0.5">
-                See it work on your data.
-              </p>
-              <p className="text-sm text-stone-400 font-light">
-                30-minute demo. No commitment. No setup required.
-              </p>
-            </div>
-            <div className="flex items-center gap-3 flex-shrink-0">
-              <button  onMouseEnter={handleHover} onClick={() => modal.open("demo")} className="group cursor-pointer relative overflow-hidden flex items-center gap-2 px-6 py-3 rounded-xl bg-orange-500 hover:bg-orange-400 text-white text-sm font-semibold transition-all duration-200 shadow-lg shadow-orange-900/30 hover:-translate-y-px">
-               
-                Book a free demo
-                <ArrowRight ref={iconRef} className="w-4 h-4 text-white" />
-              </button>
-                <button onClick={() => modal.open("contact")} className="text-sm text-stone-400 hover:text-white transition-colors duration-150">
-                  or contact us
-                </button>
-            </div>
+          <div className="relative flex flex-col sm:flex-row sm:items-center justify-between gap-6 px-5 sm:px-7 py-6"> 
+            {/* Text section */} 
+            <div className="text-left sm:max-w-[60%]"> 
+              <p className="font-display text-base sm:text-lg font-bold text-white mb-1"> 
+                See it work on your data. 
+              </p> 
+              <p className="text-sm text-stone-400 font-light"> 
+                30-minute demo. No commitment. No setup required. 
+              </p> 
+            </div> 
+            
+            {/* Actions */} 
+            <div className="flex w-full sm:w-auto flex-col sm:flex-row items-stretch sm:items-center gap-3"> 
+              <Link href={"/book-demo"} className="group w-full sm:w-auto justify-center cursor-pointer relative overflow-hidden flex items-center gap-2 px-5 sm:px-6 py-3 rounded-xl bg-orange-500 hover:bg-orange-400 text-white text-sm font-semibold transition-all duration-200 shadow-lg shadow-orange-900/30 hover:-translate-y-px" > 
+                Book a free demo 
+                <ArrowRight className="w-4 h-4 text-white" /> 
+              </Link> 
+              
+              <button onClick={() => modal.open("contact")} className="w-full sm:w-auto text-center sm:text-left text-sm text-stone-400 hover:text-white transition-colors duration-150" > 
+                or contact us 
+              </button> 
+            </div> 
           </div>
+
+
         </div>
 
         {/* ══ DIVIDER + BOTTOM ═══════════════════════════════════════════ */}

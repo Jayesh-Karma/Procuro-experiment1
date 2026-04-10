@@ -107,50 +107,59 @@ function useInView(threshold = 0.2) {
 }
 
 // ─── Step card ────────────────────────────────────────────────────────────
-function StepCard({ step, index }: { step: typeof STEPS[0]; index: number }) {
+function StepCard({ step, index }: any) {
   const { ref, inView } = useInView(0.15);
   const isRight = step.align === "right";
 
   return (
     <div
       ref={ref}
-      className={`flex items-center gap-6 lg:gap-10 ${isRight ? "flex-row-reverse" : "flex-row"}`}
+      className={`
+        flex flex-col lg:flex-row items-center lg:items-start gap-6 lg:gap-10
+        ${isRight ? "lg:flex-row-reverse" : ""}
+      `}
     >
       {/* Card */}
       <div
-        className="flex-1 max-w-[420px]"
+        className="w-full lg:flex-1 max-w-full lg:max-w-[420px]"
         style={{
           opacity: inView ? 1 : 0,
           transform: inView
             ? "translateX(0) translateY(0)"
-            : `translateX(${isRight ? "40px" : "-40px"}) translateY(10px)`,
-          transition: `opacity 0.6s ${index * 0.08}s ease-out, transform 0.6s ${index * 0.08}s ease-out`,
+            : `translateX(${isRight ? "40px" : "-40px"}) translateY(20px)`,
+          transition: `all 0.6s ${index * 0.08}s ease-out`,
         }}
       >
-        <div className="group relative bg-white border border-stone-100 rounded-2xl p-6 shadow-sm hover:shadow-md hover:shadow-orange-50 hover:border-orange-200 transition-all duration-300">
-          {/* Left accent */}
+        <div className="group relative bg-white border border-stone-100 rounded-2xl p-5 sm:p-6 shadow-sm hover:shadow-md hover:shadow-orange-50 hover:border-orange-200 transition-all duration-300">
+
+          {/* Accent */}
           <div className="absolute left-0 top-6 bottom-6 w-[3px] rounded-r-full bg-orange-300 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-          {/* Top row */}
-          <div className="flex items-start justify-between mb-4">
-            <div className="flex items-center gap-3">
-              {/* Icon */}
-              <div className="w-10 h-10 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center text-orange-500 flex-shrink-0 group-hover:bg-orange-100 transition-colors duration-200">
+          {/* Top */}
+          <div className="flex items-start justify-between mb-4 gap-4">
+            <div className="flex items-center gap-3 min-w-0">
+              
+              <div className="w-10 h-10 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center text-orange-500 flex-shrink-0">
                 {step.icon}
               </div>
-              <div>
-                <p className="text-[10px] font-semibold text-orange-500 uppercase tracking-widest">{step.label}</p>
-                <p className="text-[9px] text-stone-400 mt-0.5">{step.tag}</p>
+
+              <div className="truncate">
+                <p className="text-[10px] font-semibold text-orange-500 uppercase tracking-widest truncate">
+                  {step.label}
+                </p>
+                <p className="text-[10px] text-stone-400 truncate">
+                  {step.tag}
+                </p>
               </div>
             </div>
-            {/* Big number */}
-            <span className="font-display text-4xl font-extrabold text-stone-100 leading-none select-none">
+
+            <span className="font-display text-3xl sm:text-4xl font-extrabold text-stone-100 leading-none shrink-0">
               {step.number}
             </span>
           </div>
 
-          {/* Headline */}
-          <h4 className="font-display text-[17px] font-bold text-stone-900 leading-snug tracking-tight mb-2">
+          {/* Title */}
+          <h4 className="font-display text-[15px] sm:text-[17px] font-bold text-stone-900 leading-snug mb-2">
             {step.headline}
           </h4>
 
@@ -160,22 +169,31 @@ function StepCard({ step, index }: { step: typeof STEPS[0]; index: number }) {
           </p>
 
           {/* Why */}
-          <div className="flex items-center gap-2 pt-3 border-t border-stone-50">
-            <div className="w-4 h-4 rounded-full bg-orange-50 border border-orange-100 flex items-center justify-center flex-shrink-0">
-              <svg viewBox="0 0 8 8" fill="none" className="w-2 h-2 text-orange-500" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+          <div className="flex items-start gap-2 pt-3 border-t border-stone-50">
+            <div className="w-4 h-4 mt-[2px] rounded-full bg-orange-50 border border-orange-100 flex items-center justify-center flex-shrink-0">
+              <svg
+                viewBox="0 0 8 8"
+                fill="none"
+                className="w-2 h-2 text-orange-500"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
                 <polyline points="1 4 3 6.5 7 2" />
               </svg>
             </div>
-            <span className="text-[11px] text-stone-400">{step.why}</span>
+            <span className="text-[11px] text-stone-400 leading-snug">
+              {step.why}
+            </span>
           </div>
         </div>
       </div>
 
-      {/* Spacer for path side */}
-      <div className="flex-1" />
+      {/* Spacer (desktop only) */}
+      <div className="hidden lg:block flex-1" />
     </div>
   );
 }
+
 
 // ─── Animated path SVG ────────────────────────────────────────────────────
 function AnimatedPath() {
@@ -363,15 +381,15 @@ function BottomCTA() {
         <p className="text-sm text-stone-400 font-light max-w-lg mx-auto mb-8 leading-relaxed">
           No commitment. Show us your supply chain and we&apos;ll show you exactly what&apos;s possible.
         </p>
-        <div className="flex items-center justify-center gap-3 flex-wrap">
-          <Link href="/book-demo" onMouseEnter={handleHover} onClick={() => modal.open("demo")} className="px-8 py-3.5 cursor-pointer flex items-center gap-2 rounded-xl bg-orange-500 hover:bg-orange-400 text-white text-sm font-semibold shadow-lg shadow-orange-500/25 transition-all hover:-translate-y-0.5">
-            Book a free demo <ArrowRight ref={iconRef} className="w-5 h-5" />
+        <div className="flex items-center  justify-center gap-3 flex-col md:flex-row w-full">
+          <Link href="/book-demo"  className=" group px-8 py-3.5 w-full cursor-pointer flex items-center justify-center gap-2 rounded-xl bg-orange-500 hover:bg-orange-400 text-white text-sm font-semibold shadow-lg shadow-orange-500/25 transition-all hover:-translate-y-0.5">
+            Book a free demo <ArrowRight ref={iconRef} className="w-5 h-5 group-hover:translate-x-1 transition-all duration-300 ease-in-out" />
           </Link>
-          <Link href="/contact" className="px-7 py-3.5 cursor-pointer rounded-xl border border-stone-700 text-stone-400 hover:text-white hover:border-stone-500 text-sm font-medium transition-all">
+          <Link href="/contact" className="px-7 py-3.5 cursor-pointer rounded-xl border border-stone-700 text-stone-400 text-center w-full hover:text-white hover:border-stone-500 text-sm font-medium transition-all">
             Talk to our team
           </Link>
         </div>
-        <div className="flex items-center justify-center gap-6 mt-8 flex-wrap">
+        <div className="flex items-center justify-center md:gap-6 mt-8 flex-col md:flex-row">
           {["Setup started in under 4 Weeks", "Your data stays on your servers"].map((t) => (
             <div key={t} className="flex items-center gap-1.5">
               <svg viewBox="0 0 10 10" fill="none" className="w-3 h-3 text-orange-500 flex-shrink-0" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
@@ -389,39 +407,33 @@ function BottomCTA() {
 // ─── Main section ─────────────────────────────────────────────────────────
 export default function HowItWorksSection() {
   return (
-    <section className="relative bg-[#fafaf9] border-y border-gray-200 py-24 px-6 md:px-16 overflow-hidden">
+    <section className="relative bg-[#fafaf9] border-y border-gray-200 py-20 sm:py-24 lg:py-24 px-4 sm:px-6 md:px-10 lg:px-16 overflow-hidden">
+      
+      <FloatingOrbs />
 
-      {/* Dot bg */}
-      {/* <div
-        className="absolute inset-0 pointer-events-none opacity-[0.5]"
-        style={{
-          backgroundImage: "radial-gradient(circle, #a8a29e 1px, transparent 1px)",
-          backgroundSize: "30px 30px",
-        }}
-      /> */}
-
-        <FloatingOrbs />
-
-      {/* Orange wash */}
+      {/* Glow */}
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[250px] pointer-events-none"
-        style={{ background: "radial-gradient(ellipse, rgba(249,115,22,0.05) 0%, transparent 70%)" }}
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[90%] max-w-[600px] h-[200px] sm:h-[250px] pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse, rgba(249,115,22,0.05) 0%, transparent 70%)",
+        }}
       />
 
-      <div className="relative max-w-4xl mx-auto">
+      <div className="relative max-w-5xl mx-auto">
 
         <SectionHead />
 
-        {/* Path + cards container */}
-        <div className="relative">
+        {/* Path + cards */}
+        <div className="relative mt-12 sm:mt-16">
 
-          {/* Animated SVG path - behind cards */}
-          <div className="hidden lg:block absolute inset-x-0 top-0 bottom-0 pointer-events-none" style={{ zIndex: 0 }}>
+          {/* Path (desktop only) */}
+          <div className="hidden lg:block absolute inset-0 pointer-events-none z-0">
             <AnimatedPath />
           </div>
 
-          {/* Steps - alternating left / right */}
-          <div className="relative flex flex-col gap-20 lg:gap-28" style={{ zIndex: 1 }}>
+          {/* Steps */}
+          <div className="relative flex flex-col gap-14 sm:gap-16 lg:gap-28 z-10">
             {STEPS.map((step, i) => (
               <StepCard key={step.number} step={step} index={i} />
             ))}

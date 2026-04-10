@@ -464,30 +464,43 @@ export default function IndustrySection() {
         </div>
 
         {/* Bottom strip */}
-        <div
-          className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-5 px-7 py-6 bg-white border border-stone-100 rounded-2xl"
-          style={{
-            opacity: headVisible ? 1 : 0,
-            transition: "opacity 0.6s 0.4s ease-out",
-          }}
-        >
-          <div>
-            <p className="font-display text-base font-bold text-stone-900 mb-0.5">
-              Don&apos;t see your industry?
-            </p>
-            <p className="text-sm text-stone-400 font-light">
-              Our platform adapts to any operation. Let&apos;s talk.
-            </p>
-          </div>
-          <div className="flex items-center gap-3 flex-shrink-0">
-            <Link href="/contact" onMouseEnter={handleHover} className="flex items-center gap-2 cursor-pointer px-6 py-3 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold shadow-md shadow-orange-200 hover:shadow-orange-300 transition-all hover:-translate-y-0.5">
-              Book a discovery call <ArrowRight ref={iconRef} className="w-5 h-5" />
-            </Link>
-            <Link href="/case-studies" className="cursor-pointer  px-5 py-3 rounded-xl border border-stone-200 text-stone-500 text-sm font-medium hover:border-orange-200 hover:text-orange-600 transition-all">
-              View Case Studies
-            </Link>
-          </div>
-        </div>
+       <div
+  className="mt-12 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 px-5 sm:px-7 py-6 bg-white border border-stone-100 rounded-2xl"
+  style={{
+    opacity: headVisible ? 1 : 0,
+    transition: "opacity 0.6s 0.4s ease-out",
+  }}
+>
+  {/* Text Section */}
+  <div className="font-space text-center sm:text-left">
+    <p className="font-display text-base md:text-lg font-bold text-stone-900 mb-1">
+      Don&apos;t see your industry?
+    </p>
+    <p className="text-xs md:text-sm text-stone-400 font-light">
+      Our platform adapts to any operation. Let&apos;s talk.
+    </p>
+  </div>
+
+  {/* Buttons */}
+  <div className="flex flex-col sm:flex-row w-full sm:w-auto items-stretch sm:items-center gap-3">
+    <Link
+      href="/contact"
+      onMouseEnter={handleHover}
+      className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold shadow-md shadow-orange-200 hover:shadow-orange-300 transition-all hover:-translate-y-0.5 w-full sm:w-auto"
+    >
+      Book a discovery call
+      <ArrowRight ref={iconRef} className="w-5 h-5" />
+    </Link>
+
+    <Link
+      href="/case-studies"
+      className="px-5 py-3 rounded-xl border border-stone-200 text-stone-500 text-sm font-medium hover:border-orange-200 hover:text-orange-600 transition-all text-center w-full sm:w-auto"
+    >
+      View Case Studies
+    </Link>
+  </div>
+</div>
+
 
       </div>
     </section>

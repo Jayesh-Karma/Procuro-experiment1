@@ -3,7 +3,7 @@ import { caseStudiesHtmlData } from "@/components/case-study/CaseStudyHtmlData";
 import DownloadModal from "@/components/case-study/DownloadModal";
 import Image from "next/image";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 
 /* ─────────────────────────────────────────────────────────────
@@ -39,6 +39,9 @@ export default function Page() {
   const data: any = caseStudiesHtmlData.find((item) => item.slug === slug) || {};
   const [modalOpen, setModalOpen] = useState(false);
 
+  const router = useRouter();
+
+  
   const handleDownloadClick = () => {
     if(localStorage.getItem("filledForm") === "true"){
         window.open(`/case-studies/${slug}.pdf`, "_blank", "noopener,noreferrer");
@@ -61,9 +64,9 @@ export default function Page() {
 
     <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-16 py-12 sm:py-16 border-b border-stone-200">
 
-      <Link href="/case-studies" className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-[#888] hover:text-[#FF5C1A]">
+      <button onClick={() => router.back()} className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-[#888] hover:text-[#FF5C1A]">
         <IconArrowLeft /> Back to Case Studies
-      </Link>
+      </button>
 
       <div className="mt-4">
         <span className="inline-flex items-center gap-2 bg-[rgba(255,92,26,0.15)] border border-[rgba(255,92,26,0.35)] text-[#FF5C1A] text-[10px] sm:text-xs font-semibold uppercase px-3 sm:px-4 py-1.5 rounded-full">
@@ -132,9 +135,6 @@ export default function Page() {
           <h2 className="text-xl sm:text-2xl font-extrabold">The Challenge</h2>
         </div>
 
-        <p className="text-base sm:text-lg text-[#444] leading-relaxed">
-          {data.challenge}
-        </p>
 
         <div className="mt-5 p-5 bg-[#FFF1EB] border-l-4 border-[#FF5C1A] rounded-r-xl">
           <p className="italic text-sm sm:text-base">
@@ -155,7 +155,7 @@ export default function Page() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {data.solution.map((item: any, i: number) => (
-            <div key={i} className="flex gap-3 p-4 sm:p-5 bg-[#FAFAF8] border rounded-xl hover:bg-[#FFF1EB] transition">
+            <div key={i} className="flex gap-3 p-4 sm:p-5 bg-[#FAFAF8] border border-gray-200 shadow-sm rounded-xl hover:bg-[#FFF1EB] transition">
               <div className="w-7 h-7 flex items-center justify-center bg-[#FF5C1A]/10 text-[#FF5C1A] rounded-md">
                 <IconCheck />
               </div>
@@ -192,7 +192,7 @@ export default function Page() {
         <p className="text-white/60 text-sm">Download full PDF</p>
       </div>
 
-      <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+      <div className="flex flex-col sm:flex-row gap-3 items-center justify-center w-full sm:w-auto">
         <button
           onClick={handleDownloadClick}
           className="bg-orange-500 px-6 py-3 text-sm rounded-lg flex items-center justify-center gap-2 hover:bg-orange-700 transition"
