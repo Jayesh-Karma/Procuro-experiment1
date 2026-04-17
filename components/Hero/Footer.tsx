@@ -179,7 +179,7 @@ export default function Footer() {
               <span className="text-[11px] text-stone-500">All systems operational</span>
             </div>
 
-            <Link href={"https://innovaciotechnologies.com/"}  target="_blank" className=" font-bold tracking-wider whitespace-nowrap uppercase text-sm lg:text-lg hover:text-orange-500 duration-200 ease-in-out transition-all">
+            <Link href={"https://innovaciotech.com/"}  target="_blank" className=" font-bold tracking-wider whitespace-nowrap uppercase text-sm lg:text-lg hover:text-orange-500 duration-200 ease-in-out transition-all">
               Innovacio Technologies Pvt ltd.
             </Link>
 
@@ -266,7 +266,7 @@ export default function Footer() {
               </p>
               <span className="hidden sm:block w-px h-3 bg-stone-700" />
               {/* Backed by badge */}
-              <Link href={'https://www.innovaciotechnologies.com/'} target="_blank" className="flex items-center hover:shadow-sm hover:shadow-orange-300 duration-300 ease-in-out transition-all gap-2 px-3 py-1.5 rounded-full border border-stone-800 bg-stone-900/60">
+              <Link href={'https://www.innovaciotech.com/'} target="_blank" className="flex items-center hover:shadow-sm hover:shadow-orange-300 duration-300 ease-in-out transition-all gap-2 px-3 py-1.5 rounded-full border border-stone-800 bg-stone-900/60">
                 <div className="bg-white rounded-full overflow-hidden">
                 <img src="./company_logo.png" alt="Innovacio" className="w-6 p-1 h-6 rounded-full" />
                 </div>
