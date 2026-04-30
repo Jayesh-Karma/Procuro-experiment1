@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import ContactFormV2 from "./ContactFormV2";
+import { Play } from "lucide-react";
 
 export default function ContactPage() {
     const [name, setName] = useState("");
@@ -69,10 +70,10 @@ export default function ContactPage() {
 
       <div>
         <Link
-          href="/book-demo"
+          href="/demo"
           className="inline-flex items-center justify-center w-full sm:w-auto gap-2 px-5 py-3 rounded-lg bg-orange-500 text-white font-semibold hover:bg-orange-400 shadow-md"
         >
-          Book a demo
+          Try Demo <Play size={15}/>
         </Link>
       </div>
     </div>

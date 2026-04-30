@@ -65,10 +65,10 @@ export default function CaseStudiesPage() {
               {/* CTA */}
               <div className="flex-shrink-0">
                 <Link
-                  href="/contact"
+                  href="/demo"
                   className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold transition-all hover:-translate-y-0.5 shadow-md shadow-orange-200"
                 >
-                  Book a demo
+                  Try Demo
                   <svg viewBox="0 0 12 12" fill="none" className="w-3.5 h-3.5" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                     <line x1="2" y1="6" x2="10" y2="6" /><polyline points="7 3 10 6 7 9" />
                   </svg>

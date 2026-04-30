@@ -170,8 +170,8 @@ export default function Navbar() {
             className={`
               relative flex items-center justify-between transition-all duration-500
               ${scrolled
-                ? "px-4 md:px-6 h-14 rounded-2xl border border-stone-200/50 shadow-md shadow-black/5"
-                : "px-0 md:px-2 h-16 rounded-none border-none shadow-none"
+                ? "px-4 md:px-6 h-14 rounded-2xl shadow-md "
+                : "px-0 md:px-2 h-16 rounded-none shadow-none"
               }
             `}
             style={{
@@ -184,7 +184,7 @@ export default function Navbar() {
               <Image src="/Innovacio.png" alt="Logo" width={40} height={40} className="rounded-full" />
               <div className=" leading-none">
                 <div className="font-display leading-none text-sm font-bold text-black uppercase tracking-wide">
-                    Innovacio
+                    Innovacio IQ
                 </div>
                 <div className="text-xs  leading-none text-orange-400 tracking-[0.14em] uppercase mt-0.5">
                 AI in Supply Chain
@@ -226,7 +226,7 @@ export default function Navbar() {
               <Link
                 onMouseEnter={() => setCtaHover(true)}
                 onMouseLeave={() => setCtaHover(false)}
-                href={"/book-demo"}
+                href={"/demo"}
                 className="relative hidden md:flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-[13px] font-semibold overflow-hidden transition-all duration-200 shadow-md shadow-orange-200 hover:shadow-lg hover:shadow-orange-300 hover:-translate-y-px active:translate-y-0"
               >
                 <span
@@ -237,7 +237,7 @@ export default function Navbar() {
                     transition: "transform 0.55s ease",
                   }}
                 />
-                <span className="relative">Book a demo</span>
+                <span className="relative">See a demo</span>
                 <svg viewBox="0 0 13 13" fill="none"
                   className="relative w-3 h-3 transition-transform duration-200"
                   style={{ transform: ctaHover ? "translateX(2px)" : "none" }}
@@ -247,7 +247,7 @@ export default function Navbar() {
                 </svg>
               </Link>
 
-              <Link href={"/book-demo"} onClick={() => modal.open("demo")} className="md:hidden px-4 py-2 rounded-xl bg-orange-500 text-white text-[13px] font-semibold shadow-md shadow-orange-200">
+              <Link href={"/demo"} className="md:hidden px-4 py-2 rounded-xl bg-orange-500 text-white text-[13px] font-semibold shadow-md shadow-orange-200">
                 Demo
               </Link>
 

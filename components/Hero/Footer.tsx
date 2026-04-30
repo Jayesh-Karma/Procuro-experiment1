@@ -160,8 +160,8 @@ export default function Footer() {
               <Image src="/Innovacio.png" alt="Logo" width={40} height={40} className="rounded-full" />
                             
               <div className="leading-none">
-                <div className="font-display text-[20px] font-bold text-white tracking-tight">
-                    Innovacio
+                <div className="font-sans uppercase text-[20px] font-bold text-white tracking-tight">
+                    Innovacio IQ
                 </div>
                 <div className="text-xs font-semibold text-orange-400 tracking-[0.14em] uppercase mt-0.5">
                 AI in Supply Chain
@@ -235,14 +235,14 @@ export default function Footer() {
             
             {/* Actions */} 
             <div className="flex w-full sm:w-auto flex-col sm:flex-row items-stretch sm:items-center gap-3"> 
-              <Link href={"/book-demo"} className="group w-full sm:w-auto justify-center cursor-pointer relative overflow-hidden flex items-center gap-2 px-5 sm:px-6 py-3 rounded-xl bg-orange-500 hover:bg-orange-400 text-white text-sm font-semibold transition-all duration-200 shadow-lg shadow-orange-900/30 hover:-translate-y-px" > 
+              <Link href={"/demo"} className="group w-full sm:w-auto justify-center cursor-pointer relative overflow-hidden flex items-center gap-2 px-5 sm:px-6 py-3 rounded-xl bg-orange-500 hover:bg-orange-400 text-white text-sm font-semibold transition-all duration-200 shadow-lg shadow-orange-900/30 hover:-translate-y-px" > 
                 Book a free demo 
                 <ArrowRight className="w-4 h-4 text-white" /> 
               </Link> 
               
-              <button onClick={() => modal.open("contact")} className="w-full sm:w-auto text-center sm:text-left text-sm text-stone-400 hover:text-white transition-colors duration-150" > 
+              <Link href={"/book-demo"} className="w-full sm:w-auto text-center sm:text-left text-sm text-stone-400 hover:text-white transition-colors duration-150" > 
                 or contact us 
-              </button> 
+              </Link> 
             </div> 
           </div>
 

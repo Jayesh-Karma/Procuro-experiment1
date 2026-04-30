@@ -4,11 +4,11 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { COMPARISON, Eyebrow, INTEGRATIONS, ModulePreview, MODULES, Reveal, STEPS } from "@/components/ProductShowcase/ProductPageComponents";
 import { Metadata } from "next";
-import { Brain, ChevronLeft, ChevronRight, Eye, Lock, Receipt } from "lucide-react";
+import { Brain, ChevronLeft, ChevronRight, Eye, Lock, Play, Receipt, Video } from "lucide-react";
 
 
 export const metaData: Metadata = {
-  title: "Product - Innovacio Technologies | AI Supply Chain Intelligence",
+  title: "Product - Innovacio IQ | AI Supply Chain Intelligence",
   description:
     "AI-powered supply chain intelligence for manufacturing, retail, FMCG, pharma, and automotive — built for your specific sub-industry, not a generic template.",
 };
@@ -52,16 +52,16 @@ export default function ProductPage() {
                   Six modules covering forecasting, inventory, orders, warehouse, and AI intelligence. Connects to what you already have - live in under 4 Weeks, no migration required.
                 </p>
                 <div className="flex flex-wrap items-center gap-3">
-                  <Link href="/contact"
+                  <Link href="/book-demo"
                     className="flex items-center gap-2 px-7 py-3.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold transition-all hover:-translate-y-0.5 shadow-md shadow-orange-200">
                     Book a free demo
                     <svg viewBox="0 0 12 12" fill="none" className="w-3.5 h-3.5" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                       <line x1="2" y1="6" x2="10" y2="6" /><polyline points="7 3 10 6 7 9" />
                     </svg>
                   </Link>
-                  <Link href="/case-studies"
+                  <Link href="/demo"
                     className="flex items-center gap-2 px-6 py-3.5 rounded-xl border border-stone-200 text-stone-600 hover:border-orange-200 hover:text-orange-600 text-sm font-medium transition-all">
-                    See case studies →
+                    Try Demo <Play />
                   </Link>
                 </div>
               </div>
@@ -299,9 +299,9 @@ export default function ProductPage() {
                     </div>
                   ))}
                 </div>
-                <Link href="/contact"
+                <Link href="/demo"
                   className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold transition-all hover:-translate-y-0.5 shadow-md shadow-orange-200">
-                  Book a demo on your data
+                  Try demo on your data
                   <svg viewBox="0 0 12 12" fill="none" className="w-3.5 h-3.5" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                     <line x1="2" y1="6" x2="10" y2="6" /><polyline points="7 3 10 6 7 9" />
                   </svg>
@@ -456,16 +456,16 @@ export default function ProductPage() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8">
-              <Link href="/contact"
+              <Link href="/demo"
                 className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold transition-all hover:-translate-y-0.5 shadow-lg shadow-orange-100">
-                Book a free demo
+                Try a Free Demo
                 <svg viewBox="0 0 12 12" fill="none" className="w-3.5 h-3.5" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                   <line x1="2" y1="6" x2="10" y2="6" /><polyline points="7 3 10 6 7 9" />
                 </svg>
               </Link>
-              <Link href="/case-studies"
+              <Link href="/contact"
                 className="w-full sm:w-auto flex items-center justify-center gap-2 px-7 py-4 rounded-xl border border-stone-200 text-stone-600 hover:border-orange-200 hover:text-orange-600 text-sm font-medium transition-all">
-                Read case studies
+                Contact
               </Link>
             </div>
 

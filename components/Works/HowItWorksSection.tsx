@@ -382,8 +382,8 @@ function BottomCTA() {
           No commitment. Show us your supply chain and we&apos;ll show you exactly what&apos;s possible.
         </p>
         <div className="flex items-center  justify-center gap-3 flex-col md:flex-row w-full">
-          <Link href="/book-demo"  className=" group px-8 py-3.5 w-full cursor-pointer flex items-center justify-center gap-2 rounded-xl bg-orange-500 hover:bg-orange-400 text-white text-sm font-semibold shadow-lg shadow-orange-500/25 transition-all hover:-translate-y-0.5">
-            Book a free demo <ArrowRight ref={iconRef} className="w-5 h-5 group-hover:translate-x-1 transition-all duration-300 ease-in-out" />
+          <Link href="/demo"  className=" group px-8 py-3.5 w-full cursor-pointer flex items-center justify-center gap-2 rounded-xl bg-orange-500 hover:bg-orange-400 text-white text-sm font-semibold shadow-lg shadow-orange-500/25 transition-all hover:-translate-y-0.5">
+            Try Demo <ArrowRight ref={iconRef} className="w-5 h-5 group-hover:translate-x-1 transition-all duration-300 ease-in-out" />
           </Link>
           <Link href="/contact" className="px-7 py-3.5 cursor-pointer rounded-xl border border-stone-700 text-stone-400 text-center w-full hover:text-white hover:border-stone-500 text-sm font-medium transition-all">
             Talk to our team

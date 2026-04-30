@@ -4,7 +4,7 @@ import FloatingOrbs from "@/components/ui/FloatingOrbs";
 import MorphingText from "@/components/ui/MorphingText";
 import { StatCard } from "@/components/ui/StatCard";
 import DashboardMockup from "./DashboardMockup";
-import { ArrowRight, Play, Sparkle, Star } from "lucide-react";
+import { ArrowRight, Contact2Icon, Play, Rocket, Sparkle, Star } from "lucide-react";
 import { useModal } from "@/components/Modal/ModalProvider";
 import FloatingCardsForHero from "../ui/FloatingCardsForHero";
 import { useRef } from "react";
@@ -130,13 +130,14 @@ const encoded = btoa(svg);
       {/* CTA */}
       <div className="flex font-space flex-col sm:flex-row items-center justify-center gap-3 mb-14 w-full">
         <Link 
-          href={"/book-demo"}
+          href={"/demo"}
           className="w-full sm:w-auto  px-8 py-3.5 rounded-xl group bg-orange-500 hover:bg-orange-600 transition-all ease-in-out duration-300 text-white text-sm font-semibold flex items-center justify-center gap-2">
-          Get a demo <ArrowRight className="-rotate-45 group-hover:rotate-0 transition-all ease-in-out duration-300" />
+          Launch Demo 
+          <Rocket className="rotate-45 group-hover:rotate-0 transition-all ease-in-out duration-300" />
         </Link>
-        <Link href={"/contact"} className="w-full sm:w-auto px-6 py-2.5 hover:shadow-sm transition-all ease-in-out duration-300 group rounded-xl border border-stone-200 text-stone-600 text-sm font-medium flex items-center gap-2 justify-center">
-          See it in action
-          <Play className="w-6 h-6 group-hover:translate-x-1 transition-all ease-in-out duration-300" />
+        <Link href={"/contact"} className="w-full sm:w-auto px-6 py-3.5 hover:shadow-sm transition-all ease-in-out duration-300 group rounded-xl border border-stone-200 text-stone-600 text-sm font-medium flex items-center gap-2 justify-center">
+          Contact
+          <ArrowRight className=" group-hover:translate-x-1 transition-all ease-in-out duration-300" />
         </Link>
       </div>
 
