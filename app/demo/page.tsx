@@ -1,175 +1,169 @@
 "use client";
 
+import { DatabaseIcon, Hourglass, Lock } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+
+const STEPS = [
+  "Initializing workspace...",
+  "Loading dashboard modules...",
+  "Syncing live data...",
+  "Applying AI insights...",
+  "Almost ready...",
+];
+
+const TOTAL_MS = 3800;
+const AUTO_REDIRECT_DELAY = 2000;
 
 export default function Page() {
   const [progress, setProgress] = useState(0);
-  const [step, setStep] = useState(0);
+  const [stepIndex, setStepIndex] = useState(0);
   const [ready, setReady] = useState(false);
-  const [countdown, setCountdown] = useState(3);
 
   const demoUrl =
-    process.env.NEXT_PUBLIC_DEMO_URL ||
-    "https://supplychain-version2.up.railway.app/";
+    process.env.NEXT_PUBLIC_DEMO_URL || "https://iq.innovaciotech.com/";
 
-  const steps = [
-    "Initializing workspace...",
-    "Loading dashboard modules...",
-    "Syncing live data...",
-    "Applying AI insights...",
-    "Establishing session...",
-  ];
+  const router = useRouter();
 
-  /* -------------------------
-     FAST CONTROLLED LOADER (3.8s)
-  --------------------------*/
+  const openDemo = () => {
+    const a = document.createElement("a");
+    a.href = demoUrl;
+    a.target = "_blank";
+    a.click();
+    a.remove();
+    router.push("/contact")
+
+  };
+
+  /* Loader */
   useEffect(() => {
-    const totalDuration = 3800;
     const start = Date.now();
-
     const interval = setInterval(() => {
       const elapsed = Date.now() - start;
-
-      const newProgress = Math.min((elapsed / totalDuration) * 100, 100);
-      setProgress(newProgress);
-
-      const stepIndex = Math.min(
-        Math.floor((elapsed / totalDuration) * steps.length),
-        steps.length - 1
+      const pct = Math.min((elapsed / TOTAL_MS) * 100, 100);
+      const idx = Math.min(
+        Math.floor((elapsed / TOTAL_MS) * STEPS.length),
+        STEPS.length - 1
       );
-
-      setStep(stepIndex);
-
-      if (newProgress >= 100) {
+      setProgress(pct);
+      setStepIndex(idx);
+      if (pct >= 100) {
         clearInterval(interval);
         setReady(true);
       }
     }, 50);
-
     return () => clearInterval(interval);
   }, []);
 
-  /* -------------------------
-     REDIRECT COUNTDOWN (3s)
-  --------------------------*/
+  /* Auto-redirect after ready */
   useEffect(() => {
     if (!ready) return;
-
-    setCountdown(3);
-
-    const interval = setInterval(() => {
-      setCountdown((prev) => {
-        if (prev <= 1) {
-          clearInterval(interval);
-          const elem = document.createElement('a');
-          elem.href = demoUrl;
-          elem.target = '_blank';
-          elem.click();
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(interval);
+    const t = setTimeout(openDemo, AUTO_REDIRECT_DELAY);
+    return () => clearTimeout(t);
   }, [ready]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center bg-white px-4">
 
-      {/* Background Glow */}
-      <div className="absolute w-[500px] h-[500px] bg-orange-500/20 blur-[120px] rounded-full bottom-[-100px] left-[-100px]" />
-      <div className="absolute w-[400px] h-[400px] bg-green-500/20 blur-[120px] rounded-full bottom-[-100px] right-[-100px]" />
+      <div className="w-full max-w-xl rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
 
-      {/* MAIN WRAPPER */}
-      <div className="relative z-10 flex flex-col items-center gap-6 w-[75%] max-w-4xl">
-
-        {/* IMAGE PANEL */}
-        <div className="relative w-full h-[58vh] rounded-2xl overflow-hidden border border-gray-200 bg-white shadow-xl">
-
+        {/* Preview panel */}
+        <div className="relative h-64 bg-gray-50 overflow-hidden">
           <img
             src="/demo-app.png"
-            alt="Demo"
-            className="w-full h-full object-cover transition-all duration-300"
-            style={{
-              filter: `blur(${(100 - progress) / 30}px)`,
-            }}
+            alt="Demo application preview"
+            className="w-full h-full object-cover"
+            style={{ filter: `blur(${((100 - progress) / 100) * 6}px)` }}
           />
 
-          {/* Soft overlay */}
+          {/* Subtle dark overlay that fades out */}
           <div
             className="absolute inset-0 bg-white transition-opacity duration-300"
-            style={{
-              opacity: ready ? 0.15 : (100 - progress) / 100,
-            }}
+            style={{ opacity: ready ? 0 : (100 - progress) / 200 }}
           />
 
-          {/* Grid overlay */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              backgroundImage:
-                "linear-gradient(to right, rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.04) 1px, transparent 1px)",
-              backgroundSize: "40px 40px",
-              opacity: 0.15,
-            }}
-          />
+          {/* Live badge — visible once ready */}
+          {ready && (
+            <span className="absolute top-3 left-3 bg-green-100 text-green-800 text-xs font-medium px-2.5 py-1 rounded-full">
+              Live
+            </span>
+          )}
         </div>
 
-        {/* TEXT PANEL */}
-        <div className="text-center max-w-md">
+        {/* Body */}
+        <div className="p-6">
+
+          {/* Status row */}
+          <div className="flex items-center gap-2 mb-4">
+            <span
+              className={`w-2 h-2 rounded-full ${
+                ready ? "bg-green-500" : "bg-green-500 animate-pulse"
+              }`}
+            />
+            <span className="text-sm text-gray-500">
+              {ready ? "Environment ready" : "Preparing your environment"}
+            </span>
+          </div>
 
           {!ready ? (
             <>
-              <h1 className="text-gray-900 text-xl font-semibold mb-2">
-                Preparing Your Demo Environment
+              <h1 className="text-lg font-semibold text-gray-900 mb-1">
+                See it in action — your demo is loading
               </h1>
-
-              <p className="text-gray-500 text-sm mb-4 transition-all duration-300">
-                {steps[step]}
+              <p className="text-sm text-gray-500 mb-5">
+                A personalised session is being set up. This takes just a few seconds.
               </p>
 
-              <p className="text-xs text-gray-500">
-                Initializing secure session...
-              </p>
+              {/* Progress bar */}
+              <div className="w-full h-1 bg-gray-100 rounded-full overflow-hidden mb-1.5">
+                <div
+                  className="h-full bg-green-600 rounded-full transition-all duration-100"
+                  style={{ width: `${progress}%` }}
+                />
+              </div>
+              <div className="flex justify-between text-xs text-gray-400 mb-5">
+                <span>{STEPS[stepIndex]}</span>
+                <span>{Math.round(progress)}%</span>
+              </div>
+
+              <button
+                disabled
+                className="w-full py-2.5 rounded-lg bg-green-600 text-white text-sm font-medium opacity-40 cursor-not-allowed"
+              >
+                Launch demo
+              </button>
             </>
           ) : (
             <>
-              <h1 className="text-gray-900 text-xl font-semibold mb-2">
-                Redirecting to Application
+              <h1 className="text-lg font-semibold text-gray-900 mb-1">
+                Your demo is ready
               </h1>
-
-              <p className="text-gray-600 text-sm mb-4">
-                Your environment is ready. Launching secure session.
+              <p className="text-sm text-gray-500 mb-5">
+                The environment is live. Explore all features with real data.
               </p>
 
-              <div className="text-sm text-orange-500 font-semibold mb-2">
-                Redirecting in {countdown}s
-              </div>
+              <button
+                onClick={openDemo}
+                className="w-full py-2.5 rounded-lg bg-green-600 hover:bg-green-700 text-white text-sm font-medium transition-colors"
+              >
+                Launch demo &rarr;
+              </button>
             </>
           )}
 
-          {/* PROGRESS BAR */}
-          <div className="w-full h-1 bg-gray-200 rounded-full overflow-hidden">
-            <div
-              className="h-full bg-orange-500 transition-all duration-100"
-              style={{ width: `${progress}%` }}
-            />
+          {/* Trust signals */}
+          <div className="flex justify-center gap-6 mt-4">
+            {[
+              { icon: <Lock />, label: "Secure session" },
+              { icon: <Hourglass />, label: "No sign-up needed" },
+              { icon: <DatabaseIcon />, label: "Live data" },
+            ].map(({ icon, label }) => (
+              <span key={label} className="flex items-center gap-1 text-xs text-gray-400">
+                <span className="text-xs">{icon}</span>
+                {label}
+              </span>
+            ))}
           </div>
-
-          <p className="text-xs text-gray-500 mt-2">
-            {Math.round(progress)}% completed
-          </p>
-
-          {/* FALLBACK BUTTON */}
-          {ready && (
-            <button
-              onClick={() => (window.location.href = demoUrl)}
-              className="mt-4 text-orange-500 text-sm hover:underline"
-            >
-              Click here if not redirected
-            </button>
-          )}
         </div>
       </div>
     </div>
