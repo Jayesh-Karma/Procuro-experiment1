@@ -236,7 +236,7 @@ export default function Footer() {
             {/* Actions */} 
             <div className="flex w-full sm:w-auto flex-col sm:flex-row items-stretch sm:items-center gap-3"> 
               <Link href={"/demo"} className="group w-full sm:w-auto justify-center cursor-pointer relative overflow-hidden flex items-center gap-2 px-5 sm:px-6 py-3 rounded-xl bg-orange-500 hover:bg-orange-400 text-white text-sm font-semibold transition-all duration-200 shadow-lg shadow-orange-900/30 hover:-translate-y-px" > 
-                Book a free demo 
+                Try it now
                 <ArrowRight className="w-4 h-4 text-white" /> 
               </Link> 
               

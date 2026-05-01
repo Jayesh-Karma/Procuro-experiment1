@@ -68,14 +68,7 @@ export default function ContactPage() {
         </p>
       </div>
 
-      <div>
-        <Link
-          href="/demo"
-          className="inline-flex items-center justify-center w-full sm:w-auto gap-2 px-5 py-3 rounded-lg bg-orange-500 text-white font-semibold hover:bg-orange-400 shadow-md"
-        >
-          Try Demo <Play size={15}/>
-        </Link>
-      </div>
+ 
     </div>
 
     {/* RIGHT FORM */}

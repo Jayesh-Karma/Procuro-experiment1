@@ -133,11 +133,11 @@ const encoded = btoa(svg);
           href={"/demo"}
           className="w-full sm:w-auto  px-8 py-3.5 rounded-xl group bg-orange-500 hover:bg-orange-600 transition-all ease-in-out duration-300 text-white text-sm font-semibold flex items-center justify-center gap-2">
           Launch Demo 
-          <Rocket className="rotate-45 group-hover:rotate-0 transition-all ease-in-out duration-300" />
+          <Rocket size={18} className=" translate-y-0.5 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all ease-in-out duration-300" />
         </Link>
         <Link href={"/contact"} className="w-full sm:w-auto px-6 py-3.5 hover:shadow-sm transition-all ease-in-out duration-300 group rounded-xl border border-stone-200 text-stone-600 text-sm font-medium flex items-center gap-2 justify-center">
           Contact
-          <ArrowRight className=" group-hover:translate-x-1 transition-all ease-in-out duration-300" />
+          <ArrowRight size={18} className=" group-hover:translate-x-1 transition-all ease-in-out duration-300" />
         </Link>
       </div>
 
