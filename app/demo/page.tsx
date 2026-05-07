@@ -31,7 +31,6 @@ export default function Page() {
     a.target = "_blank";
     a.click();
     a.remove();
-    router.push("/contact")
 
   };
 
