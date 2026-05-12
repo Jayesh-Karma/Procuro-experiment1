@@ -112,7 +112,7 @@ export default function SupplyChainToolsSection() {
   // ─── Small icon wrapper ─────────────────────────────────────────────────────
   function IconBox({ children, className = "" }: { children: React.ReactNode; className?: string }) {
     return (
-      <div className={`flex items-center justify-center rounded-lg border text-stone-400 ${className}`}>
+      <div className={`flex items-center justify-center rounded-lg border text-stone-400 md:text-stone-700 ${className}`}>
         {children}
       </div>
     );
@@ -140,7 +140,7 @@ export default function SupplyChainToolsSection() {
             <br />
             Not Enough <span className="italic text-orange-500">ROI</span>
           </h2>
-          <p className="text-[14px] text-stone-400 font-light  mx-auto leading-relaxed">
+          <p className="text-[14px] text-stone-400  md:text-stone-700 font-light  mx-auto leading-relaxed">
             Data is fragmented, answers aren't trusted, and decisions are still bottlenecked
             in supply chain operations.
           </p>
@@ -288,7 +288,7 @@ export default function SupplyChainToolsSection() {
                 ].map((icon, i) => (
                   <div key={i}
                     className="w-8 h-7 rounded-lg border border-stone-100 bg-stone-50
-                               flex items-center justify-center text-stone-400">
+                               flex items-center justify-center text-stone-400  md:text-stone-700">
                     {icon}
                   </div>
                 ))}
@@ -360,7 +360,7 @@ export default function SupplyChainToolsSection() {
                 <div className="w-2 h-2 rounded-full bg-red-300"/>
                 <div className="w-2 h-2 rounded-full bg-amber-300"/>
                 <div className="w-2 h-2 rounded-full bg-emerald-300"/>
-                <span className="ml-2 text-[9px] text-stone-400 font-mono tracking-wide flex-1">
+                <span className="ml-2 text-[9px] text-stone-400  md:text-stone-700 font-mono tracking-wide flex-1">
                   deploy_agents.sh
                 </span>
                 {/* Run button */}
@@ -375,9 +375,9 @@ export default function SupplyChainToolsSection() {
               <div className="terminal-text px-4 py-3 font-mono text-[11px] leading-relaxed">
                 <span className="text-orange-500">Deploy </span>
                 <span className="font-bold text-stone-800">AGENTS</span>
-                <span className="text-stone-400"> on top of existing</span>
+                <span className="text-stone-400  md:text-stone-700"> on top of existing</span>
                 <br/>
-                <span className="text-stone-400">data lakes and SaaS tools</span>
+                <span className="text-stone-400  md:text-stone-700">data lakes and SaaS tools</span>
                 <span className="inline-block w-2 h-3.5 bg-orange-400 ml-0.5 align-middle
                                  animate-pulse" />
               </div>
@@ -402,7 +402,7 @@ export default function SupplyChainToolsSection() {
 
     {/* BEFORE */}
     <div className="flex flex-col items-center text-center">
-      <span className="text-xs text-stone-400 mb-1">Before</span>
+      <span className="text-xs text-stone-400  md:text-stone-700 mb-1">Before</span>
 
       <div className="bg-stone-50 border border-stone-200 rounded-lg px-3 py-2 text-xs">
         <div>Inventory: <b>$10M</b></div>

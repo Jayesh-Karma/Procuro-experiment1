@@ -247,9 +247,9 @@ export default function Navbar() {
                 </svg>
               </Link>
 
-              <Link href={"/demo"} className="md:hidden px-4 py-2 rounded-xl bg-orange-500 text-white text-[13px] font-semibold shadow-md shadow-orange-200">
+              {/* <Link href={"/demo"} className="md:hidden px-4 py-2 rounded-xl bg-orange-500 text-white text-[13px] font-semibold shadow-md shadow-orange-200">
                 Demo
-              </Link>
+              </Link> */}
 
               <button
                 onClick={() => setMenuOpen(!menuOpen)}
@@ -293,7 +293,7 @@ export default function Navbar() {
               <div className="pt-2 mt-1 border-t border-stone-100">
                 <button onClick={() => { modal.open("demo"); setMenuOpen(false); }}
                   className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-orange-500 text-white text-sm font-semibold">
-                  Book a demo
+                  Try Free Demo
                   <ArrowRight className="w-3 h-3" />
                 </button>
               </div>

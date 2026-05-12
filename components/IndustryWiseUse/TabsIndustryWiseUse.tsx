@@ -199,7 +199,7 @@ function ContentPanel({ industry, visible }: { industry: Industry; visible: bool
           <div className="w-6 h-6 rounded-md bg-stone-100 border border-stone-200 flex items-center justify-center">
             <XIcon />
           </div>
-          <span className="text-xs font-semibold text-stone-400 uppercase tracking-widest">Pain points</span>
+          <span className="text-xs font-semibold text-stone-400  md:text-stone-700 uppercase tracking-widest">Pain points</span>
         </div>
         <div className="flex flex-col gap-3">
           {industry.pains.map((pain, i) => (
@@ -336,7 +336,7 @@ export default function IndustryTabsSection() {
             <span className="text-orange-500">supply chain.</span>
           </h2>
 
-          <p className="text-base text-stone-400 font-light max-w-md mx-auto leading-relaxed">
+          <p className="text-base text-stone-400  md:text-stone-700 font-light max-w-md mx-auto leading-relaxed">
             From manufacturing to retail — our platform adapts to your industry&apos;s unique challenges.
           </p>
         </div>
@@ -389,7 +389,7 @@ export default function IndustryTabsSection() {
           <div className="flex justify-end mt-5 mb-1">
             <div className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full ${ind.tagBg} border ${ind.border}`}>
               <span className={`font-display text-sm font-extrabold ${ind.color}`}>{ind.stat.value}</span>
-              <span className="text-xs text-stone-400 font-normal">{ind.stat.label}</span>
+              <span className="text-xs text-stone-400  md:text-stone-700 font-normal">{ind.stat.label}</span>
             </div>
           </div>
 
@@ -409,7 +409,7 @@ export default function IndustryTabsSection() {
             <p className="font-display text-base font-bold text-stone-900 mb-0.5">
               Don&apos;t see your industry?
             </p>
-            <p className="text-sm text-stone-400 font-light">
+            <p className="text-sm text-stone-400  md:text-stone-700 font-light">
               Our platform adapts to any supply chain with a database. Let&apos;s talk.
             </p>
           </div>

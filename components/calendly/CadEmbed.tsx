@@ -118,7 +118,7 @@ const CalEmbed = () => {
             Free consultation
           </span>
           <span className="text-sm font-bold text-white tracking-tight">
-            Book a demo →
+            Try a Free Demo →
           </span>
         </span>
 

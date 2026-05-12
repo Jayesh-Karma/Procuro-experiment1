@@ -3,7 +3,7 @@
 import React, { createContext, useContext } from "react";
 import { useRouter } from "next/navigation";
 
-type ModalName = "contact" | "demo" | null;
+type ModalName = "contact" | "demo" | "book-demo" | null;
 
 type ModalContextValue = {
   open: (m: Exclude<ModalName, null>) => void;
@@ -19,7 +19,8 @@ export function ModalProvider({ children }: { children: React.ReactNode }) {
   // Instead of rendering modal components, route to dedicated pages.
   const open = (m: Exclude<ModalName, null>) => {
     if (m === "contact") router.push("/contact");
-    if (m === "demo") router.push("/book-demo");
+    if (m === "demo") router.push("/demo");
+    if (m === "book-demo") router.push("/book-demo");
   };
   const close = () => {};
 

@@ -292,7 +292,7 @@ function IndustryCard({
                 <p className={`text-xs font-semibold uppercase tracking-widest ${a.text} mb-0.5`}>
                   {industry.label}
                 </p>
-                <p className="text-[11px] text-stone-400 font-light leading-tight max-w-[160px]">
+                <p className="text-[11px] text-stone-400  md:text-stone-700 font-light leading-tight max-w-[160px]">
                   {industry.tagline}
                 </p>
               </div>
@@ -322,7 +322,7 @@ function IndustryCard({
                       <line x1="6.5" y1="1.5" x2="1.5" y2="6.5" />
                     </svg>
                   </div>
-                  <p className="text-[11px] text-stone-500 font-light leading-snug">{pain}</p>
+                  <p className="text-[11px] text-red-700 font-light leading-snug">{pain}</p>
                 </div>
 
                 {/* Arrow */}
@@ -476,7 +476,7 @@ export default function IndustrySection() {
     <p className="font-display text-base md:text-lg font-bold text-stone-900 mb-1">
       Don&apos;t see your industry?
     </p>
-    <p className="text-xs md:text-sm text-stone-400 font-light">
+    <p className="text-xs md:text-sm text-stone-400  md:text-stone-700 font-light">
       Our platform adapts to any operation. Let&apos;s talk.
     </p>
   </div>

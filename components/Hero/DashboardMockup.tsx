@@ -160,13 +160,13 @@ useEffect(() => {
           {/* Inventory health */}
           <div ref={leftCardsRef} className="rounded-xl border border-stone-100 bg-stone-50/60 p-4 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-16 h-16 bg-orange-50 rounded-bl-2xl opacity-60" />
-            <p className="text-[10px] font-semibold text-stone-400 uppercase tracking-wider mb-1">
+            <p className="text-[10px] font-semibold text-stone-400  md:text-stone-700 uppercase tracking-wider mb-1">
               Inventory Health
             </p>
             <p className="font-display text-2xl font-extrabold text-stone-800 leading-none transition-all duration-300">
               {inventory}
             </p>
-            <p className="text-[11px] text-stone-400 mt-0.5">Across 6 warehouses</p>
+            <p className="text-[11px] text-stone-400  md:text-stone-700 mt-0.5">Across 6 warehouses</p>
             <span className="inline-flex items-center gap-1 mt-2 text-[10px] font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
               ↑ +2.1% vs last week
             </span>
@@ -185,13 +185,13 @@ useEffect(() => {
           {/* Stockout risk */}
           <div ref={leftCardsRef} className="rounded-xl border border-stone-100 bg-stone-50/60 p-4 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-16 h-16 bg-red-50 rounded-bl-2xl opacity-60" />
-            <p className="text-[10px] font-semibold text-stone-400 uppercase tracking-wider mb-1">
+            <p className="text-[10px] font-semibold text-stone-400  md:text-stone-700 uppercase tracking-wider mb-1">
               Stockout Risk SKUs
             </p>
             <p className="font-display text-2xl font-extrabold text-stone-800 leading-none transition-all duration-300">
               {stockouts}
             </p>
-            <p className="text-[11px] text-stone-400 mt-0.5">of 1,284 tracked items</p>
+            <p className="text-[11px] text-stone-400  md:text-stone-700 mt-0.5">of 1,284 tracked items</p>
             <span className="inline-flex items-center gap-1 mt-2 text-[10px] font-semibold text-red-500 bg-red-50 px-2 py-0.5 rounded-full">
               ↓ −18 from last month
             </span>
@@ -208,7 +208,7 @@ useEffect(() => {
 
           {/* Alerts */}
           <div ref={rightCardsRef} className="rounded-xl border border-stone-100 bg-stone-50/60 p-4">
-            <p className="text-[10px] font-semibold text-stone-400 uppercase tracking-wider mb-2.5">
+            <p className="text-[10px] font-semibold text-stone-400  md:text-stone-700 uppercase tracking-wider mb-2.5">
               Active Alerts
             </p>
             <div className="flex flex-col gap-2">
@@ -226,13 +226,13 @@ useEffect(() => {
           <div ref={rightCardsRef} className="md:col-span-2 col-span-1 rounded-xl border border-stone-100 bg-stone-50/60 p-4">
             <div className="flex items-start justify-between mb-2">
               <div>
-                <p className="text-[10px] font-semibold text-stone-400 uppercase tracking-wider mb-1">
+                <p className="text-[10px] font-semibold text-stone-400  md:text-stone-700 uppercase tracking-wider mb-1">
                   Demand Forecast · Next 30 days
                 </p>
                 <p className="font-display text-lg font-bold text-stone-800 leading-tight">
                   ↑ 23% surge predicted
                 </p>
-                <p className="text-[11px] text-stone-400 mt-0.5">Q4 seasonal peak · Manufacturing</p>
+                <p className="text-[11px] text-stone-400  md:text-stone-700 mt-0.5">Q4 seasonal peak · Manufacturing</p>
               </div>
               <span className="text-[10px] font-semibold text-orange-600 bg-orange-50 border border-orange-100 px-2 py-1 rounded-full">
                 AI Confidence: 91%

@@ -9,6 +9,7 @@ import GSAPProvider from "@/components/ProductShowcase/GsapProvider";
 import HowItWorksSection from "@/components/Works/HowItWorksSection";
 import ReviewsSection from "@/components/Works/ReviewSection";
 import Footer from "@/components/Hero/Footer";
+import CTASection from "@/components/calendly/CTASection";
 
 export default function Home() {
   return (
@@ -19,6 +20,10 @@ export default function Home() {
         <HeroSection />
         {/* <FeatureSection /> */}
         <PainPointsSection />
+
+        {/* <div className="max-w-6xl  w-full h-full mx-auto flex items-center justify-between">
+        <CTASection />
+        </div> */}
         
         <section id="products">
         <ShowcaseSection />

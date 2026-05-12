@@ -19,7 +19,7 @@ const INDUSTRIES_LINKS = [
 const COMPANY_LINKS = [
   { label: "Privacy Policy",     href: "/privacy"      },
   // { label: "Terms of Use",       href: "/terms"        },
-  { label: "Book a Demo",       href: "/book-demo"        },
+  { label: "Try a Free Demo",       href: "/demo"        },
   { label: "Contact Us",         href: "/contact"      },
 ];
 

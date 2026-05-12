@@ -159,7 +159,7 @@ const CARDS: CardProps[] = [
         ].map((s) => (
           <div key={s.label} className="bg-stone-50 rounded-xl p-3 border border-stone-100">
             <p className={`font-display text-xl font-extrabold leading-none ${s.color}`}>{s.val}</p>
-            <p className="text-[10px] text-stone-400 mt-1">{s.label}</p>
+            <p className="text-[10px] text-stone-400  md:text-stone-700 mt-1">{s.label}</p>
             <p className="text-[9px] text-stone-300">{s.sub}</p>
           </div>
         ))}
@@ -179,13 +179,13 @@ const CARDS: CardProps[] = [
     visual: (
       <div className="mt-4">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-[10px] font-medium text-stone-400 uppercase tracking-wide">Forecast vs Actual</span>
+          <span className="text-[10px] font-medium text-stone-400  md:text-stone-700 uppercase tracking-wide">Forecast vs Actual</span>
           <span className="text-[10px] font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">91% accuracy</span>
         </div>
         <ForecastLine />
         <div className="flex gap-3 mt-2">
-          <span className="flex items-center gap-1 text-[10px] text-stone-400"><span className="w-3 h-0.5 bg-orange-400 rounded inline-block" />Actual</span>
-          <span className="flex items-center gap-1 text-[10px] text-stone-400"><span className="w-3 h-0.5 bg-orange-300 rounded inline-block border-dashed border border-orange-200" />Forecast</span>
+          <span className="flex items-center gap-1 text-[10px] text-stone-400  md:text-stone-700"><span className="w-3 h-0.5 bg-orange-400 rounded inline-block" />Actual</span>
+          <span className="flex items-center gap-1 text-[10px] text-stone-400  md:text-stone-700"><span className="w-3 h-0.5 bg-orange-300 rounded inline-block border-dashed border border-orange-200" />Forecast</span>
         </div>
       </div>
     ),
@@ -209,7 +209,7 @@ const CARDS: CardProps[] = [
           <div key={r.label} className="flex items-center justify-between bg-stone-50 rounded-lg px-3 py-2 border border-stone-100">
             <div>
               <p className="text-[11px] font-medium text-stone-700">{r.label}</p>
-              <p className="text-[10px] text-stone-400">{r.status}</p>
+              <p className="text-[10px] text-stone-400  md:text-stone-700">{r.status}</p>
             </div>
             <span className={`text-[9px] font-semibold px-2 py-0.5 rounded-full border ${r.tagColor}`}>{r.tag}</span>
           </div>
@@ -239,7 +239,7 @@ const CARDS: CardProps[] = [
               <div className="flex-1 h-1.5 bg-stone-100 rounded-full overflow-hidden">
                 <div className={`h-full rounded-full ${w.color}`} style={{ width: `${w.pct}%` }} />
               </div>
-              <span className="text-[10px] text-stone-400 w-14 text-right">{w.status} · {w.pct}%</span>
+              <span className="text-[10px] text-stone-400  md:text-stone-700 w-14 text-right">{w.status} · {w.pct}%</span>
             </div>
           ))}
         </div>
@@ -318,7 +318,7 @@ const CARDS: CardProps[] = [
     visual: (
       <div className="mt-4">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-[10px] text-stone-400 uppercase tracking-wide font-medium">Dead stock detected</span>
+          <span className="text-[10px] text-stone-400  md:text-stone-700 uppercase tracking-wide font-medium">Dead stock detected</span>
           <span className="text-[10px] font-bold text-orange-500">₹4.3L locked</span>
         </div>
         <SparkBars heights={[85, 72, 60, 45, 30, 18, 9, 4]} color="#f97316" />
@@ -349,7 +349,7 @@ const CARDS: CardProps[] = [
             </div>
           ))}
         </div>
-        <p className="text-[10px] text-stone-400 mt-2.5">+ any REST API, CSV import, or custom connector</p>
+        <p className="text-[10px] text-stone-400  md:text-stone-700 mt-2.5">+ any REST API, CSV import, or custom connector</p>
       </div>
     ),
   },
@@ -372,7 +372,7 @@ const CARDS: CardProps[] = [
         ].map((s) => (
           <div key={s.label} className="bg-stone-50 border border-stone-100 rounded-xl p-3">
             <p className={`font-display text-lg font-extrabold leading-none ${s.color}`}>{s.metric}</p>
-            <p className="text-[10px] text-stone-400 mt-1 leading-tight">{s.label}</p>
+            <p className="text-[10px] text-stone-400  md:text-stone-700 mt-1 leading-tight">{s.label}</p>
           </div>
         ))}
       </div>
@@ -438,7 +438,7 @@ function FeatureCard({ card, index }: { card: CardProps; index: number }) {
       <div className={`mt-auto pt-4 flex items-center gap-2`}>
         <div className={`w-1 h-1 rounded-full ${card.accentBg} ${card.accent} opacity-60`}
           style={{ background: "currentColor" }} />
-        <span className="text-[10px] font-medium text-stone-400 tracking-wide">
+        <span className="text-[10px] font-medium text-stone-400  md:text-stone-700 tracking-wide">
           {card.trustLine}
         </span>
       </div>

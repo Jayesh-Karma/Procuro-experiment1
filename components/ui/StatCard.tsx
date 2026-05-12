@@ -49,7 +49,7 @@ export function StatCard({ value, suffix = "%", prefix = "", label }: StatCardPr
       <span className="block font-display text-3xl font-extrabold text-orange-500 leading-none tracking-tight">
         {prefix}{count}{suffix}
       </span>
-      <span className="block text-xs text-stone-400 mt-1.5 font-normal tracking-wide">
+      <span className="block text-xs text-stone-400  md:text-stone-700 mt-1.5 font-normal tracking-wide">
         {label}
       </span>
     </div>

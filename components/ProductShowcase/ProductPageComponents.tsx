@@ -205,7 +205,7 @@ export function ModulePreview({ type, accent }: { type: string; accent: string }
             <div key={l} className="rounded-lg border border-stone-100 bg-stone-50 p-3 text-center">
               <p className="font-mono text-lg font-bold leading-none" style={{ color: accent }}>{v}</p>
               <p className="text-[10px] font-semibold text-stone-600 mt-1">{l}</p>
-              <p className="text-[9px] text-stone-400 mt-0.5">{s}</p>
+              <p className="text-[9px] text-stone-400 md:text-stone-700 mt-0.5">{s}</p>
             </div>
           ))}
         </div>
@@ -222,7 +222,7 @@ export function ModulePreview({ type, accent }: { type: string; accent: string }
           ["SKU-3312 · Fruit Mix", "Great Lakes States", "1,240 units", "✓ OK"]].map(([n, l, q, s]) => (
               <div key={n} className={rowStyle}>
               <span className="flex-1 text-[11px] text-stone-600 font-medium truncate">{n}</span>
-              <span className="text-[10px] text-stone-400 sm:w-16 w-auto text-right">{l}</span>
+              <span className="text-[10px] text-stone-400  md:text-stone-700 sm:w-16 w-auto text-right">{l}</span>
               <span className="text-[10px] font-mono text-stone-500 sm:w-16 w-auto text-right">{q}</span>
               <span className={`text-[10px] font-semibold sm:w-14 w-auto text-right ${s.startsWith("⚠") ? "text-amber-500" : s.startsWith("✕") ? "text-red-500" : "text-emerald-600"}`}>{s}</span>
             </div>
@@ -245,7 +245,7 @@ export function ModulePreview({ type, accent }: { type: string; accent: string }
           </div>
           <div className="flex justify-between mt-2">
             {["W1", "W2", "W3", "W4", "W5", "W6", "W7", "W8"].map(w => (
-              <span key={w} className="text-[8px] text-stone-400 flex-1 text-center">{w}</span>
+              <span key={w} className="text-[8px] text-stone-400  md:text-stone-700 flex-1 text-center">{w}</span>
             ))}
           </div>
         </div>
@@ -273,7 +273,7 @@ export function ModulePreview({ type, accent }: { type: string; accent: string }
             <div key={l} className={`rounded-lg border p-3 ${c === "red" ? "bg-red-50 border-red-100" : "bg-emerald-50 border-emerald-100"}`}>
               <p className="text-[10px] font-semibold text-stone-500 mb-1">{l}</p>
               <p className="font-mono text-xl font-bold leading-none" style={{ color: c === "red" ? "#ef4444" : "#10b981" }}>{v}</p>
-              <p className="text-[9px] text-stone-400 mt-1">{s}</p>
+              <p className="text-[9px] text-stone-400  md:text-stone-700 mt-1">{s}</p>
             </div>
           ))}
         </div>
@@ -284,7 +284,7 @@ export function ModulePreview({ type, accent }: { type: string; accent: string }
             <div key={s} className={rowStyle}>
               <span className="text-[11px] font-semibold text-stone-700">{s}</span>
               <span className="text-[11px] font-bold flex-1" style={{ color: accent }}>{r}</span>
-              <span className="text-[10px] text-stone-400">{q}</span>
+              <span className="text-[10px] text-stone-400  md:text-stone-700">{q}</span>
               <span className="text-[9px] px-2 py-0.5 rounded-full bg-amber-50 text-amber-600 border border-amber-100">{reason}</span>
             </div>
           ))}
@@ -302,9 +302,9 @@ export function ModulePreview({ type, accent }: { type: string; accent: string }
           ["#B-4390", "Mango Pulp", "Exp Dec 02", "On shelf"],
           ["#B-4302", "Fruit Mix", "Exp Jan 18", "On shelf"]].map(([b, p, e, s]) => (
             <div key={b} className={rowStyle}>
-              <span className="text-[10px] font-mono text-stone-400">{b}</span>
+              <span className="text-[10px] font-mono text-stone-400  md:text-stone-700">{b}</span>
               <span className="flex-1 text-[11px] text-stone-600">{p}</span>
-              <span className="text-[10px] text-stone-400">{e}</span>
+              <span className="text-[10px] text-stone-400  md:text-stone-700">{e}</span>
               <span className={`text-[9px] font-semibold ${s === "Transfer due" ? "text-amber-500" : "text-emerald-600"}`}>{s}</span>
             </div>
           ))}
@@ -322,7 +322,7 @@ export function ModulePreview({ type, accent }: { type: string; accent: string }
             <div key={l} className="rounded-lg border border-stone-100 bg-stone-50 p-3 text-center">
               <p className="font-mono text-lg font-bold leading-none" style={{ color: accent }}>{v}</p>
               <p className="text-[10px] font-semibold text-stone-600 mt-1">{l}</p>
-              <p className="text-[9px] text-stone-400 mt-0.5">{s}</p>
+              <p className="text-[9px] text-stone-400  md:text-stone-700 mt-0.5">{s}</p>
             </div>
           ))}
         </div>
@@ -332,9 +332,9 @@ export function ModulePreview({ type, accent }: { type: string; accent: string }
           ["PO-4390", "Supplier B", "Due +3 days", "On track"],
           ["SO-2201", "Customer C", "Dispatched", "In transit"]].map(([id, party, due, status]) => (
             <div key={id} className={rowStyle}>
-              <span className="text-[10px] font-mono text-stone-400">{id}</span>
+              <span className="text-[10px] font-mono text-stone-400  md:text-stone-700">{id}</span>
               <span className="flex-1 text-[11px] text-stone-600">{party}</span>
-              <span className="text-[10px] text-stone-400">{due}</span>
+              <span className="text-[10px] text-stone-400  md:text-stone-700">{due}</span>
               <span className={`text-[10px] font-semibold ${status === "At risk" ? "text-red-500" : status === "On track" ? "text-emerald-600" : "text-amber-500"}`}>{status}</span>
             </div>
           ))}

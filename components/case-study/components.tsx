@@ -292,7 +292,7 @@ export function CaseStudyCard({ cs, index, selectCaseStudy, openModal }:
         {/* Body */}
         <div className="flex flex-col flex-1 p-5">
           {/* Subtitle */}
-          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-stone-400 mb-2">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-stone-400  md:text-stone-700 mb-2">
             {cs.subTitle}
           </p>
           {/* Title */}
@@ -373,7 +373,7 @@ export function FeaturedCard({ cs, openModal, selectCaseStudy }:
 
         {/* Content */}
         <div className="flex flex-col p-8 justify-center">
-          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-stone-400 mb-3">{cs.subTitle}</p>
+          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-stone-400  md:text-stone-700 mb-3">{cs.subTitle}</p>
           <h3 className="font-display text-[clamp(18px,2vw,26px)] font-extrabold text-stone-900 leading-tight tracking-tight mb-4 group-hover:text-orange-600 transition-colors duration-200">
             {cs.title}
           </h3>
@@ -419,7 +419,7 @@ export function FilterTabs({
         >
           {ind.label}
           <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold ${
-            active === ind.id ? "bg-white/20 text-white" : "bg-stone-100 text-stone-400"
+            active === ind.id ? "bg-white/20 text-white" : "bg-stone-100 text-stone-400 md:text-stone-700"
           }`}>
             {ind.count}
           </span>
@@ -456,7 +456,7 @@ export function ProofStrip() {
           }}
         >
           <p className="font-display text-2xl font-extrabold text-orange-500 leading-none mb-1.5">{s.value}</p>
-          <p className="text-[10px] text-stone-400 uppercase tracking-wide font-medium">{s.label}</p>
+          <p className="text-[10px] text-stone-400 md:text-stone-700 uppercase tracking-wide font-medium">{s.label}</p>
         </div>
       ))}
     </div>

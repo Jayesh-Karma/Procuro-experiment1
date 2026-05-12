@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { COMPARISON, Eyebrow, INTEGRATIONS, ModulePreview, MODULES, Reveal, STEPS } from "@/components/ProductShowcase/ProductPageComponents";
 import { Metadata } from "next";
-import { Brain, ChevronLeft, ChevronRight, Eye, Lock, Play, Receipt, Video } from "lucide-react";
+import { Brain, ChevronLeft, ChevronRight, Eye, Headset, Lock, Play, Receipt, Video } from "lucide-react";
 
 
 export const metaData: Metadata = {
@@ -52,16 +52,16 @@ export default function ProductPage() {
                   Six modules covering forecasting, inventory, orders, warehouse, and AI intelligence. Connects to what you already have - live in under 4 Weeks, no migration required.
                 </p>
                 <div className="flex flex-wrap items-center gap-3">
-                  <Link href="/book-demo"
+                  <Link href="/demo"
                     className="flex items-center gap-2 px-7 py-3.5 rounded-xl bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold transition-all hover:-translate-y-0.5 shadow-md shadow-orange-200">
-                    Book a free demo
+                    Try free demo
                     <svg viewBox="0 0 12 12" fill="none" className="w-3.5 h-3.5" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
                       <line x1="2" y1="6" x2="10" y2="6" /><polyline points="7 3 10 6 7 9" />
                     </svg>
                   </Link>
-                  <Link href="/demo"
-                    className="flex items-center gap-2 px-6 py-3.5 rounded-xl border border-stone-200 text-stone-600 hover:border-orange-200 hover:text-orange-600 text-sm font-medium transition-all">
-                    Try Demo <Play />
+                  <Link href="/contact"
+                    className="flex group items-center gap-2 px-6 py-3.5 rounded-xl border border-stone-200 text-stone-600 hover:border-orange-200 hover:text-orange-600 text-sm font-medium transition-all">
+                    Contact Us <Headset className="text-stone-600 group-hover:text-orange-500 transition-all ease-in-out duration-200" />
                   </Link>
                 </div>
               </div>

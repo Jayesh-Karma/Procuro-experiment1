@@ -164,9 +164,9 @@ export function CommandCenterVisual() {
           { label: "Warehouses",         value: "6 / 6", sub: "all online",  color: "text-indigo-500" },
         ].map((k) => (
           <div key={k.label} className="bg-white rounded-xl border border-stone-100 p-3">
-            <p className="text-[9px] text-stone-400 mb-1 leading-tight">{k.label}</p>
+            <p className="text-[9px] text-stone-400  md:text-stone-700 mb-1 leading-tight">{k.label}</p>
             <p className={`font-display text-base font-extrabold leading-none ${k.color}`}>{k.value}</p>
-            <p className="text-[9px] text-stone-400 mt-1">{k.sub}</p>
+            <p className="text-[9px] text-stone-400  md:text-stone-700 mt-1">{k.sub}</p>
           </div>
         ))}
       </div>
@@ -215,7 +215,7 @@ export function CommandCenterVisual() {
               <div className="flex-1 h-1.5 bg-stone-100 rounded-full overflow-hidden">
                 <div className={`h-full rounded-full ${s.color}`} style={{ width: `${s.pct}%` }} />
               </div>
-              <span className="text-[9px] text-stone-400 w-14 text-right">{s.label}</span>
+              <span className="text-[9px] text-stone-400  md:text-stone-700 w-14 text-right">{s.label}</span>
             </div>
           ))}
         </div>
@@ -236,7 +236,7 @@ export function ForecastVisual() {
         ].map((s) => (
           <div key={s.label} className="bg-white rounded-xl border border-stone-100 p-3 text-center">
             <p className={`font-display text-xl font-extrabold ${s.color}`}>{s.value}</p>
-            <p className="text-[9px] text-stone-400 mt-1 leading-tight">{s.label}</p>
+            <p className="text-[9px] text-stone-400  md:text-stone-700 mt-1 leading-tight">{s.label}</p>
           </div>
         ))}
       </div>
@@ -244,7 +244,7 @@ export function ForecastVisual() {
         <div className="flex items-center justify-between mb-2">
           <div>
             <p className="text-[9px] font-semibold text-stone-600">Demand Forecast - SKU-2041</p>
-            <p className="text-[9px] text-stone-400">Next 60 days · Q4 seasonal surge detected</p>
+            <p className="text-[9px] text-stone-400  md:text-stone-700">Next 60 days · Q4 seasonal surge detected</p>
           </div>
           <span className="text-[9px] font-semibold text-indigo-600 bg-indigo-50 border border-indigo-100 px-2 py-0.5 rounded-full">↑ 23% surge</span>
         </div>
@@ -266,8 +266,8 @@ export function ForecastVisual() {
           <circle cx="300" cy="5" r="3" fill="#a5b4fc" />
         </svg>
         <div className="flex gap-4 mt-1.5">
-          <span className="flex items-center gap-1 text-[9px] text-stone-400"><span className="w-3 h-0.5 bg-indigo-500 rounded inline-block" />Actual</span>
-          <span className="flex items-center gap-1 text-[9px] text-stone-400"><span className="w-3 h-0.5 bg-indigo-300 rounded inline-block" style={{ borderTop: "1px dashed" }} />Forecast</span>
+          <span className="flex items-center gap-1 text-[9px] text-stone-400  md:text-stone-700"><span className="w-3 h-0.5 bg-indigo-500 rounded inline-block" />Actual</span>
+          <span className="flex items-center gap-1 text-[9px] text-stone-400  md:text-stone-700"><span className="w-3 h-0.5 bg-indigo-300 rounded inline-block" style={{ borderTop: "1px dashed" }} />Forecast</span>
         </div>
       </div>
       <div className="bg-indigo-50 border border-indigo-100 rounded-xl p-3 flex items-center justify-between">
@@ -299,7 +299,7 @@ export function InventoryVisual() {
               <div className="flex-1 h-2 bg-stone-100 rounded-full overflow-hidden">
                 <div className={`h-full rounded-full ${w.color}`} style={{ width: `${w.pct}%` }} />
               </div>
-              <span className="text-[9px] text-stone-400 w-20 text-right">{w.status} · {w.pct}%</span>
+              <span className="text-[9px] text-stone-400  md:text-stone-700 w-20 text-right">{w.status} · {w.pct}%</span>
             </div>
           ))}
         </div>
@@ -311,7 +311,7 @@ export function InventoryVisual() {
           <thead>
             <tr className="border-b border-stone-100">
               {["SKU", "Stock", "Status", "Action"].map((h) => (
-                <th key={h} className="text-left text-[8px] font-semibold text-stone-400 pb-1.5 pr-2">{h}</th>
+                <th key={h} className="text-left text-[8px] font-semibold text-stone-400  md:text-stone-700 pb-1.5 pr-2">{h}</th>
               ))}
             </tr>
           </thead>
@@ -320,13 +320,13 @@ export function InventoryVisual() {
               { sku: "SKU-2041", stock: "14 units",  status: "Low",       sc: "text-red-500 bg-red-50",         action: "Reorder"   },
               { sku: "SKU-0887", stock: "840 units", status: "Overstock", sc: "text-amber-600 bg-amber-50",     action: "Markdown"  },
               { sku: "SKU-1134", stock: "230 units", status: "Healthy",   sc: "text-emerald-600 bg-emerald-50", action: "-"         },
-              { sku: "SKU-3021", stock: "0 units",   status: "Dead",      sc: "text-stone-400 bg-stone-100",    action: "Write-off" },
+              { sku: "SKU-3021", stock: "0 units",   status: "Dead",      sc: "text-stone-400  md:text-stone-700 bg-stone-100",    action: "Write-off" },
             ].map((r) => (
               <tr key={r.sku}>
                 <td className="text-[9px] font-medium text-stone-700 py-1.5 pr-2">{r.sku}</td>
                 <td className="text-[9px] text-stone-500 pr-2">{r.stock}</td>
                 <td className="pr-2"><span className={`text-[8px] font-semibold px-1.5 py-0.5 rounded-full ${r.sc}`}>{r.status}</span></td>
-                <td className="text-[9px] text-stone-400">{r.action}</td>
+                <td className="text-[9px] text-stone-400  md:text-stone-700">{r.action}</td>
               </tr>
             ))}
           </tbody>
@@ -376,7 +376,7 @@ export function LogisticsVisual() {
           </div>
           <div>
             <p className="text-[9px] font-semibold text-stone-700">Logistics Control</p>
-            <p className="text-[8px] text-stone-400">Live shipment tracking & routing</p>
+            <p className="text-[8px] text-stone-400  md:text-stone-700">Live shipment tracking & routing</p>
           </div>
         </div>
 
@@ -389,7 +389,7 @@ export function LogisticsVisual() {
             >
               <div>
                 <p className="text-[9px] font-medium text-stone-700">{s.id}</p>
-                <p className="text-[8px] text-stone-400">{s.route}</p>
+                <p className="text-[8px] text-stone-400  md:text-stone-700">{s.route}</p>
               </div>
 
               <div className="text-right">
@@ -398,7 +398,7 @@ export function LogisticsVisual() {
                 }`}>
                   {s.status}
                 </p>
-                <p className="text-[8px] text-stone-400">ETA: {s.eta}</p>
+                <p className="text-[8px] text-stone-400  md:text-stone-700">ETA: {s.eta}</p>
               </div>
             </div>
           ))}
@@ -435,7 +435,7 @@ export function AIAssistantVisual() {
           </div>
           <div>
             <p className="text-[9px] font-semibold text-stone-700">AI Supply Chain Assistant</p>
-            <p className="text-[8px] text-stone-400">Trained on your data · Always up to date</p>
+            <p className="text-[8px] text-stone-400  md:text-stone-700">Trained on your data · Always up to date</p>
           </div>
           <div className="ml-auto flex items-center gap-1">
             <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -457,7 +457,7 @@ export function AIAssistantVisual() {
           ))}
         </div>
         <div className="px-3 py-2 border-t border-stone-100 flex items-center gap-2">
-          <div className="flex-1 bg-stone-50 border border-stone-200 rounded-lg px-2.5 py-1.5 text-[8px] text-stone-400">
+          <div className="flex-1 bg-stone-50 border border-stone-200 rounded-lg px-2.5 py-1.5 text-[8px] text-stone-400  md:text-stone-700">
             Ask about inventory, orders, forecasts...
           </div>
           <div className="w-6 h-6 rounded-lg bg-violet-500 flex items-center justify-center flex-shrink-0">
@@ -515,7 +515,7 @@ export function SupplierVisual() {
           </div>
           <div>
             <p className="text-[9px] font-semibold text-stone-700">Supplier Intelligence</p>
-            <p className="text-[8px] text-stone-400">Performance & lead time analysis</p>
+            <p className="text-[8px] text-stone-400  md:text-stone-700">Performance & lead time analysis</p>
           </div>
         </div>
 
@@ -534,7 +534,7 @@ export function SupplierVisual() {
                 <p className="text-[9px] font-medium text-stone-700">
                   {s.name}
                 </p>
-                <p className="text-[8px] text-stone-400">
+                <p className="text-[8px] text-stone-400  md:text-stone-700">
                   Lead Time: {s.leadTime}
                 </p>
               </div>

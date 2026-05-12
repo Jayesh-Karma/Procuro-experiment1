@@ -31,14 +31,14 @@ export function useShowcaseScroll({
 
       gsap.registerPlugin(ScrollTrigger);
 
-      const scrollPerModule = window.innerHeight * 2;
+      const scrollPerModule = window.innerHeight * 1;
       const totalScroll = modulesLength * scrollPerModule;
 
       ctx = gsap.context(() => {
         ScrollTrigger.create({
           id: "showcase-pin",
           trigger: sectionRef.current,
-          start: "top top",
+          start: "top+300 top",
           end: `+=${totalScroll}`,
           pin: stickyRef.current,
           pinSpacing: true,
@@ -235,7 +235,7 @@ export default function ShowcaseSection() {
                       className={` hidden md:block text-[10px] font-semibold px-3 py-1.5 rounded-lg border transition-all duration-200 ${
                         active === i
                           ? `${a.tagBg} ${a.tagBorder} ${a.tagText} border`
-                          : "bg-stone-50 border-stone-200 text-stone-400 hover:text-stone-600"
+                          : "bg-stone-50 border-stone-200 text-stone-400  md:text-stone-700 hover:text-stone-600"
                       }`}
                     >
                       {m.number} · {m.tag}
@@ -257,11 +257,11 @@ export default function ShowcaseSection() {
           </div>
 
           {/* ── Main content ── */}
-          <div className="flex-1 overflow-hidden px-8 md:px-16 py-4">
+          <div className="flex-1 overflow-hidden px-8 md:px-16 ">
             <div className="max-w-6xl mx-auto h-full grid md:grid-cols-[1fr_1.15fr] gap-10 lg:gap-16 items-start">
 
               {/* Left — text */}
-              <div className="flex flex-col justify-center h-full">
+              <div className="flex flex-col justify-start my-5 h-full">
 
                 {/* Number + tag */}
                 <div className="flex items-center gap-3 mb-5">
@@ -321,7 +321,7 @@ export default function ShowcaseSection() {
                       />
                     ))}
                   </div>
-                  <span className="text-[10px] text-stone-400 ml-1">scroll to explore</span>
+                  <span className="text-[10px] text-stone-400  ml-1">scroll to explore</span>
                 </div>
               </div>
 
@@ -341,7 +341,7 @@ export default function ShowcaseSection() {
                       <div className="w-2.5 h-2.5 rounded-full bg-amber-300" />
                       <div className="w-2.5 h-2.5 rounded-full bg-emerald-300" />
                       <div className="flex-1 mx-3 bg-stone-100 rounded h-4 flex items-center px-2">
-                        <span className="text-[8px] text-stone-400">supplychain.innovaciotech.com/{mod.id}</span>
+                        <span className="text-[8px] text-stone-400  md:text-stone-700">supplychain.innovaciotech.com/{mod.id}</span>
                       </div>
                       <div className={`w-1.5 h-1.5 rounded-full ${a.dot} animate-pulse`} />
                     </div>

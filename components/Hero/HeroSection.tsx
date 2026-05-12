@@ -14,6 +14,8 @@ import SupplyChainToolsSection from "./SupplyChainToolsSection";
 import ContactFormV2 from "../calendly/ContactFormV2";
 import HorizontalContactForm from "../calendly/HorizontalContactForm";
 import Link from "next/link";
+import DashboardImage from "./DashboardImage";
+import TrustedBrands from "./TrustedBrands";
 
 const STATS = [
   { value: 35, suffix: "%", label: "forecast accuracy gain" },
@@ -152,6 +154,8 @@ const encoded = btoa(svg);
       <div className="flex flex-col md:flex-row w-full max-w-5xl border border-stone-200 rounded-2xl overflow-hidden mb-16">
       <HorizontalContactForm />
     </div>
+
+    <DashboardImage />
     
     </div>
 
@@ -160,6 +164,7 @@ const encoded = btoa(svg);
   </div>
 </div>
 
+<TrustedBrands />
 
       <SupplyChainToolsSection />
 
@@ -184,7 +189,7 @@ const encoded = btoa(svg);
 
       {/* Scroll hint */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[2] flex flex-col items-center gap-2 animate-bounce opacity-40">
-        <span className="text-[10px] text-stone-400 tracking-widest uppercase">Scroll</span>
+        <span className="text-[10px] text-stone-400  tracking-widest uppercase">Scroll</span>
         <div className="w-4 h-4 border-r-[1.5px] border-b-[1.5px] border-stone-400 rotate-45" />
       </div>
 

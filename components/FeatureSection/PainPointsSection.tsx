@@ -2,6 +2,7 @@
 
 import { BotMessageSquare, BrainIcon, ChartSpline, ShieldCheckIcon, Zap } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import CTASection from "../calendly/CTASection";
 
 // ─── Scroll reveal ────────────────────────────────────────────────────────
 function useReveal(threshold = 0.12) {
@@ -181,13 +182,13 @@ export default function PainPointsSection() {
     <section className="relative border-y border-gray-200 bg-white py-24 px-6 md:px-12 overflow-hidden">
 
       {/* Very light dot grid bg */}
-      <div
+      {/* <div
         className="absolute top-0 inset-0 pointer-events-none opacity-[0.2]"
         style={{
           backgroundImage: "radial-gradient(circle, #000000 1px, transparent 1px)",
           backgroundSize: "32px 32px",
         }}
-      />
+      /> */}
 
       <div className="relative max-w-5xl mx-auto">
 
@@ -242,7 +243,7 @@ export default function PainPointsSection() {
 
         {/* Bottom trust strip */}
         <div
-          className="mt-14 flex flex-wrap items-center justify-center gap-6 text-xs text-stone-400 font-normal"
+          className="mt-14 flex flex-wrap items-center justify-center gap-6 text-xs text-stone-400  md:text-stone-700 font-normal"
           style={{ opacity: 1 }}
         >
           {[
@@ -258,7 +259,9 @@ export default function PainPointsSection() {
           ))}
         </div>
 
+      <CTASection />
       </div>
+      
     </section>
   );
 }

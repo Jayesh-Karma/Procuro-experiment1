@@ -19,9 +19,9 @@ const STEPS = [
       </svg>
     ),
     tag: "Day 0",
-    label: "Book a Demo",
+    label: "Try Free Demo",
     headline: "One click to get started.",
-    body: "Reach out via the demo form. No lengthy sales process - a focused conversation about your supply chain.",
+    body: "Reach out via the contact form or try our free demo and then contact us. No lengthy sales process - a focused conversation about your supply chain.",
     why: "Low effort, immediate value",
     align: "left" as const,
   },
@@ -147,7 +147,7 @@ function StepCard({ step, index }: any) {
                 <p className="text-[10px] font-semibold text-orange-500 uppercase tracking-widest truncate">
                   {step.label}
                 </p>
-                <p className="text-[10px] text-stone-400 truncate">
+                <p className="text-[10px] text-stone-400  md:text-stone-700 truncate">
                   {step.tag}
                 </p>
               </div>
@@ -181,7 +181,7 @@ function StepCard({ step, index }: any) {
                 <polyline points="1 4 3 6.5 7 2" />
               </svg>
             </div>
-            <span className="text-[11px] text-stone-400 leading-snug">
+            <span className="text-[11px] text-stone-400  md:text-stone-700 leading-snug">
               {step.why}
             </span>
           </div>
@@ -315,7 +315,7 @@ function SectionHead() {
         Get started in
         <span className="text-orange-500"> 5 simple steps.</span>
       </h2>
-      <p className="text-base text-stone-400 font-light max-w-lg mx-auto leading-relaxed">
+      <p className="text-base text-stone-400  md:text-stone-700 font-light max-w-lg mx-auto leading-relaxed">
         From understanding your business to deploying a fully customized AI-powered system - we handle everything end-to-end.
       </p>
     </div>
@@ -378,14 +378,14 @@ function BottomCTA() {
         <h3 className="font-display text-[clamp(22px,3vw,36px)] font-extrabold text-white leading-tight tracking-tight mb-3">
           Start with a 30-minute conversation.
         </h3>
-        <p className="text-sm text-stone-400 font-light max-w-lg mx-auto mb-8 leading-relaxed">
+        <p className="text-sm text-stone-400  md:text-stone-700 font-light max-w-lg mx-auto mb-8 leading-relaxed">
           No commitment. Show us your supply chain and we&apos;ll show you exactly what&apos;s possible.
         </p>
         <div className="flex items-center  justify-center gap-3 flex-col md:flex-row w-full">
           <Link href="/demo"  className=" group px-8 py-3.5 w-full cursor-pointer flex items-center justify-center gap-2 rounded-xl bg-orange-500 hover:bg-orange-400 text-white text-sm font-semibold shadow-lg shadow-orange-500/25 transition-all hover:-translate-y-0.5">
             Try Demo <ArrowRight ref={iconRef} className="w-5 h-5 group-hover:translate-x-1 transition-all duration-300 ease-in-out" />
           </Link>
-          <Link href="/contact" className="px-7 py-3.5 cursor-pointer rounded-xl border border-stone-700 text-stone-400 text-center w-full hover:text-white hover:border-stone-500 text-sm font-medium transition-all">
+          <Link href="/contact" className="px-7 py-3.5 cursor-pointer rounded-xl border border-stone-700 text-stone-400  md:text-stone-700 text-center w-full hover:text-white hover:border-stone-500 text-sm font-medium transition-all">
             Talk to our team
           </Link>
         </div>
