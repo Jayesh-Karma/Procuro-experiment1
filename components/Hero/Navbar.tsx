@@ -81,37 +81,45 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
+    let rafId: number | null = null;
+
     const onScroll = () => {
-      const doc       = document.documentElement;
-      const currentY  = window.scrollY;
-      const maxScroll = doc.scrollHeight - doc.clientHeight;
+      if (rafId) return;
 
-      // Progress — standalone calculation, nothing can interfere
-      setProgress(maxScroll > 0 ? (currentY / maxScroll) * 100 : 0);
+      rafId = requestAnimationFrame(() => {
+        const doc = document.documentElement;
+        const currentY = window.scrollY;
+        const maxScroll = doc.scrollHeight - doc.clientHeight;
 
-      // Hide / show
-      if (currentY > lastScrollY.current && currentY > 80) {
-        setHidden(true);
-        setMenuOpen(false);
-      } else {
-        setHidden(false);
-      }
-      lastScrollY.current = currentY;
+        setProgress(maxScroll > 0 ? (currentY / maxScroll) * 100 : 0);
 
-      setScrolled(currentY > 20);
+        if (currentY > lastScrollY.current && currentY > 80) {
+          setHidden(true);
+          setMenuOpen(false);
+        } else {
+          setHidden(false);
+        }
+        lastScrollY.current = currentY;
 
-      // Active section
-      let found = -1;
-      LINKS.forEach(({ href }, i) => {
-        const el = document.getElementById(href.replace("#", ""));
-        if (el && el.getBoundingClientRect().top <= 90) found = i;
+        setScrolled(currentY > 20);
+
+        let found = -1;
+        LINKS.forEach(({ href }, i) => {
+          const el = document.getElementById(href.replace("#", ""));
+          if (el && el.getBoundingClientRect().top <= 90) found = i;
+        });
+        setActiveIdx(found);
+
+        rafId = null;
       });
-      setActiveIdx(found);
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll(); // run once on mount (handles page refresh mid-scroll)
-    return () => window.removeEventListener("scroll", onScroll);
+    onScroll();
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   const go = (href: string) => {
@@ -180,7 +188,7 @@ export default function Navbar() {
             }}
           >
             {/* Logo */}
-             <a href="/" className="flex items-center gap-3">
+             <Link href="/" className="flex items-center gap-3">
               <Image src="/Innovacio.png" alt="Logo" width={40} height={40} className="rounded-full" />
               <div className=" leading-none">
                 <div className="font-display leading-none text-sm font-bold text-black uppercase tracking-wide">
@@ -190,7 +198,7 @@ export default function Navbar() {
                 AI in Supply Chain
                 </div>
               </div>
-            </a>
+            </Link>
             
             {/* Desktop links */}
             <div ref={linksRef} className="hidden md:flex items-center gap-0.5 relative pb-[1px]">
@@ -275,7 +283,9 @@ export default function Navbar() {
           >
             <div className="p-3 flex flex-col gap-1">
               {LINKS.map((link, i) => (
-                <Link href={link.href} 
+                <Link
+                  key={link.href}
+                  href={link.href} 
                   onClick={() => setMenuOpen(!menuOpen)}
                   className={`
                     flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-left w-full

@@ -1,41 +1,10 @@
-"use client"
-import Link from "next/link";
-import { useState } from "react";
+"use client";
+
 import ContactFormV2 from "./ContactFormV2";
-import { Play } from "lucide-react";
 
 export default function ContactPage() {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [company, setCompany] = useState("");
-    const [message, setMessage] = useState("");
-    const [loading, setLoading] = useState(false);
-    const [sent, setSent] = useState(false);
-    const [error, setError] = useState<string | null>(null);
-
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setLoading(true);
-        setError(null);
-        try {
-            const res = await fetch('/api/contact', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, email, company, message }),
-            });
-            const data = await res.json();
-            if (!res.ok || !data.ok) throw new Error(data?.error || 'Failed to send');
-            setSent(true);
-            setName(''); setEmail(''); setCompany(''); setMessage('');
-        } catch (err: any) {
-            setError(err?.message || 'Something went wrong');
-        } finally {
-            setLoading(false);
-        }
-    };
-
     return (
-<main className="min-h-screen w-full max-w-7xl mx-auto px-4  sm:px-6 lg:px-8 bg-white font-space py-25 md:py-20 overflow-hidden">
+<main className="min-h-screen w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-white font-space py-25 md:py-20 overflow-hidden">
   <section className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-10 lg:gap-16">
     
     {/* LEFT CONTENT */}
@@ -46,11 +15,11 @@ export default function ContactPage() {
       </div>
 
       <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black leading-tight">
-        Let's build something that moves the needle.
+        Let&apos;s build something that moves the needle.
       </h1>
 
       <p className="text-sm sm:text-base text-black/75 leading-relaxed">
-        We specialise in supply-chain intelligence, tailored AI, and integrated dashboards that deliver measurable ROI. Tell us about your challenge and we’ll respond within one business day.
+        We specialise in supply-chain intelligence, tailored AI, and integrated dashboards that deliver measurable ROI. Tell us about your challenge and we&apos;ll respond within one business day.
       </p>
 
       <div className="rounded-lg border border-black/5 p-4 sm:p-6 bg-black/[0.02] text-left">

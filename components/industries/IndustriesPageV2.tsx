@@ -65,7 +65,7 @@ function SubIndustryCard({
           alt={sub.title}
           fill
           className="object-cover transition-transform duration-700 group-hover:scale-110"
-          sizes="400px"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 350px"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-black/30 to-transparent" />
         {/* Accent line */}
@@ -88,7 +88,7 @@ function SubIndustryCard({
         <div>
           <h4 className="text-sm font-semibold text-black/90 mb-1 leading-snug">{sub.title}</h4>
           <p className="text-[11px] text-black/90 leading-relaxed font-light italic">
-            "{sub.problem}"
+            &ldquo;{sub.problem}&rdquo;
           </p>
         </div>
 
@@ -383,7 +383,7 @@ function PageHero() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 max-w-4xl">
           <p className="text-base text-black/95 font-light leading-relaxed max-w-lg">
             Generic supply chain software creates generic results. We build on top of them, with a unified dashboard and build AI models
-            trained on your industry's specific demand patterns, compliance requirements,
+            trained on your industry&apos;s specific demand patterns, compliance requirements,
             and operational constraints - so the intelligence is relevant from day one.
           </p>
 
@@ -523,7 +523,7 @@ export default function IndustriesPageV2() {
           <div className="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
             <div className="max-w-lg">
               <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-orange-500 mb-3">
-                Don't see your sub-industry?
+                Don&apos;t see your sub-industry?
               </p>
               <h3 className="font-display text-[clamp(22px,3vw,36px)] font-extrabold text-black leading-tight tracking-tight mb-3">
                 We configure to your

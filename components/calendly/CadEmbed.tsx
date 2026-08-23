@@ -1,10 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getCalApi } from "@calcom/embed-react";
 
 const CalEmbed = () => {
-  const [visible, setVisible] = useState(false);
   const [hovered, setHovered] = useState(false);
   const [pulse, setPulse] = useState(true);
 
@@ -14,34 +12,32 @@ const CalEmbed = () => {
     return () => clearTimeout(t);
   }, []);
 
-  useEffect(() => {
-    (async function () {
+  const openCal = async () => {
+    try {
+      const { getCalApi } = await import("@calcom/embed-react");
       const cal = await getCalApi();
-
-      // Register the ui theme — but NO floatingButton (we render our own)
       cal("ui", {
         styles: { branding: { brandColor: "#ed8936" } },
         theme: "auto",
         hideEventTypeDetails: false,
       });
-
-      // Mount our own button after Cal is ready
-      setVisible(true);
-    })();
-  }, []);
-
-  const openCal = async () => {
-    const cal = await getCalApi();
-    cal("modal", {
-      calLink: "raushan",
-      config: {
-        name: "",
-        email: "",
-      },
-    });
+      cal("modal", {
+        calLink: "raushan",
+        config: {
+          name: "",
+          email: "",
+        },
+      });
+    } catch {
+      window.location.href = "/book-demo";
+    }
   };
 
-  if (!visible) return null;
+  const handleMouseEnter = () => {
+    setHovered(true);
+    // Preload cal bundle on hover for instant open
+    import("@calcom/embed-react").catch(() => {});
+  };
 
   return (
     <div
@@ -65,7 +61,7 @@ const CalEmbed = () => {
       {/* The button */}
       <button
         onClick={openCal}
-        onMouseEnter={() => setHovered(true)}
+        onMouseEnter={handleMouseEnter}
         onMouseLeave={() => setHovered(false)}
         aria-label="Book a free consultation"
         style={{

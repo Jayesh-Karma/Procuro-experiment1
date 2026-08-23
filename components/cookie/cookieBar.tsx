@@ -20,10 +20,13 @@ export default function CookieConsent() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const consent = getCookie("cookie_consent");
-    if (!consent) {
-      setVisible(true);
-    }
+    const t = setTimeout(() => {
+      const consent = getCookie("cookie_consent");
+      if (!consent) {
+        setVisible(true);
+      }
+    }, 100);
+    return () => clearTimeout(t);
   }, []);
 
   const handleAccept = () => {

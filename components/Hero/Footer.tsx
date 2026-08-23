@@ -66,13 +66,13 @@ function LinkCol({ title, links }: { title: string; links: typeof INDUSTRIES_LIN
       </p>
       <div className="flex flex-col gap-2.5">
         {links.map((l: any) => (
-          <a
+          <Link
             key={l.label}
             href={l.href}
             className="text-sm text-stone-500 hover:text-orange-500 transition-colors duration-150 w-fit"
           >
             {l.label}
-          </a>
+          </Link>
         ))}
       </div>
     </div>
@@ -267,8 +267,8 @@ export default function Footer() {
               <span className="hidden sm:block w-px h-3 bg-stone-700" />
               {/* Backed by badge */}
               <Link href={'https://www.innovaciotech.com/'} target="_blank" className="flex items-center hover:shadow-sm hover:shadow-orange-300 duration-300 ease-in-out transition-all gap-2 px-3 py-1.5 rounded-full border border-stone-800 bg-stone-900/60">
-                <div className="bg-white rounded-full overflow-hidden">
-                <img src="./company_logo.png" alt="Innovacio" className="w-6 p-1 h-6 rounded-full" />
+                <div className="bg-white rounded-full overflow-hidden flex items-center justify-center">
+                  <Image src="/company_logo.png" alt="Innovacio" width={24} height={24} className="w-6 h-6 p-1 rounded-full object-contain" />
                 </div>
                 <span className="text-[10px] text-stone-500">
                   Backed by{" "}

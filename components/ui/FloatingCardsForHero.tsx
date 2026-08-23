@@ -22,7 +22,11 @@ function rr(
   ctx.lineTo(x, y + r);
   ctx.quadraticCurveTo(x, y, x + r, y);
   ctx.closePath();
-  stroke ? ctx.stroke() : ctx.fill();
+  if (stroke) {
+    ctx.stroke();
+  } else {
+    ctx.fill();
+  }
 }
 
 function t(
@@ -158,7 +162,11 @@ function drawForecastCard(
   pts.forEach((p, i) => {
     const px = sx + (i / (pts.length - 1)) * sw;
     const py = sy - p * sh;
-    i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+    if (i === 0) {
+      ctx.moveTo(px, py);
+    } else {
+      ctx.lineTo(px, py);
+    }
   });
   ctx.lineTo(sx + sw, sy);
   ctx.lineTo(sx, sy);
@@ -171,7 +179,11 @@ function drawForecastCard(
   pts.forEach((p, i) => {
     const px = sx + (i / (pts.length - 1)) * sw;
     const py = sy - p * sh;
-    i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+    if (i === 0) {
+      ctx.moveTo(px, py);
+    } else {
+      ctx.lineTo(px, py);
+    }
   });
   ctx.strokeStyle = "rgba(249,115,22,0.5)";
   ctx.lineWidth = 1.5;
@@ -212,7 +224,11 @@ function drawInventoryCard(
   pts.forEach((p, i) => {
     const px = sx + (i / (pts.length - 1)) * sw;
     const py = sy - p * sh;
-    i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+    if (i === 0) {
+      ctx.moveTo(px, py);
+    } else {
+      ctx.lineTo(px, py);
+    }
   });
   ctx.strokeStyle = "rgba(99,102,241,0.35)";
   ctx.lineWidth = 1.3;
@@ -327,11 +343,18 @@ const CARDS: CardDef[] = [
 export default function FloatingCardsForHero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const frameRef  = useRef<number>(0);
+  const isVisibleRef = useRef<boolean>(false);
+  const isRunningRef = useRef<boolean>(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
+
+    // Check reduced motion
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
+
+    const ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
 
     const resize = () => {
@@ -339,26 +362,34 @@ export default function FloatingCardsForHero() {
       canvas.height = canvas.parentElement?.offsetHeight ?? window.innerHeight;
     };
     resize();
-    window.addEventListener("resize", resize);
+
+    let resizeTimeout: ReturnType<typeof setTimeout> | undefined;
+    const onResize = () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(resize, 200);
+    };
+    window.addEventListener("resize", onResize, { passive: true });
 
     const draw = (timestamp: number) => {
+      if (!isVisibleRef.current || document.hidden) {
+        isRunningRef.current = false;
+        return;
+      }
+
       const W = canvas.width;
       const H = canvas.height;
       ctx.clearRect(0, 0, W, H);
 
       CARDS.forEach((card) => {
-        // Resolve anchor position
         const baseX = card.anchorX * W + card.offsetX;
         const baseY = card.anchorY * H + card.offsetY;
 
-        // Float offset — gentle sine on Y, tiny cosine on X
         const floatY = Math.sin(timestamp * 0.001 * card.floatSpeed + card.floatPhase) * card.floatAmp;
         const floatX = Math.cos(timestamp * 0.0007 * card.floatSpeed + card.floatPhase) * (card.floatAmp * 0.35);
 
         const x = baseX + floatX;
         const y = baseY + floatY;
 
-        // Draw card
         ctx.save();
         ctx.translate(x, y);
         card.draw(ctx, card.width, card.height, timestamp);
@@ -368,10 +399,46 @@ export default function FloatingCardsForHero() {
       frameRef.current = requestAnimationFrame(draw);
     };
 
-    frameRef.current = requestAnimationFrame(draw);
-    return () => {
+    const startAnimation = () => {
+      if (!isRunningRef.current && isVisibleRef.current && !document.hidden) {
+        isRunningRef.current = true;
+        frameRef.current = requestAnimationFrame(draw);
+      }
+    };
+
+    const stopAnimation = () => {
+      isRunningRef.current = false;
       cancelAnimationFrame(frameRef.current);
-      window.removeEventListener("resize", resize);
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisibleRef.current = entry.isIntersecting;
+        if (entry.isIntersecting) {
+          startAnimation();
+        } else {
+          stopAnimation();
+        }
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(canvas);
+
+    const onVisibilityChange = () => {
+      if (document.hidden) {
+        stopAnimation();
+      } else if (isVisibleRef.current) {
+        startAnimation();
+      }
+    };
+    document.addEventListener("visibilitychange", onVisibilityChange);
+
+    return () => {
+      stopAnimation();
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+      window.removeEventListener("resize", onResize);
+      clearTimeout(resizeTimeout);
     };
   }, []);
 

@@ -1,41 +1,38 @@
+import dynamic from "next/dynamic";
 import HeroSection from "@/components/Hero/HeroSection";
-import Image from "next/image";
-import { ReactLenis } from "lenis/react";
-import Navbar from "@/components/Hero/Navbar";
 import PainPointsSection from "@/components/FeatureSection/PainPointsSection";
-import IndustrySection from "@/components/IndustryWiseUse/IndustryWise";
-import ShowcaseSection from "@/components/ProductShowcase/ShowcaseSection";
-import GSAPProvider from "@/components/ProductShowcase/GsapProvider";
-import HowItWorksSection from "@/components/Works/HowItWorksSection";
-import ReviewsSection from "@/components/Works/ReviewSection";
-import Footer from "@/components/Hero/Footer";
+
+const ShowcaseSection = dynamic(
+  () => import("@/components/ProductShowcase/ShowcaseSection")
+);
+const IndustrySection = dynamic(
+  () => import("@/components/IndustryWiseUse/IndustryWise")
+);
+const HowItWorksSection = dynamic(
+  () => import("@/components/Works/HowItWorksSection")
+);
+const ReviewsSection = dynamic(
+  () => import("@/components/Works/ReviewSection")
+);
 
 export default function Home() {
   return (
-    <>
-    
-    <div className=" min-h-screen overflow-hidden">
+    <div className="min-h-screen overflow-hidden">
+      <HeroSection />
+      <PainPointsSection />
 
-        <HeroSection />
-        {/* <FeatureSection /> */}
-        <PainPointsSection />
-        
-        <section id="products">
+      <section id="products">
         <ShowcaseSection />
-        </section>
-        <section>
+      </section>
+
+      <section id="industries">
         <IndustrySection />
         <HowItWorksSection />
-        </section>
+      </section>
 
-
-        <section id="reviews">
+      <section id="reviews">
         <ReviewsSection />
-        </section>
-
-        {/* <FloatingSection sparkles>
-        </FloatingSection> */}
+      </section>
     </div>
-    </>
   );
 }

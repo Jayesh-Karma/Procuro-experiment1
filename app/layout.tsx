@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
-import GSAPProvider from "@/components/ProductShowcase/GsapProvider";
 import ModalProvider from "@/components/Modal/ModalProvider";
 import ReactLenis from "lenis/react";
 import Navbar from "@/components/Hero/Navbar";
@@ -13,16 +12,19 @@ import CookieConsent from "@/components/cookie/cookieBar";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const space = Space_Grotesk({
   variable: "--font-space_grotesk",
   subsets: ["latin"],
-})
+  display: "swap",
+});
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -42,22 +44,24 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${space.variable} h-full antialiased`}
     > 
     <head>
-          <Script
-          id="gtm-script"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function(w,d,s,l,i){w[l]=w[l]||[];
-              w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
-              var f=d.getElementsByTagName(s)[0],
-              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
-              j.async=true;
-              j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
-              f.parentNode.insertBefore(j,f);
-              })(window,document,'script','dataLayer','GTM-P8S7PZV');
-            `,
-          }}
-        />
+      <link rel="preconnect" href="https://images.unsplash.com" />
+      <link rel="dns-prefetch" href="https://images.unsplash.com" />
+      <Script
+        id="gtm-script"
+        strategy="lazyOnload"
+        dangerouslySetInnerHTML={{
+          __html: `
+            (function(w,d,s,l,i){w[l]=w[l]||[];
+            w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+            var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+            j.async=true;
+            j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+            f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-P8S7PZV');
+          `,
+        }}
+      />
     </head>
     
       <body className="min-h-full flex flex-col">
@@ -67,15 +71,13 @@ export default function RootLayout({
           </noscript> 
         
     {/* <ReactLenis root> */}
-      <GSAPProvider>
-        <ModalProvider>
-          <Navbar />
-          {children}
-          <CookieConsent />
-          <CalEmbed />
-          <Footer />
-        </ModalProvider>
-      </GSAPProvider>
+      <ModalProvider>
+        <Navbar />
+        {children}
+        <CookieConsent />
+        <CalEmbed />
+        <Footer />
+      </ModalProvider>
     {/* </ReactLenis> */}
       </body>
     </html>

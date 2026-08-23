@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { DatabaseIcon, Hourglass, Lock } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -68,10 +69,13 @@ export default function Page() {
 
         {/* Preview panel */}
         <div className="relative h-64 bg-gray-50 overflow-hidden">
-          <img
+          <Image
             src="/demo-app.png"
             alt="Demo application preview"
-            className="w-full h-full object-cover"
+            fill
+            priority
+            sizes="(max-width: 640px) 100vw, 576px"
+            className="object-cover"
             style={{ filter: `blur(${((100 - progress) / 100) * 6}px)` }}
           />
 

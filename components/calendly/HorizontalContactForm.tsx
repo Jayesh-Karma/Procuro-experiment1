@@ -200,7 +200,7 @@ export default function HorizontalContactForm() {
       {/* SUCCESS */}
       {success && (
         <div className="text-green-600 text-sm font-medium text-center min-h-[60px]">
-          Thank you for your submission! We'll get back to you soon.
+          Thank you for your submission! We&apos;ll get back to you soon.
         </div>
       )}
 

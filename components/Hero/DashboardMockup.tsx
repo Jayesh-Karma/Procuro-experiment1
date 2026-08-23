@@ -14,12 +14,13 @@ const ALERTS = [
 
 const BAR_HEIGHTS = [45, 60, 50, 75, 65, 90];
 
-function useCycle<T>(values: T[], interval: number): T {
+function useCycle<T>(values: T[], interval: number, active = true): T {
   const [idx, setIdx] = useState(0);
   useEffect(() => {
+    if (!active) return;
     const t = setInterval(() => setIdx((i) => (i + 1) % values.length), interval);
     return () => clearInterval(t);
-  }, [values.length, interval]);
+  }, [values.length, interval, active]);
   return values[idx];
 }
 
@@ -27,104 +28,119 @@ function useCycle<T>(values: T[], interval: number): T {
 export default function DashboardMockup() {
   const cardRef = useRef<HTMLDivElement>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
-  const inventory = useCycle(INVENTORY_VALUES, 4000);
-  const stockouts = useCycle(STOCKOUT_VALUES, 5500);
+  const [isInView, setIsInView] = useState(true);
+
+  const inventory = useCycle(INVENTORY_VALUES, 4000, isInView);
+  const stockouts = useCycle(STOCKOUT_VALUES, 5500, isInView);
 
   const dashboardRef = useRef<HTMLDivElement>(null);
-const leftCardsRef = useRef<HTMLDivElement>(null);
-const rightCardsRef = useRef<HTMLDivElement>(null);
-const bottomRef = useRef<HTMLDivElement>(null);
+  const leftCardsRef = useRef<HTMLDivElement>(null);
+  const rightCardsRef = useRef<HTMLDivElement>(null);
+  const bottomRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    let ctx: any;
+    let mounted = true;
 
+    (async () => {
+      const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+      gsap.registerPlugin(ScrollTrigger);
 
-useEffect(() => {
-  let ctx: any;
-  let mounted = true;
+      if (!mounted) return;
 
-  (async () => {
-    const { ScrollTrigger } = await import("gsap/ScrollTrigger");
-    gsap.registerPlugin(ScrollTrigger);
+      ctx = gsap.context(() => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: dashboardRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        });
 
-    if (!mounted) return;
+        // whole mockup fade + slight scale
+        tl.from(dashboardRef.current, {
+          opacity: 0,
+          scale: 0.96,
+          duration: 0.7,
+          ease: "power3.out",
+        });
 
-    ctx = gsap.context(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: dashboardRef.current,
-          start: "top 75%",
-          toggleActions: "play none none reverse",
-        },
+        // left cards come from left
+        tl.from(leftCardsRef.current?.children || [], {
+          x: -40,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.12,
+          ease: "power3.out",
+        }, "-=0.4");
+
+        // right cards come from right
+        tl.from(rightCardsRef.current?.children || [], {
+          x: 40,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.12,
+          ease: "power3.out",
+        }, "-=0.5");
+
+        // bottom cards slightly from bottom
+        tl.from(bottomRef.current?.children || [], {
+          y: 30,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.12,
+          ease: "power3.out",
+        }, "-=0.4");
       });
+    })();
 
-      // whole mockup fade + slight scale
-      tl.from(dashboardRef.current, {
-        opacity: 0,
-        scale: 0.96,
-        duration: 0.7,
-        ease: "power3.out",
-      });
+    // Viewport observer for pausing timer cycles when offscreen
+    const el = wrapRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([entry]) => {
+      setIsInView(entry.isIntersecting);
+    }, { threshold: 0.1 });
+    obs.observe(el);
 
-      // left cards come from left
-      tl.from(leftCardsRef.current?.children || [], {
-        x: -40,
-        opacity: 0,
-        duration: 0.6,
-        stagger: 0.12,
-        ease: "power3.out",
-      }, "-=0.4");
+    return () => {
+      mounted = false;
+      obs.disconnect();
+      try { ctx?.revert?.(); } catch (e) {}
+    };
+  }, []);
 
-      // right cards come from right
-      tl.from(rightCardsRef.current?.children || [], {
-        x: 40,
-        opacity: 0,
-        duration: 0.6,
-        stagger: 0.12,
-        ease: "power3.out",
-      }, "-=0.5");
-
-      // bottom cards slightly from bottom
-      tl.from(bottomRef.current?.children || [], {
-        y: 30,
-        opacity: 0,
-        duration: 0.6,
-        stagger: 0.12,
-        ease: "power3.out",
-      }, "-=0.4");
-    });
-  })();
-
-  return () => {
-    mounted = false;
-    try { ctx?.revert?.(); } catch (e) {}
-    import("gsap/ScrollTrigger").then(({ ScrollTrigger }) => {
-      try { ScrollTrigger.getAll().forEach((t) => t.kill()); } catch (e) {}
-    }).catch(() => {});
-  };
-}, []);
-
-
-
-  // 3D tilt on mouse
+  // 3D tilt on mouse with RAF throttle
   useEffect(() => {
     const wrap = wrapRef.current;
     const card = cardRef.current;
     if (!wrap || !card) return;
 
+    let rafId: number | null = null;
+
     const onMove = (e: MouseEvent) => {
-      const r = card.getBoundingClientRect();
-      const cx = r.left + r.width / 2;
-      const cy = r.top + r.height / 2;
-      const rx = ((e.clientY - cy) / r.height) * 6;
-      const ry = -((e.clientX - cx) / r.width) * 6;
-      card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.012)`;
+      if (rafId) return;
+      rafId = requestAnimationFrame(() => {
+        const r = card.getBoundingClientRect();
+        const cx = r.left + r.width / 2;
+        const cy = r.top + r.height / 2;
+        const rx = ((e.clientY - cy) / r.height) * 6;
+        const ry = -((e.clientX - cx) / r.width) * 6;
+        card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.012)`;
+        rafId = null;
+      });
     };
     const onLeave = () => {
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
       card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)";
     };
 
-    wrap.addEventListener("mousemove", onMove);
+    wrap.addEventListener("mousemove", onMove, { passive: true });
     wrap.addEventListener("mouseleave", onLeave);
     return () => {
+      if (rafId) cancelAnimationFrame(rafId);
       wrap.removeEventListener("mousemove", onMove);
       wrap.removeEventListener("mouseleave", onLeave);
     };

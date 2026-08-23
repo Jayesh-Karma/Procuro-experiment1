@@ -2,18 +2,20 @@
 
 import FloatingOrbs from "@/components/ui/FloatingOrbs";
 import MorphingText from "@/components/ui/MorphingText";
-import { StatCard } from "@/components/ui/StatCard";
-import DashboardMockup from "./DashboardMockup";
-import { ArrowRight, Contact2Icon, Play, Rocket, Sparkle, Star } from "lucide-react";
+import { ArrowRight, Rocket, Sparkle } from "lucide-react";
 import { useModal } from "@/components/Modal/ModalProvider";
 import FloatingCardsForHero from "../ui/FloatingCardsForHero";
-import { useRef } from "react";
-import gsap from "gsap";
-import ContactForm from "../calendly/ContactForm";
-import SupplyChainToolsSection from "./SupplyChainToolsSection";
-import ContactFormV2 from "../calendly/ContactFormV2";
 import HorizontalContactForm from "../calendly/HorizontalContactForm";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+
+const SupplyChainToolsSection = dynamic(() => import("./SupplyChainToolsSection"), {
+  loading: () => <div className="min-h-[600px]" aria-hidden="true" />,
+});
+
+const LazyDashboardMockup = dynamic(() => import("./DashboardMockup"), {
+  loading: () => <div className="h-[320px] w-full rounded-2xl bg-stone-50" aria-hidden="true" />,
+});
 
 const STATS = [
   { value: 35, suffix: "%", label: "forecast accuracy gain" },
@@ -23,60 +25,26 @@ const STATS = [
 ];
 
 
+const NOISE_BG = `data:image/svg+xml;utf8,<svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.03"/></svg>`;
+
 export default function HeroSection() {
-
-
-
-  const iconRef = useRef(null);
-  const handleHover = () => {
-    const el = iconRef.current;
-
-    gsap.timeline()
-      .to(el, {
-        x: 8,
-        opacity: 0,
-        duration: 0.30,
-        ease: "power2.out",
-      })
-      .set(el, {
-        x: -8,
-        opacity: 0,
-      })
-      .to(el, {
-        x: 0,
-        opacity: 1,
-        duration: 0.25,
-        ease: "power2.out",
-      });
-  };
   const modal = useModal();
 
-  const svg = `
-<svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
-  <filter id="n">
-    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/>
-  </filter>
-  <rect width="100%" height="100%" filter="url(#n)"/>
-</svg>
-`;
-
-
-const encoded = btoa(svg);
-
   return (
-    <section className="relative md:min-h-screen flex flex-col justify-center pt-20 md:pt-25   pb-20 px-6 md:px-12 overflow-hidden bg-white">
+    <section className="relative md:min-h-screen flex flex-col justify-center pt-20 md:pt-25 pb-20 px-6 md:px-12 overflow-hidden bg-white">
       {/* Floating orange orbs (hide on small screens) */}
       <FloatingOrbs />
       <FloatingCardsForHero />
 
       {/* Subtle noise grain overlay */}
-<div
-  style={{
-    backgroundImage: `url("data:image/svg+xml;base64,${encoded}")`,
-    backgroundRepeat: "repeat",
-    backgroundSize: "128px",
-  }}
-/>
+      <div
+        className="absolute inset-0 pointer-events-none opacity-40 z-0"
+        style={{
+          backgroundImage: `url("${NOISE_BG}")`,
+          backgroundRepeat: "repeat",
+          backgroundSize: "128px",
+        }}
+      />
       {/* Warm radial wash — very subtle */}
       <div
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[600px] pointer-events-none z-[1]"
@@ -169,7 +137,7 @@ const encoded = btoa(svg);
         className="relative z-[2] my-10 w-full max-w-5xl mx-auto"
         style={{ animation: "dashboardIn 0.9s 0.65s cubic-bezier(0.16,1,0.3,1) both" }}
       >
-        <DashboardMockup />
+        <LazyDashboardMockup />
 
         {/* Glow beneath dashboard */}
         <div
